@@ -5,22 +5,36 @@
     <div id="wrapper">
         <div class="overlay"></div>
 
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <form class="d-flex">
+                        <input class="form-control ml-5 me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <div class="sidebar-header">
                     <div class="sidebar-brand">
-                        <a href="#">Brand</a>
+                        <a href="#">
+                            <img src="{{ url('login/img/logo.png') }}" alt="">
+                        </a>
                     </div>
                 </div>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#">Departamentos</a></li>
+                {{-- <li><a href="#about">About</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#team">Team</a></li>
                 <li class="dropdown">
                     <a href="#works" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
                     <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                        <div class="dropdown-header">Dropdown heading</div>
+                        <div class="dropdown-header"></div>
                         <li><a href="#pictures">Pictures</a></li>
                         <li><a href="#videos">Videeos</a></li>
                         <li><a href="#books">Books</a></li>
@@ -31,7 +45,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#followme">Follow me</a></li>
-            </ul>
+            </ul> --}}
         </nav>
         <!-- /#sidebar-wrapper -->
 
@@ -45,7 +59,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <h1>Fancy Toggle Sidebar Navigation</h1>
+                        <h1>LOREM IPSUM</h1>
                         <p>Bacon ipsum dolor sit amet tri-tip shoulder tenderloin shankle. Bresaola tail pancetta ball tip
                             doner meatloaf corned beef. Kevin pastrami tri-tip prosciutto ham hock pork belly bacon pork
                             loin salami pork chop shank corned beef tenderloin meatball cow. Pork bresaola meatloaf tongue,

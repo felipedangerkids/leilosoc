@@ -75,17 +75,25 @@
 body {
     position: relative;
     overflow-x: hidden;
-    background-color: #cfd8dc;
+    background-color: #E5E5E5;
 }
 body,
 html {
     height: 100%;
 }
+
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
     background-color: transparent;
 }
+
+header {
+    .navbar-light{
+        height: 60px;
+    }
+}
+
 
 /*-------------------------------*/
 /*           Wrappers            */
@@ -111,7 +119,7 @@ html {
     margin-left: -220px;
     overflow-y: auto;
     overflow-x: hidden;
-    background: #1a1a1a;
+    background: #013B95;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -213,11 +221,15 @@ html {
     display: inline-block;
 }
 .sidebar-brand {
+    display: flex;
+    justify-content: center;
+    width: 150px;
     height: 65px;
-    position: relative;
-    background: #212531;
-    background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
     padding-top: 1em;
+    padding-left: 3em;
+    img{
+        width: 100%;
+    }
 }
 .sidebar-brand a {
     color: #ddd;
@@ -303,7 +315,7 @@ a[href*="#followme"]::before {
 
 .hamburger {
     position: fixed;
-    top: 20px;
+    top: 60px;
     z-index: 999;
     display: block;
     width: 32px;
