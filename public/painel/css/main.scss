@@ -22,7 +22,10 @@ a, a:hover, a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+.navbar-nav .nav-link {
 
+    margin-right: 27px !important;
+}
 .navbar {
     padding: 15px 10px;
     background: #fff;
