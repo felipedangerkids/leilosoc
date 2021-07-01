@@ -20,46 +20,6 @@
                 <tr>
                     <th scope="row">{{ $departamento->id }}</th>
                     <td>{{ $departamento->name }}</td>
-        <header>
-            <div class="d-flex">
-                <nav class="navbar navbar-light bg-light">
-                    <div class="container-fluid">
-                        <form class="d-flex">
-                            <input class="form-control ml-5 " type="search" placeholder="Pesquisar" aria-label="Search">
-                            <button class="btn btn-pesquisar " type="submit"><img src="{{ url('login/img/lupa.png') }}" alt=""></button>
-                        </form>
-                        <div class="icones-1 d-flex">
-                            <div class="notificacao ml-3">
-                                <div>
-                                    <a href="">
-                                        <img src="{{ url('login/img/mail.png') }}" alt="">
-                                    </a>                                  
-                                </div>
-                                <div>
-                                    <a href="">
-                                        <img src="{{ url('login/img/bell.png') }}" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="user ml-3">
-                                <a href="">
-                                    <img src="login/img/user.png" alt="">
-                                </a>
-                            </div>
-                            <div class="info ml-3">
-                                <div class="name-user">
-                                    <span>Rute</span>
-                                </div>
-                                <div class="conta-info">
-                                    <span>Admin account</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
-
                 </tr>
 
                 @endforeach
