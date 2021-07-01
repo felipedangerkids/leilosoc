@@ -13,7 +13,6 @@
                     <th scope="col">ID</th>
                     <th scope="col">Departamento</th>
 
-<<<<<<< Updated upstream
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +20,6 @@
                 <tr>
                     <th scope="row">{{ $departamento->id }}</th>
                     <td>{{ $departamento->name }}</td>
-=======
         <header>
             <div class="d-flex">
                 <nav class="navbar navbar-light bg-light">
@@ -61,7 +59,6 @@
                 </nav>
             </div>
         </header>
->>>>>>> Stashed changes
 
                 </tr>
 
