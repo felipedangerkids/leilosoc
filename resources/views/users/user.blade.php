@@ -27,7 +27,7 @@
                         @if ($user->departamento_id == null)
                         Admin
                              @else
-{{ $user->departamento->name }}
+                        {{ $user->departamento->name }}
                         @endif
                     </td>
                 </tr>
