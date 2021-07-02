@@ -11,7 +11,7 @@ class LoginController extends Controller
     {
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            return redirect()->intended('home');
+            return redirect()->intended('/');
         }
         return redirect('entrar');
     }
