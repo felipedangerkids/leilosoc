@@ -36,6 +36,9 @@
                         <li>
                             <a href="{{ route('painel.departamento') }}">Cadastrar</a>
                         </li>
+                        <li>
+                            <a href="{{ route('painel.users') }}">Usuários</a>
+                        </li>
 
                     </ul>
                 </li>
