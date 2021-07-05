@@ -28,8 +28,17 @@ Route::post('/login/post', [LoginController::class, 'login'])->name('login.store
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('painel/users', [UserController::class, 'index'])->name('painel.users');
-Route::post('painel/users/store', [UserController::class, 'store'])->name('painel.users.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('painel/users', [UserController::class, 'index'])->name('painel.users');
+    Route::get('painel/users/edit/{id}', [UserController::class, 'edit'])->name('painel.users.edit');
+    Route::post('painel/users/update/{id}', [UserController::class, 'update'])->name('painel.users.update');
+    Route::any('painel/users/delete/{id}', [UserController::class, 'destroy'])->name('painel.users.delete');
+    Route::post('painel/users/store', [UserController::class, 'store'])->name('painel.users.store');
 
-Route::get('painel/departamentos', [DepertamentoController::class, 'index'])->name('painel.departamento');
-Route::post('painel/departamentos/store', [DepertamentoController::class, 'store'])->name('painel.departamento.store');
+    Route::get('painel/departamentos', [DepertamentoController::class, 'index'])->name('painel.departamento');
+    Route::get('painel/departamentos/edit/{id}', [DepertamentoController::class, 'edit'])->name('painel.departamento.edit');
+    Route::post('painel/departamentos/update/{id}', [DepertamentoController::class, 'update'])->name('painel.departamento.update');
+    Route::post('painel/departamentos/store', [DepertamentoController::class, 'store'])->name('painel.departamento.store');
+    Route::any('painel/departamentos/delete/{id}', [DepertamentoController::class, 'destroy'])->name('painel.departamento.delete');
+
+});

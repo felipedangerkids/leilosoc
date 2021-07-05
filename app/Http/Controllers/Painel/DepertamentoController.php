@@ -50,7 +50,7 @@ class DepertamentoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -61,7 +61,8 @@ class DepertamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departamento = Depertamento::find($id);
+        return view('departamentos.edit', compact('departamento'));
     }
 
     /**
@@ -73,7 +74,10 @@ class DepertamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $departamento = Depertamento::find($id);
+        $departamento->name = $request->name;
+        $departamento->save();
+        return redirect()->route('painel.departamento');
     }
 
     /**
@@ -84,6 +88,8 @@ class DepertamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $departamento = Depertamento::find($id);
+        $departamento->delete();
+        return redirect()->route('painel.departamento');
     }
 }

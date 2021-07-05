@@ -70,7 +70,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departamentos = Depertamento::all();
+        $user = User::with('departamento')->find($id);
+        return view('users.edit', compact('user', 'departamentos'));
     }
 
     /**
@@ -82,7 +84,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::with('departamento')->find($id);
+        $user->departamento_id = $request->departamento_id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('painel.users');
     }
 
     /**
@@ -93,6 +101,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('painel.users');
     }
 }

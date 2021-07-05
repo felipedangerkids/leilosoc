@@ -14,6 +14,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
                     <th scope="col">Departamento</th>
+                    <th scope="col">Acão</th>
 
                 </tr>
             </thead>
@@ -26,9 +27,20 @@
                     <td>
                         @if ($user->departamento_id == null)
                         Admin
+
                              @else
-                        {{ $user->departamento->name }}
+                        {{ $user->departamento->name ?? 'Departamento Excluido' }}
                         @endif
+                    </td>
+                    <td>
+                        <div class="d-flex">
+                            <div>
+                                <a href="{{ route('painel.users.edit', $user->id) }}"><button class="btn btn-primary mx-1">Editar</button></a>
+                            </div>
+                            <div>
+                              <a href="{{ route('painel.users.delete', $user->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1">Excluir</button></a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
 

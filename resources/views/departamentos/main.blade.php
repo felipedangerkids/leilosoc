@@ -12,6 +12,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Departamento</th>
+                    <th scope="col">Ação</th>
 
                 </tr>
             </thead>
@@ -20,6 +21,16 @@
                 <tr>
                     <th scope="row">{{ $departamento->id }}</th>
                     <td>{{ $departamento->name }}</td>
+                    <td>
+                        <div class="d-flex">
+                            <div>
+                                <a href="{{ route('painel.departamento.edit', $departamento->id) }}"><button class="btn btn-primary mx-1">Editar</button></a>
+                            </div>
+                            <div>
+                              <a href="{{ route('painel.departamento.delete', $departamento->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1">Excluir</button></a>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
 
                 @endforeach
