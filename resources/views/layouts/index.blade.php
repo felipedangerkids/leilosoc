@@ -31,17 +31,18 @@
             <ul class="list-unstyled components">
                 <p>Dashboard</p>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Departamentos</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cadastros</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="{{ route('painel.departamento') }}">Cadastrar</a>
+                            <a href="{{ route('painel.departamento') }}">Departamentos</a>
                         </li>
                         <li>
-                            <a href="{{ route('painel.users') }}">Usuários</a>
+                            <a href="{{ route('painel.users') }}">Colaboradores</a>
                         </li>
 
                     </ul>
                 </li>
+
 
 
             </ul>

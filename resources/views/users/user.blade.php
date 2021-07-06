@@ -20,6 +20,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
+<<<<<<< Updated upstream
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
@@ -43,6 +44,20 @@
                         </div>
                     </td>
                 </tr>
+=======
+                    <tr>
+                        <th scope="row">{{ $user->id }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @if ($user->departamento_id == null)
+                                Admin
+                            @else
+                                {{ $user->departamento->name }}
+                            @endif
+                        </td>
+                    </tr>
+>>>>>>> Stashed changes
 
                 @endforeach
 
@@ -67,27 +82,27 @@
                 <form action="{{ route('painel.users.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Departamento</label>
-                                <select class="form-control" name="departamento_id" id="exampleFormControlSelect1">
-                                    @foreach ($departamentos as $departamento)
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Departamento</label>
+                            <select class="form-control" name="departamento_id" id="exampleFormControlSelect1">
+                                @foreach ($departamentos as $departamento)
                                     <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
-                                    @endforeach
+                                @endforeach
 
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Nome</label>
-                                <input type="text" name="name"  class="form-control">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">E-mail</label>
-                                <input type="email" name="email"  class="form-control">
-                              </div>
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Senha</label>
-                                <input type="password" name="password"  class="form-control">
-                              </div>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-mail</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Senha</label>
+                            <input type="password" name="password" class="form-control">
+                        </div>
                     </div>
 
                     <div class="modal-footer">
