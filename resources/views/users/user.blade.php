@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-<<<<<<< Updated upstream
+
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
@@ -44,20 +44,7 @@
                         </div>
                     </td>
                 </tr>
-=======
-                    <tr>
-                        <th scope="row">{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            @if ($user->departamento_id == null)
-                                Admin
-                            @else
-                                {{ $user->departamento->name }}
-                            @endif
-                        </td>
-                    </tr>
->>>>>>> Stashed changes
+
 
                 @endforeach
 
