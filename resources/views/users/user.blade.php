@@ -1,7 +1,6 @@
 @extends('layouts.index')
 
 @section('content')
-
     <div class="container">
         <div class="my-2">
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
@@ -15,12 +14,10 @@
                     <th scope="col">Email</th>
                     <th scope="col">Departamento</th>
                     <th scope="col">Acão</th>
-
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
-
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
@@ -44,18 +41,10 @@
                         </div>
                     </td>
                 </tr>
-
-
                 @endforeach
-
-
             </tbody>
         </table>
-
-
-
     </div>
-
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">

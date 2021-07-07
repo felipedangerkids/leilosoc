@@ -1,11 +1,8 @@
 @extends('layouts.index')
-
 @section('content')
-
 <div class="container">
     <form action="{{ route('painel.users.update', $user->id) }}" method="POST">
         @csrf
-
         <div class="form-group">
             <label for="exampleFormControlSelect1">Departamento</label>
             <select class="form-control" name="departamento_id" id="exampleFormControlSelect1">
@@ -13,7 +10,6 @@
                 @foreach ($departamentos as $departamento)
                 <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
                 @endforeach
-
             </select>
           </div>
           <div class="form-group">
@@ -31,11 +27,6 @@
         <div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
-
     </form>
 </div>
-
-
-
-
 @endsection
