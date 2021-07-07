@@ -30,7 +30,7 @@
 
             <ul class="list-unstyled components">
                 <p>Dashboard</p>
-                <li class="active">
+                <li class="">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cadastros</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -38,6 +38,13 @@
                         </li>
                         <li>
                             <a href="{{ route('painel.users') }}">Colaboradores</a>
+                        </li>
+
+                    </ul>
+                    <a href="#citrus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citrus</a>
+                    <ul class="collapse list-unstyled" id="citrus">
+                        <li>
+                            <a href="{{ route('citrus') }}">Cadastros</a>
                         </li>
 
                     </ul>

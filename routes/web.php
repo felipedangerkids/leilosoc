@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Citrus\CitrusController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Painel\DepertamentoController;
@@ -45,6 +46,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('painel/departamentos/update/{id}', [DepertamentoController::class, 'update'])->name('painel.departamento.update');
     Route::post('painel/departamentos/store', [DepertamentoController::class, 'store'])->name('painel.departamento.store');
     Route::any('painel/departamentos/delete/{id}', [DepertamentoController::class, 'destroy'])->name('painel.departamento.delete');
+
+    Route::get('citrus', [CitrusController::class, 'index'])->name('citrus');
+    Route::get('citrus/create', [CitrusController::class, 'create'])->name('citrus.create');
+    Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
 
 });
 
