@@ -1,9 +1,13 @@
 <?php
 
+<<<<<<< Updated upstream
 use App\Http\Controllers\Citrus\CitrusController;
 use App\Http\Controllers\Painel\ColaboradorController;
+=======
+>>>>>>> Stashed changes
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Painel\DepertamentoController;
+use App\Http\Controllers\painel\TarefaController;
 use App\Http\Controllers\Teste\TesteController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,16 +44,25 @@ Route::middleware(['auth'])->group(function () {
     Route::any('painel/users/delete/{id}', [UserController::class, 'destroy'])->name('painel.users.delete');
     Route::post('painel/users/store', [UserController::class, 'store'])->name('painel.users.store');
 
-
     Route::get('painel/departamentos', [DepertamentoController::class, 'index'])->name('painel.departamento');
     Route::get('painel/departamentos/edit/{id}', [DepertamentoController::class, 'edit'])->name('painel.departamento.edit');
     Route::post('painel/departamentos/update/{id}', [DepertamentoController::class, 'update'])->name('painel.departamento.update');
     Route::post('painel/departamentos/store', [DepertamentoController::class, 'store'])->name('painel.departamento.store');
     Route::any('painel/departamentos/delete/{id}', [DepertamentoController::class, 'destroy'])->name('painel.departamento.delete');
 
+<<<<<<< Updated upstream
     Route::get('citrus', [CitrusController::class, 'index'])->name('citrus');
     Route::get('citrus/create', [CitrusController::class, 'create'])->name('citrus.create');
     Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
+=======
+    Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefa');
+    Route::post('painel/tarefas', [TarefaController::class, 'store'])->name('painel.tarefa.store');
+    Route::get('painel/tarefas/edit/{id}', [TarefaController::class, 'edit'])->name('painel.tarefa.edit');
+    Route::post('painel/tarefas/update/{id}', [TarefaController::class, 'update'])->name('painel.tarefa.update');
+    Route::any('painel/tarefa/delete/{id}', [TarefaController::class, 'destroy'])->name('painel.tarefa.delete');
+>>>>>>> Stashed changes
 
 });
+
+
 
