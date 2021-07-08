@@ -44,19 +44,7 @@
                         <li>
                             <a href="#">Mensagem Todos</a>
                         </li>
-
                     </ul>
-<<<<<<< Updated upstream
-                    <a href="#citrus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citrus</a>
-                    <ul class="collapse list-unstyled" id="citrus">
-                        <li>
-                            <a href="{{ route('citrus') }}">Cadastros</a>
-                        </li>
-
-                    </ul>
-                </li>
-=======
->>>>>>> Stashed changes
 
                     <a href="#homeSubmenu_1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tarefas</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_1">
@@ -68,10 +56,10 @@
                         </li>
                     </ul>
 
-                    <a href="#homeSubmenu_2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citus</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu_2">
+                    <a href="#citrus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citus</a>
+                    <ul class="collapse list-unstyled" id="citrus">
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="{{ route('citrus') }}">Cadastros</a>
                         </li>
                         <li>
                             <a href="#">Tipo de processos</a>
