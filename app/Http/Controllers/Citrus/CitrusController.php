@@ -15,7 +15,7 @@ class CitrusController extends Controller
      */
     public function index()
     {
-        $dados = Citrus::paginate(1);
+        $dados = Citrus::paginate(15);
         return view('citrus.citrus', compact('dados'));
     }
 
