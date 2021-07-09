@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('citrus/create', [CitrusController::class, 'create'])->name('citrus.create');
     Route::get('citrus/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
     Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
+    Route::any('citrus/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
+
     Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefa');
     Route::post('painel/tarefas', [TarefaController::class, 'store'])->name('painel.tarefa.store');
     Route::get('painel/tarefas/edit/{id}', [TarefaController::class, 'edit'])->name('painel.tarefa.edit');

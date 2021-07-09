@@ -85,6 +85,8 @@ class CitrusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dado = Citrus::find($id);
+        $dado->delete();
+        return redirect()->back();
     }
 }
