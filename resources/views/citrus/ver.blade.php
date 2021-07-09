@@ -19,5 +19,8 @@
 
 
           </ul>
+          <div class="my-3">
+              <button class="btn btn-dark">Abrir Tarefa</button>
+          </div>
     </div>
 @endsection

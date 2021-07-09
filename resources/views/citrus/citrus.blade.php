@@ -25,6 +25,9 @@
                     <td>
                         <div class="d-flex">
                             <div>
+                                <a href="#"><button class="btn btn-dark mx-1">Abrir Tarefa</button></a>
+                            </div>
+                            <div>
                                 <a href="{{ route('citrus.show', $dado->id) }}"><button class="btn btn-primary mx-1">Ver</button></a>
                             </div>
                             <div>
