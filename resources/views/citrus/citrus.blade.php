@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($dados as $dado)
+                @foreach ($dados->reverse() as $dado)
                 <tr>
                     <th scope="row">{{ $dado->tribunal }}</th>
                     <td>{{ $dado->ato }}</td>
