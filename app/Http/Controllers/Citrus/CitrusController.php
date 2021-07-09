@@ -50,7 +50,8 @@ class CitrusController extends Controller
      */
     public function show($id)
     {
-        //
+        $citius = Citrus::find($id);
+        return view('citrus.ver', compact('citius'));
     }
 
     /**

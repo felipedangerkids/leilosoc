@@ -25,7 +25,7 @@
                     <td>
                         <div class="d-flex">
                             <div>
-                                <a href="{{ route('painel.users.edit', $dado->id) }}"><button class="btn btn-primary mx-1">Ver</button></a>
+                                <a href="{{ route('citrus.show', $dado->id) }}"><button class="btn btn-primary mx-1">Ver</button></a>
                             </div>
                             <div>
                               <a href="{{ route('painel.users.delete', $dado->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1">Excluir</button></a>

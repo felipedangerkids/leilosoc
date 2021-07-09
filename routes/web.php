@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('citrus', [CitrusController::class, 'index'])->name('citrus');
     Route::get('citrus/create', [CitrusController::class, 'create'])->name('citrus.create');
+    Route::get('citrus/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
     Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
 
 });
