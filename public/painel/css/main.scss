@@ -2,28 +2,27 @@
     DEMO STYLE
 */
 
-
-
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     background: #fafafa;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
 }
 
-a, a:hover, a:focus {
+a,
+a:hover,
+a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
 }
 .navbar-nav .nav-link {
-
     margin-right: 27px !important;
 }
 .navbar {
@@ -59,13 +58,12 @@ a, a:hover, a:focus {
     perspective: 1500px;
 }
 
-
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #013B95;
+    background: #013b95;
     color: #fff;
-    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
     transform-origin: bottom left;
 }
 
@@ -76,12 +74,12 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #013B95;
+    background: #013b95;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #013B95;
+    border-bottom: 1px solid #013b95;
 }
 
 #sidebar ul p {
@@ -95,18 +93,20 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #013B95;
+    color: #013b95;
     background: #fff;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
     color: #fff;
-    background: #013B95;
+    background: #013b95;
 }
-
 
 a[data-toggle="collapse"] {
     position: relative;
+    text-transform: uppercase;
+    color: #ffaa00;
 }
 
 .modal-backdrop {
@@ -119,12 +119,13 @@ a[data-toggle="collapse"] {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    color: #fff;
 }
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    text-transform: uppercase;
 }
 
 ul.CTAs {
@@ -141,15 +142,14 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: #7386d5;
 }
 
-a.article, a.article:hover {
+a.article,
+a.article:hover {
     background: #6d7fcc !important;
     color: #fff !important;
 }
-
-
 
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -164,7 +164,6 @@ a.article, a.article:hover {
 #sidebarCollapse {
     width: 40px;
     height: 40px;
-    background: #f5f5f5;
     cursor: pointer;
 }
 
@@ -174,7 +173,7 @@ a.article, a.article:hover {
     margin: 0 auto;
     display: block;
     background: #555;
-    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+    transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
     transition-delay: 0.2s;
 }
 
@@ -188,13 +187,11 @@ a.article, a.article:hover {
     transform: rotate(-45deg) translate(1px, -1px);
 }
 
-
 #sidebarCollapse.active span {
     transform: none;
     opacity: 1;
     margin: 5px auto;
 }
-
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -227,5 +224,50 @@ a.article, a.article:hover {
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
+}
+.compartilhar {
+    align-items: center;
+    justify-content: center;
+}
+.botoes {
+    margin: 0 auto;
+    button {
+        width: 200px;
 
+        font-family: Poppins, sans-serif;
+        font-weight: 700;
+        font-size: 25, 56px;
+        line-height: 38, 34px;
+    }
+}
+.busca{
+    background: #DFE7F4;
+    border: none;
+
+}
+.btn-busca{
+    background: #DFE7F4 !important;
+    border: none;
+    position: relative;
+    right: 40px;
+}
+
+.hidden {
+    display: none;
+}
+.text-dep {
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 25,56px;
+    line-height: 38,34px;
+    h1 {
+        color: #777;
+    }
+}
+.modelos{
+    a{
+        font-family: Poppins, sans-serif;
+        margin-top: 50px;
+        color: #777;
+    }
 }
