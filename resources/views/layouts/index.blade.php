@@ -194,7 +194,6 @@
     <script src="{{ url('datepicker/js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ url('datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('datepicker/js/datepicker.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ url('tarefa/js/script.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
