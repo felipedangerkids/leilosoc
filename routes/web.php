@@ -58,7 +58,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('painel/tarefas/edit/{id}', [TarefaController::class, 'edit'])->name('painel.tarefa.edit');
     Route::post('painel/tarefas/update/{id}', [TarefaController::class, 'update'])->name('painel.tarefa.update');
     Route::any('painel/tarefa/delete/{id}', [TarefaController::class, 'destroy'])->name('painel.tarefa.delete');
+    Route::get('users/{id}', function ($id) {
 
+    });
 });
 
 
