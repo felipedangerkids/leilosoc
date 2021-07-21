@@ -1,20 +1,22 @@
 function mostrar(id) {
     if (document.getElementById(id).style.display == "block") {
         document.getElementById(id).style.display = "none";
-    }
-    else {
+    } else {
         document.getElementById(id).style.display = "block";
     }
 }
+// accordion
+var acc = document.getElementsByClassName("accordion");
+var i;
 
-// $(function (){
-//     $('article div.btn').click(function(){
-//         $(this).siblings('').slideToggle();
-//         // if($(this).text() == "ESCOLHA UM MODELO"){
-//         //     $(this).text("FECHAR");
-//         // }
-//         // else{
-//         //     $(this).text("ESCOLHA UM MODELO")
-//         // }
-//     });
-// });
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
+        }
+    });
+}

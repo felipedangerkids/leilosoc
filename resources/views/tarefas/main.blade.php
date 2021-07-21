@@ -59,14 +59,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('painel.tarefa.store') }}" method="POST">
+                    <form class="row g-3" action="{{ route('painel.departamento.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
                             <input type="text" class="form-control" id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
-                                    <span class="btn btn-primary"  onclick="mostrar('ma')">ESCOLHA UM MODELO</span>
+                                    <span class="btn btn-primary" onclick="mostrar('ma')">ESCOLHA UM MODELO</span>
                                     <div class="hidden" id="ma">
 
                                         <div class="input-group mt-3">
@@ -79,30 +79,46 @@
                                             </button>
                                         </div>
 
-                                        <div class="text-dep mt-3">
-                                            <h1>DEPARTAMENTO</h1>
+                                        <div class="modelos mt-3">
+                                            <h2>DEPARTAMENTO</h2>
+                                            <div class="mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Legal e Jurídico</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Processual</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Consulting</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Valorização de Ativos</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Marketing</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
+                                            <div class=" mt-3">
+                                                <select class="form-control ">
+                                                    <option selected>Financeiro</option>
+                                                    <option></option>
+                                                </select>
+                                            </div>
                                         </div>
 
-                                        <div class="modelos">
-                                            <div class="mt-3">
-                                                <a href="#">legal e juridico</a>
-                                            </div>
-                                            <div class="mt-3">
-                                                <a href="">processual</a>
-                                            </div>
-                                            <div class="mt-3">
-                                                <a href="">consulting</a>
-                                            </div>
-                                            <div class="mt-3">
-                                                <a href="">valorização de Ativo</a>
-                                            </div>
-                                            <div class="mt-3">
-                                                <a href="">marketing</a>
-                                            </div>
-                                            <div class="mt-3">
-                                                <a href="">financeiro</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </article>
                             </div>
@@ -114,13 +130,28 @@
 
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="departamento">Departamento</label>
-                            <select class="form-control " id="departamento">
+                            <select class="form-control " name="departamento_id" id="departamento">
                                 <option selected>Escolha Departamento</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach ($departamentos as $departamento)
+                                    <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
+                                @endforeach
                             </select>
                         </div>
+
+
+
+
+                        <div class="col-md-6 mt-3">
+                            <label class="form-label" for="departamento">Colaborador(a)</label>
+                            <select class="form-control " id="departamento">
+
+                                <option selected>Escolha Colaborador(a)</option>
+                                @foreach ($users as $user)
+                                    <option>{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="col-md-3 mt-3">
                             <label for="datadehoje" class="form-label">Data do Pedido</label>
                             <input type="text" class="form-control" id="datadehoje">

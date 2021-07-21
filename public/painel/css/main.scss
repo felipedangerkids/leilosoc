@@ -255,19 +255,12 @@ a.article:hover {
 .hidden {
     display: none;
 }
-.text-dep {
-    font-family: Poppins, sans-serif;
-    font-weight: 700;
-    font-size: 25,56px;
-    line-height: 38,34px;
-    h1 {
-        color: #777;
-    }
-}
+
+
 .modelos{
-    a{
-        font-family: Poppins, sans-serif;
-        margin-top: 50px;
-        color: #777;
+
+    h2{
+        color: #777 !important;
+        font-weight: 700;
     }
 }

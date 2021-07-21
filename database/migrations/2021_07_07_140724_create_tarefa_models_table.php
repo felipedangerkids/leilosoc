@@ -15,6 +15,7 @@ class CreateTarefaModelsTable extends Migration
     {
         Schema::create('tarefa_models', function (Blueprint $table) {
             $table->id();
+            $table->integer('departamento_id');
             $table->string('name');
             $table->string('data');
             $table->string('projeto');

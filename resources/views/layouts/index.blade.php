@@ -60,7 +60,7 @@
                         class="dropdown-toggle">Tarefas</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_1">
                         <li>
-                            <a href="{{ route('painel.tarefa') }}">Todas tarefa</a>
+                            <a href="{{ route('painel.tarefa') }}">Todas tarefas</a>
                         </li>
                         <li>
                             <a href="#">Abrir tarefas</a>

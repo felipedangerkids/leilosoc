@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\painel;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\TarefaModel;
+use App\Models\Depertamento;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TarefaController extends Controller
 {
@@ -15,8 +17,12 @@ class TarefaController extends Controller
      */
     public function index()
     {
+        $departamentos = Depertamento::all();
         $tarefas = TarefaModel::all();
-        return view('tarefas.main', compact('tarefas'));
+        $users = User::with('departamento')->get();
+        return view('tarefas.main', compact('tarefas', 'departamentos', 'users'));
+
+
     }
 
     /**
