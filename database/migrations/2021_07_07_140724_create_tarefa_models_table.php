@@ -15,10 +15,25 @@ class CreateTarefaModelsTable extends Migration
     {
         Schema::create('tarefa_models', function (Blueprint $table) {
             $table->id();
-            $table->integer('departamento_id');
+
+
             $table->string('name');
-            $table->string('data');
-            $table->string('projeto');
+            $table->text('description');
+            $table->integer('departamento_id');
+            $table->integer('user_id');
+            $table->date('inicio');
+            $table->date('fim');
+            $table->string('cep');
+            $table->string('morada');
+            $table->string('porta');
+            $table->string('regiao');
+            $table->string('distrito');
+            $table->string('conselho');
+            $table->string('freguesia');
+            $table->string('path');
+            $table->string('compartilhar');
+
+
             $table->timestamps();
         });
     }

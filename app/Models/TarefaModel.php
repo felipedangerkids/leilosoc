@@ -10,7 +10,22 @@ class TarefaModel extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'data', 'projeto',
+
+        'name',
+        'description',
+        'departamento_id',
+        'user_id',
+        'inicio',
+        'fim',
+        'cep',
+        'morada',
+        'porta',
+        'regiao',
+        'distrito',
+        'conselho',
+        'freguesia',
+        'path',
+        'compartilhar',
 
     ];
 }

@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Citrus\CitrusController;
-use App\Http\Controllers\Painel\ColaboradorController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\Painel\DepertamentoController;
-use App\Http\Controllers\Painel\TarefaController;
-use App\Http\Controllers\Teste\TesteController;
-use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Teste\TesteController;
+use App\Http\Controllers\Citrus\CitrusController;
+use App\Http\Controllers\Painel\TarefaController;
+use App\Http\Controllers\Painel\ColaboradorController;
+use App\Http\Controllers\Painel\DepertamentoController;
+use App\Http\Controllers\Painel\FullcalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 
+Route::get('painel/tarefas/abrir-tarefas', [FullcalendarController::class, 'index'])->name('painel.painel.abrir-tarefas');

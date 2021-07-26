@@ -5,27 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>LEILOSOC</title>
-
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
     <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
-        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
-    </script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
-        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" href="{{ url('datepicker/css/bootstrap-datepicker.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+    {{-- fullcalendar --}}
+    <link href='{{ url('tarefa/fullcalendar/packages/core/main.css') }}' rel='stylesheet' />
+    <link href='{{ url('tarefa/fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />
+    <link href='{{ url('tarefa/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
+    <link href='{{ url('tarefa/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
+    <link rel="stylesheet" href="{{ url('tarefa/fullcalendar/css/style.min.css') }}">
+
+
+    <!-- Links CSS -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css"
+        rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('painel/css/main.min.css') }}">
 </head>
 
@@ -117,8 +120,6 @@
             </ul>
         </nav>
 
-
-
         <!-- Page Content Holder -->
         <div id="content">
 
@@ -159,8 +160,9 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                                     document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -182,18 +184,26 @@
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
-    </script>
-    <script src="{{ url('datepicker/js/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ url('datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url('datepicker/js/datepicker.js') }}"></script>
+    <script src="{{ url('tarefa/datepicker/js/script.js') }}"></script>
+    {{-- fullcalendar --}}
+    <script src='{{ url('tarefa/fullcalendar/packages/core/main.js') }}'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/interaction/main.js') }}'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/daygrid/main.js') }}'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/timegrid/main.js') }}/'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/core/locales-all.js') }}'></script>
+
+    <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
+    {{-- Outros --}}
     <script src="{{ url('tarefa/js/script.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {

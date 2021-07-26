@@ -17,12 +17,21 @@ class TarefaController extends Controller
      */
     public function index()
     {
+
+        $search = request('search');
+
+        if ($search) {
+            $tarefas = TarefaModel::where([
+                ['title', 'like', '%' . $search . '%']
+            ])->get();
+        } else {
+            $tarefas = TarefaModel::all();
+        }
+
         $departamentos = Depertamento::all();
         $tarefas = TarefaModel::all();
         $users = User::with('departamento')->get();
-        return view('tarefas.main', compact('tarefas', 'departamentos', 'users'));
-
-
+        return view('tarefas.main', compact('tarefas', 'departamentos', 'users', ['search' => $search]));
     }
 
     /**
@@ -43,7 +52,24 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $save = TarefaModel::create($request->all());
+        $save = TarefaModel::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'departamento_id' => 1,
+            'user_id' => 1,
+            'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
+            'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
+            'cep' => $request->cep,
+            'morada'=> $request->morada,
+            'porta' => $request->porta,
+            'regiao' => $request->regiao,
+            'distrito' => $request->distrito,
+            'conselho' => $request->conselho,
+            'freguesia' => $request->freguesia,
+            'path'=> 'arquivo.file',
+            'compartilhar' => $request->compartilhar,
+        ]);
+
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
     }
 

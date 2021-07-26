@@ -59,11 +59,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('painel.departamento.store') }}" method="POST">
+                    <form class="row g-3" action="{{ route('painel.tarefa.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
-                            <input type="text" class="form-control" id="inputEmail4">
+                            <input name="name" type="text" class="form-control" id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
                                     <span class="btn btn-primary" onclick="mostrar('ma')">ESCOLHA UM MODELO</span>
@@ -71,7 +71,7 @@
 
                                         <div class="input-group mt-3">
                                             <div class="form-outline">
-                                                <input type="search" name="" id="" class="form-control busca"
+                                                <input type="search" name="search" id="search" class="form-control busca"
                                                     placeholder="Pesquisar Modelos">
                                             </div>
                                             <button type="button" class="btn btn-busca">
@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
 
                         <div class="col-md-6 mt-3">
@@ -143,77 +143,79 @@
 
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="departamento">Colaborador(a)</label>
-                            <select class="form-control " id="departamento">
+                            <select class="form-control " name="user_id" id="departamento">
 
                                 <option selected>Escolha Colaborador(a)</option>
                                 @foreach ($users as $user)
-                                    <option>{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="col-md-3 mt-3">
-                            <label for="datadehoje" class="form-label">Data do Pedido</label>
-                            <input type="text" class="form-control" id="datadehoje">
+                        <div class="date col-md-3 mt-3">
+                            <label for="pedido">Data do Pedido</label>
+                            <input name="inicio" type="text" class="form-control pedido" id="pedido">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
-                            <label for="datadehoje1">Data limite</label>
-                            <input type="text" class="form-control" id="datadehoje1">
+                        <div class="date col-md-3 mt-3">
+                            <label class="form-label" for="limite">Data Limite</label>
+                            <input name="fim" type="text" class="form-control limite" id="limite">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
                         </div>
+
+
                         <div class="col-md-3 mt-3">
                             <label for="inputZip" class="form-label">Código Postal</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <input name="cep" type="text" class="form-control" id="inputZip">
                         </div>
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="morada">Morada</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input name="morada" class="form-control" type="text" id="morada">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Número da Porta</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input name="porta" class="form-control" type="text" id="morada">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Região</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input name="regiao" class="form-control" type="text" id="morada">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Distrito</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input name="distrito" class="form-control" type="text" id="morada">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Conselho</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input name="conselho" class="form-control" type="text" id="morada">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Freguesia</label>
-                            <input class="form-control" type="text" id="morada">
+                            <input  name="freguesia" class="form-control" type="text" id="morada">
                         </div>
                         <div class="input-group mb-3 mt-3 col-md-6">
-                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <input name="path" type="file" class="form-control" id="inputGroupFile02">
                             <label class="input-group-text" for="inputGroupFile02">Anexo</label>
                         </div>
                         <div class="compartilhar d-flex ml-5 ">
                             <span>Compartilhar: </span>
                             <div class="form-check custom-radio ml-2  col-md-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                    value="option1">
+                                <input name="compartilhar" class="form-check-input" type="radio" id="inlineRadio1"
+                                    value="sim">
                                 <label class="form-check-label" for="inlineRadio1">SIM</label>
                             </div>
                             <div class="form-check custom-radio ml-lg-2 col-md-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                    value="option2">
+                                <input  class="form-check-input" type="radio" name="compartilhar" id="inlineRadio2"
+                                    value="nao">
                                 <label class="form-check-label" for="inlineRadio2">NÃO</label>
                             </div>
                         </div>
                         <div class="botoes mt-5 ">
-                            <button class="btn btn-primary">EDITAR TAREFA</button>
-                            <button class="btn btn-success">ABRIR TAREFA</button>
+                            <button type="button" class="btn btn-primary">EDITAR TAREFA</button>
+                            <button type="submit" class="btn btn-success">ABRIR TAREFA</button>
                         </div>
                         <div class="modal-footer col-md-12">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
