@@ -6,7 +6,7 @@
         <div class="d-flex">
             <div class="my-2">
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                    Novo insolvente</button>
+                    Novo Administrador insolvente</button>
             </div>
 
         </div>
@@ -14,7 +14,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">insolvente</th>
+                    <th scope="col">AI</th>
                     <th scope="col">Responsavel</th>
                     <th scope="col">Ações</th>
 
