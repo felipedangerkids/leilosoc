@@ -26,7 +26,7 @@ class TarefaController extends Controller
         $tarefas = TarefaModel::orderBy('created_at', 'desc')->get();
         $departamentos = Depertamento::all();
         $users = User::all();
-        $insolente = Insolvente::where('nif', $processo->nif)->with('responsavel')->first();
+        $insolente = Insolvente::where('nif', $processo->nif_adm)->with('responsavel')->first();
         $categorias = ModeloCategoria::all();
         $modelos = Modelo::with('categoria')->get();
         return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos', 'processo', 'insolente'));
