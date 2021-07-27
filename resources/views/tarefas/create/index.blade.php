@@ -28,7 +28,8 @@
                         <td>
                             <div class="d-flex">
                                 <div>
-                                    <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no Calendário</button></a>
+                                    <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no
+                                            Calendário</button></a>
                                 </div>
                                 <div>
                                     <a href=""><button class="btn btn-sm btn-primary mx-1">Editar</button></a>
@@ -62,11 +63,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('painel.tarefas.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="row g-3" action="{{ route('painel.tarefas.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
-                            <input name="name" type="text" value="{{ $processo->processo ?? '' }} " class="form-control" id="inputEmail4">
+                            <input name="name" type="text" value="{{ $processo->processo ?? '' }} " class="form-control"
+                                id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
                                     <span class="btn btn-primary" onclick="mostrar('ma')">ESCOLHA UM MODELO</span>
@@ -91,7 +94,8 @@
                                                             <h2 class="mb-0">
                                                                 <button class="btn btn-link btn-block text-left"
                                                                     type="button" data-toggle="collapse"
-                                                                    data-target="#collapse-{{ $categoria->id }}" aria-expanded="true"
+                                                                    data-target="#collapse-{{ $categoria->id }}"
+                                                                    aria-expanded="true"
                                                                     aria-controls="collapse-{{ $categoria->id }}">
                                                                     {{ $categoria->name }}
                                                                 </button>
@@ -106,8 +110,7 @@
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
                                                                                 value="{{ $modelo->name }}" type="radio"
-                                                                                name="modelo" id="exampleRadios1"
-                                                                          >
+                                                                                name="modelo" id="exampleRadios1">
                                                                             <label class="form-check-label"
                                                                                 for="exampleRadios1">
                                                                                 {{ $modelo->name }}
@@ -130,7 +133,7 @@
                         <div class="col-md-6 mt-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
                             <textarea name="description" class="form-control" id="exampleFormControlTextarea1"
-                                rows="4"></textarea>
+                                rows="5"></textarea>
                         </div>
 
                         <div class="col-md-6 mt-3">
@@ -143,17 +146,15 @@
                             </select>
                         </div>
 
-
-
-
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="departamento">Colaborador(a)</label>
                             <select class="form-control " name="user_id" id="departamento">
 
                                 <option selected>Escolha Colaborador(a)</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" @if (auth()->user()->id == $user->id)
-                                        selected
+
+                                    <option value="{{ $user->id }}" @if ($insolente->responsavel->id == $user->id)
+                                    selected
                                     @endif>{{ $user->name }}</option>
                                 @endforeach
                             </select>
