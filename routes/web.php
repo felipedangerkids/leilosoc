@@ -61,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefas');
+    Route::post('painel/tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
+    Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 
     Route::get('teste', [TesteController::class, 'test']);
 

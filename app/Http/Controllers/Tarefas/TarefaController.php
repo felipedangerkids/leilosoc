@@ -9,6 +9,7 @@ use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class TarefaController extends Controller
 {
@@ -20,7 +21,7 @@ class TarefaController extends Controller
     public function index()
     {
 
-        $tarefas = TarefaModel::all();
+        $tarefas = TarefaModel::orderBy('created_at', 'desc')->get();
         $departamentos = Depertamento::all();
         $users = User::all();
         $categorias = ModeloCategoria::all();
@@ -46,23 +47,36 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $save = TarefaModel::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'departamento_id' => 1,
-            'user_id' => 1,
-            'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
-            'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
-            'cep' => $request->cep,
-            'morada'=> $request->morada,
-            'porta' => $request->porta,
-            'regiao' => $request->regiao,
-            'distrito' => $request->distrito,
-            'conselho' => $request->conselho,
-            'freguesia' => $request->freguesia,
-            'path'=> 'arquivo.file',
-            'compartilhar' => $request->compartilhar,
-        ]);
+
+        if($request->hasFile('path')){
+            $image = $request->file('path');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path('app/public/files/');
+
+            $image->move($destinationPath, $name);
+
+            $save = TarefaModel::create([
+                'name' => $request->name,
+                'modelo' => $request->modelo,
+                'description' => $request->description,
+                'departamento_id' => 1,
+                'user_id' => 1,
+                'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
+                'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
+                'cep' => $request->cep,
+                'morada'=> $request->morada,
+                'porta' => $request->porta,
+                'regiao' => $request->regiao,
+                'distrito' => $request->distrito,
+                'conselho' => $request->conselho,
+                'freguesia' => $request->freguesia,
+                'path'=> $name,
+                'compartilhar' => $request->compartilhar,
+            ]);
+
+        }
+
+
 
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
     }
@@ -110,5 +124,17 @@ class TarefaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function cep(Request $request)
+    {
+
+        $valor = $request->search;
+        $cep = str_replace('-', '', $valor);
+
+        $url = Http::get('https://api.duminio.com/ptcp/ptapi60ec808f3e8951.33243239/'.$cep);
+
+        return $url->collect();
     }
 }

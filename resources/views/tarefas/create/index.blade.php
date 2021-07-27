@@ -10,19 +10,21 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Nome da Tarefa</th>
+                    <th scope="col">Numero da tarefa</th>
                     <th scope="col">Data de conclusão</th>
-                    <th scope="col">Projetos</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Ações
+                        
+                    </th>
 
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tarefas as $tarefa)
                     <tr>
-                        <th scope="row">{{ $tarefa->id }}</th>
-                        <td>{{ $tarefa->name }}</td>
-                        <td>{{ $tarefa->data }}</td>
-                        <td>{{ $tarefa->projeto }}</td>
+                        <th scope="row">{{ $tarefa->name }}</th>
+                        <td>{{ $tarefa->fim }}</td>
+                        <td>{{ $tarefa->modelo }}</td>
                         <td>
                             <div class="d-flex">
                                 <div>
@@ -57,7 +59,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="" method="POST">
+                    <form class="row g-3" action="{{ route('painel.tarefas.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
@@ -100,9 +102,9 @@
                                                                     @if ($categoria->id == $modelo->categoria_id)
                                                                         <div class="form-check">
                                                                             <input class="form-check-input"
-                                                                                value="{{ $modelo->id }}" type="radio"
+                                                                                value="{{ $modelo->name }}" type="radio"
                                                                                 name="modelo" id="exampleRadios1"
-                                                                                value="option1" >
+                                                                          >
                                                                             <label class="form-check-label"
                                                                                 for="exampleRadios1">
                                                                                 {{ $modelo->name }}
@@ -170,7 +172,10 @@
 
                         <div class="col-md-3 mt-3">
                             <label for="inputZip" class="form-label">Código Postal</label>
-                            <input name="cep" type="text" class="form-control" id="inputZip">
+                            <input name="cep" type="text" class="form-control" id="cep">
+                        </div>
+                        <div class="col-md-3 mt-5">
+                            <button type="button" id="buscar" class="btn btn-dark">Buscar</button>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label class="form-label" for="morada">Morada</label>
@@ -178,23 +183,23 @@
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Número da Porta</label>
-                            <input name="porta" class="form-control" type="text" id="morada">
+                            <input name="porta" class="form-control" type="text" id="porta">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Região</label>
-                            <input name="regiao" class="form-control" type="text" id="morada">
+                            <input name="regiao" class="form-control" type="text" id="regiao">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Distrito</label>
-                            <input name="distrito" class="form-control" type="text" id="morada">
+                            <input name="distrito" class="form-control" type="text" id="distrito">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Conselho</label>
-                            <input name="conselho" class="form-control" type="text" id="morada">
+                            <input name="conselho" class="form-control" type="text" id="conselho">
                         </div>
                         <div class="col-md-3 mt-3">
                             <label class="form-label" for="morada">Freguesia</label>
-                            <input name="freguesia" class="form-control" type="text" id="morada">
+                            <input name="freguesia" class="form-control" type="text" id="freguesia">
                         </div>
                         <div class="input-group mb-3 mt-3 col-md-6">
                             <input name="path" type="file" class="form-control" id="inputGroupFile02">
@@ -213,8 +218,8 @@
                                 <label class="form-check-label" for="inlineRadio2">NÃO</label>
                             </div>
                         </div>
-                        <div class="botoes mt-5 ">
-                            <button type="button" class="btn btn-primary">EDITAR TAREFA</button>
+                        <div class="botoes my-5 ">
+
                             <button type="submit" class="btn btn-success">ABRIR TAREFA</button>
                         </div>
                         <div class="modal-footer col-md-12">

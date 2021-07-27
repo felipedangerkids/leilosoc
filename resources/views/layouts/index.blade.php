@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LEILOSOC</title>
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -162,7 +163,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                                                     document.getElementById('logout-form').submit();">
+                                                                                         document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -193,7 +194,7 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js">
     </script>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ url('tarefa/datepicker/js/script.js') }}"></script>
     {{-- fullcalendar --}}
     <script src='{{ url('tarefa/fullcalendar/packages/core/main.js') }}'></script>
@@ -214,18 +215,40 @@
             });
         });
     </script>
-           @if(Session::has('success'))
-           <script type="text/javascript">
-               Swal.fire({
-                         icon: 'success',
-                         title: 'Muito bom!',
-                         text: "{{Session::get('success')}}",
+    @if (Session::has('success'))
+        <script type="text/javascript">
+            Swal.fire({
+                icon: 'success',
+                title: 'Muito bom!',
+                text: "{{ Session::get('success') }}",
 
-                         }).then((value) => {
-                         location.reload();
-                         }).catch(swal.noop);
-           </script>
-           @endif
+            }).then((value) => {
+                location.reload();
+            }).catch(swal.noop);
+        </script>
+    @endif
+    <script type="text/javascript">
+        $('#buscar').on('click', function() {
+            $value = $('#cep').val();
+            $.ajax({
+                type: 'get',
+                url: '{{ url('cep') }}',
+                data: {
+                    'search': $value
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#morada').val(data.Morada);
+                    $('#regiao').val(data.Localidade);
+                    $('#distrito').val(data.Distrito);
+                    $('#conselho').val(data.Concelho);
+                    $('#freguesia').val(data.Freguesia);
+                    $('#latitude').val(data.Latitude);
+                    $('#longitude').val(data.Longitude);
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
