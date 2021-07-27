@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tarefas;
 
 use App\Models\User;
+use App\Models\Citrus;
 use App\Models\Modelo;
 use App\Models\TarefaModel;
 use App\Models\Depertamento;
@@ -18,15 +19,16 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
 
         $tarefas = TarefaModel::orderBy('created_at', 'desc')->get();
         $departamentos = Depertamento::all();
         $users = User::all();
         $categorias = ModeloCategoria::all();
+        $processo = Citrus::find($id);
         $modelos = Modelo::with('categoria')->get();
-        return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos'));
+        return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos', 'processo'));
     }
 
     /**

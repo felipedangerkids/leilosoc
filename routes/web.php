@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('painel/modelos/cat/post', [ModeloController::class, 'catStore'])->name('modelos.cat.post');
 
 
-    Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefas');
+    Route::get('painel/tarefas/{id?}', [TarefaController::class, 'index'])->name('painel.tarefas');
     Route::post('painel/tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
     Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 

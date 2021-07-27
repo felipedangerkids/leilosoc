@@ -66,7 +66,7 @@
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
-                            <input name="name" type="text" class="form-control" id="inputEmail4">
+                            <input name="name" type="text" value="{{ $processo->processo ?? '' }} " class="form-control" id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
                                     <span class="btn btn-primary" onclick="mostrar('ma')">ESCOLHA UM MODELO</span>
@@ -152,7 +152,9 @@
 
                                 <option selected>Escolha Colaborador(a)</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" @if (auth()->user()->id == $user->id)
+                                        selected
+                                    @endif>{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
