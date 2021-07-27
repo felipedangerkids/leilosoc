@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -204,9 +204,7 @@
     <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
     <script src='{{ url('tarefa/fullcalendar/packages/core/locales/pt-br.js') }}'></script>
 
-    <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
-    {{-- Outros --}}
-    <script src="{{ url('tarefa/js/script.js') }}"></script>
+
     <script src="{{ url('painel/js/script.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -255,7 +253,7 @@
       </script>
       <style>
 
-    
+
 
 
         .fc-header-toolbar {

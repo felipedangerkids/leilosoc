@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
         height: 'parent',
+        locale: 'pt-br',
         header: {
             left: 'prev,next today',
             center: 'title',
