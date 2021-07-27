@@ -53,6 +53,9 @@
                             <a href="{{ route('painel.users') }}">Colaboradores</a>
                         </li>
                         <li>
+                            <a href="{{ route('insolventes') }}">Administrador de Insolvencias</a>
+                        </li>
+                        <li>
                             <a href="#">Escritório</a>
                         </li>
                         <li>

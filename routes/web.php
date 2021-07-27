@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Citrus\CitrusController;
+use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tarefas\ModeloController;
 use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
@@ -65,6 +66,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 
     Route::get('teste', [TesteController::class, 'test']);
+
+
+    Route::get('insolventes', [InsolventeController::class, 'index'])->name('insolventes');
+    Route::post('insolventes/post', [InsolventeController::class, 'store'])->name('insolventes.post');
 
     Route::get('users/{id}', function ($id) {
 
