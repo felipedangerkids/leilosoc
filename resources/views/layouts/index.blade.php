@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LEILOSOC</title>
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,13 +63,13 @@
                         class="dropdown-toggle">Tarefas</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_1">
                         <li>
-                            <a href="{{ route('painel.tarefa') }}">Todas tarefas</a>
+                            <a href="{{ route('painel.tarefas') }}">Todas tarefas</a>
                         </li>
                         <li>
                             <a href="#">Abrir tarefas</a>
                         </li>
                         <li>
-                            <a href="#">Modelos</a>
+                            <a href="{{ route('modelos') }}">Modelos</a>
                         </li>
                     </ul>
 
@@ -184,15 +184,16 @@
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- Datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js">
     </script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ url('tarefa/datepicker/js/script.js') }}"></script>
     {{-- fullcalendar --}}
     <script src='{{ url('tarefa/fullcalendar/packages/core/main.js') }}'></script>
@@ -213,6 +214,18 @@
             });
         });
     </script>
+           @if(Session::has('success'))
+           <script type="text/javascript">
+               Swal.fire({
+                         icon: 'success',
+                         title: 'Muito bom!',
+                         text: "{{Session::get('success')}}",
+
+                         }).then((value) => {
+                         location.reload();
+                         }).catch(swal.noop);
+           </script>
+           @endif
 </body>
 
 </html>

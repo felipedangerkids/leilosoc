@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TesteController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Teste\TesteController;
 use App\Http\Controllers\Citrus\CitrusController;
-use App\Http\Controllers\Painel\TarefaController;
+use App\Http\Controllers\Tarefas\ModeloController;
+use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
@@ -54,11 +55,15 @@ Route::middleware(['auth'])->group(function () {
     Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
     Route::any('citrus/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
 
-    Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefa');
-    Route::post('painel/tarefas', [TarefaController::class, 'store'])->name('painel.tarefa.store');
-    Route::get('painel/tarefas/edit/{id}', [TarefaController::class, 'edit'])->name('painel.tarefa.edit');
-    Route::post('painel/tarefas/update/{id}', [TarefaController::class, 'update'])->name('painel.tarefa.update');
-    Route::any('painel/tarefa/delete/{id}', [TarefaController::class, 'destroy'])->name('painel.tarefa.delete');
+    Route::get('painel/modelos', [ModeloController::class, 'index'])->name('modelos');
+    Route::post('painel/modelos/post', [ModeloController::class, 'store'])->name('modelos.post');
+    Route::post('painel/modelos/cat/post', [ModeloController::class, 'catStore'])->name('modelos.cat.post');
+
+
+    Route::get('painel/tarefas', [TarefaController::class, 'index'])->name('painel.tarefas');
+
+    Route::get('teste', [TesteController::class, 'test']);
+
     Route::get('users/{id}', function ($id) {
 
     });
