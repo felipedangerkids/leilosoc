@@ -142,7 +142,7 @@
                                 <option selected>Escolha Departamento</option>
                                 @foreach ($departamentos as $departamento)
 
-                                    <option value="{{ $departamento->id }}" @if ( $insolente->responsavel->departamento_id == $departamento->id)
+                                    <option value="{{ $departamento->id }}" @if ( ($insolente->responsavel->departamento_id ?? '') == $departamento->id )
                                         selected
                                     @endif>{{ $departamento->name }}</option>
                                 @endforeach
