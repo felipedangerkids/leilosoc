@@ -14,7 +14,7 @@
                     <th scope="col">Data de conclusão</th>
                     <th scope="col">Modelo</th>
                     <th scope="col">Ações
-                        
+
                     </th>
 
                 </tr>
@@ -28,11 +28,14 @@
                         <td>
                             <div class="d-flex">
                                 <div>
-                                    <a href=""><button class="btn btn-primary mx-1">Editar</button></a>
+                                    <a href=""><button class="btn btn-sm btn-dark mx-1">Ver no Calendário</button></a>
+                                </div>
+                                <div>
+                                    <a href=""><button class="btn btn-sm btn-primary mx-1">Editar</button></a>
                                 </div>
                                 <div>
                                     <a href="" onclick="return confirm('Você tem certeza que deseja deletar isso?');">
-                                        <button class="btn btn-danger mx-1">Excluir</button></a>
+                                        <button class="btn btn-sm btn-danger mx-1">Excluir</button></a>
                                 </div>
                             </div>
                         </td>
