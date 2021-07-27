@@ -39,6 +39,12 @@ class TarefaController extends Controller
         //
     }
 
+
+    public function calendar()
+    {
+        $dados = TarefaModel::all();
+        return view('tarefas.fullcalendar', compact('dados'));
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -202,11 +202,12 @@
     <script src='{{ url('tarefa/fullcalendar/packages/daygrid/main.js') }}'></script>
     <script src='{{ url('tarefa/fullcalendar/packages/timegrid/main.js') }}/'></script>
     <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
-    <script src='{{ url('tarefa/fullcalendar/packages/core/locales-all.js') }}'></script>
+    <script src='{{ url('tarefa/fullcalendar/packages/core/locales/pt-br.js') }}'></script>
 
     <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
     {{-- Outros --}}
     <script src="{{ url('tarefa/js/script.js') }}"></script>
+    <script src="{{ url('painel/js/script.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
@@ -249,6 +250,25 @@
             });
         })
     </script>
+    <script>
+
+      </script>
+      <style>
+
+    
+
+
+        .fc-header-toolbar {
+          /*
+          the calendar will be butting up against the edges,
+          but let's scoot in the header's buttons
+          */
+          padding-top: 0em;
+          padding-left: 0em;
+          padding-right: 0em;
+        }
+
+      </style>
 </body>
 
 </html>

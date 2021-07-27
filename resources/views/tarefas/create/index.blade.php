@@ -28,7 +28,7 @@
                         <td>
                             <div class="d-flex">
                                 <div>
-                                    <a href=""><button class="btn btn-sm btn-dark mx-1">Ver no Calendário</button></a>
+                                    <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no Calendário</button></a>
                                 </div>
                                 <div>
                                     <a href=""><button class="btn btn-sm btn-primary mx-1">Editar</button></a>

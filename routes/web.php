@@ -73,4 +73,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::get('painel/tarefas/abrir-tarefas', [FullcalendarController::class, 'index'])->name('painel.painel.abrir-tarefas');
+Route::get('taferas/calendario', [TarefaController::class, 'calendar'])->name('calendario');
