@@ -156,7 +156,7 @@
                                 <option selected>Escolha Colaborador(a)</option>
                                 @foreach ($users as $user)
 
-                                    <option value="{{ $user->id }}" @if ($insolente->responsavel->id == $user->id)
+                                    <option value="{{ $user->id }}" @if (($insolente->responsavel->id ?? '') == $user->id)
                                     selected
                                     @endif>{{ $user->name }}</option>
                                 @endforeach
