@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Asset\AssetController;
 use App\Http\Controllers\Citrus\CitrusController;
-use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tarefas\ModeloController;
 use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
+use App\Http\Controllers\Insolventes\InsolventeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('insolventes', [InsolventeController::class, 'index'])->name('insolventes');
     Route::post('insolventes/post', [InsolventeController::class, 'store'])->name('insolventes.post');
+
+    Route::get('assets/{id?}', [AssetController::class, 'index'])->name('assets');
+    Route::post('assets/post', [AssetController::class, 'store'])->name('assets.post');
+    Route::post('assets/update', [AssetController::class, 'update'])->name('assets.update');
 
     Route::get('users/{id}', function ($id) {
 

@@ -272,6 +272,12 @@
         }
 
       </style>
+            <script>
+                $('.open').on('click', function(){
+                    var idprod = $(this).data('id');
+                    $('[name="idasset"]').val(idprod);
+                });
+            </script>
 </body>
 
 </html>

@@ -18,9 +18,16 @@
             <li class="list-group-item"><strong> NIF/NIPC: {{ $citius->nif_credor }}</strong></li>
 
 
-          </ul>
-          <div class="my-3">
-           <a href="{{ route('painel.tarefas', $citius->id) }}">  <button class="btn btn-dark">Abrir Tarefa</button></a>
-          </div>
+        </ul>
+        <div class="d-flex ">
+            <div class="my-3 mx-2">
+                <a href="{{ route('painel.tarefas', $citius->id) }}"> <button class="btn btn-dark">Abrir
+                        Tarefa</button></a>
+            </div>
+            <div class="my-3 mx-2">
+                <a href="{{ route('assets', $citius->id) }}"> <button class="btn btn-dark">Abrir
+                        Asset</button></a>
+            </div>
+        </div>
     </div>
 @endsection
