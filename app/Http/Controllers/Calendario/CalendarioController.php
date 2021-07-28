@@ -18,7 +18,7 @@ class CalendarioController extends Controller
      */
     public function index($id = null)
     {
-        $leiloes = Calendario::all();
+        $leiloes = Calendario::with('consultor')->get();
         $processo = Citrus::find($id);
         $users = User::all();
         $assets = Asset::all();
@@ -32,7 +32,7 @@ class CalendarioController extends Controller
      */
     public function create()
     {
-        $dados = Calendario::all();
+        $dados = Calendario::with('consultor')->get();
         return view('calendario.calendario', compact('dados'));
     }
 

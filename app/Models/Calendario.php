@@ -30,4 +30,9 @@ class Calendario extends Model
         'data_pro',
         'data_cat',
     ];
+
+    public function consultor()
+    {
+        return $this->belongsTo(User::class, 'consultora');
+    }
 }
