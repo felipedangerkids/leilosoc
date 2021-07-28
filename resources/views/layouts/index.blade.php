@@ -69,9 +69,7 @@
                         <li>
                             <a href="{{ route('painel.tarefas') }}">Todas tarefas</a>
                         </li>
-                        <li>
-                            <a href="#">Abrir tarefas</a>
-                        </li>
+
                         <li>
                             <a href="{{ route('modelos') }}">Modelos</a>
                         </li>
@@ -82,7 +80,7 @@
                         <li>
                             <a href="{{ route('citrus') }}">Cadastros</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#">Tipo de processos</a>
                         </li>
                         <li>
@@ -90,7 +88,7 @@
                         </li>
                         <li>
                             <a href="#">Consultores</a>
-                        </li>
+                        </li> --}}
 
                     </ul>
                     <a href="#homeSubmenu_3" data-toggle="collapse" aria-expanded="false"
@@ -99,7 +97,7 @@
                         <li>
                             <a href="{{ route('assets') }}">Buscar</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="#">Tipo de processos</a>
                         </li>
                         <li>
@@ -107,15 +105,15 @@
                         </li>
                         <li>
                             <a href="#">Consultores</a>
-                        </li>
+                        </li> --}}
 
                     </ul>
                     <a href="#homeSubmenu_4" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle">Despesas</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_4">
-                        <li>
+                        {{-- <li>
                             <a href="#">Cadastrar</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="#">Todas as despesas</a>
                         </li>
