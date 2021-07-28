@@ -56,7 +56,7 @@
                             <a href="{{ route('insolventes') }}">Administrador de Insolvencias</a>
                         </li>
                         <li>
-                            <a href="#">Escritório</a>
+                            <a href="{{ route('escritorio') }}">Escritório</a>
                         </li>
                         <li>
                             <a href="#">Mensagem Todos</a>

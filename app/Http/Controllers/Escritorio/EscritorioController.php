@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Escritorio;
 
-use App\Models\User;
 use App\Models\Escritorio;
-use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class EscritorioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $departamentos = Depertamento::all();
         $escritorios = Escritorio::all();
-        $users = User::with('departamento', 'escritorio')->get();
-        return view('users.user', compact('departamentos', 'users', 'escritorios'));
+        return view('escritorio.index', compact('escritorios'));
     }
 
     /**
@@ -42,16 +37,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create([
+        $save = Escritorio::create($request->all());
 
-            'departamento_id' => $request->departamento_id,
-            'escritorio_id' => $request->escritorio_id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-
-        ]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Criado com sucesso!');
     }
 
     /**
@@ -73,10 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $departamentos = Depertamento::all();
-        $escritorios = Escritorio::all();
-        $user = User::with('departamento', 'escritorio')->find($id);
-        return view('users.edit', compact('user', 'departamentos', 'escritorios'));
+        //
     }
 
     /**
@@ -88,14 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::with('departamento')->find($id);
-        $user->departamento_id = $request->departamento_id;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->escritorio_id = $request->escritorio_id;
-        $user->save();
-        return redirect()->route('painel.users');
+        //
     }
 
     /**
@@ -106,8 +84,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->route('painel.users');
+        //
     }
 }

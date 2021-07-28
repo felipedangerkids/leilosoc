@@ -11,6 +11,7 @@ use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
+use App\Http\Controllers\Escritorio\EscritorioController;
 use App\Http\Controllers\Insolventes\InsolventeController;
 
 /*
@@ -75,6 +76,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('assets/{id?}', [AssetController::class, 'index'])->name('assets');
     Route::post('assets/post', [AssetController::class, 'store'])->name('assets.post');
     Route::post('assets/update', [AssetController::class, 'update'])->name('assets.update');
+
+    Route::get('escritorio', [EscritorioController::class, 'index'])->name('escritorio');
+    Route::post('escritorio/post', [EscritorioController::class, 'store'])->name('escritorio.post');
 
     Route::get('users/{id}', function ($id) {
 

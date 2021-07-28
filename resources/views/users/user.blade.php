@@ -68,6 +68,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Escritório</label>
+                            <select class="form-control" name="escritorio_id" id="exampleFormControlSelect1">
+                                @foreach ($escritorios as $escritorio)
+                                    <option value="{{ $escritorio->id }}">{{ $escritorio->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Nome</label>
                             <input type="text" name="name" class="form-control">
                         </div>
