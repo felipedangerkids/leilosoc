@@ -68,7 +68,7 @@
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
-                            <input name="name" type="text" value="@if ($processo){{ Str::limit($processo->processo, 13, '')  }}@endif" class="form-control"
+                            <input name="name" type="text" value="@if ($processo){{ Str::limit($processo->processo, 14, '')  }}@endif" class="form-control"
                                 id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
