@@ -91,6 +91,23 @@
                         </li> --}}
 
                     </ul>
+
+                    <a href="#calendario" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Calendario</a>
+                    <ul class="collapse list-unstyled" id="calendario">
+                        <li>
+                            <a href="{{ route('leilao') }}">Ver todos</a>
+                        </li>
+                        {{-- <li>
+                            <a href="#">Tipo de processos</a>
+                        </li>
+                        <li>
+                            <a href="#">ADM Judicial</a>
+                        </li>
+                        <li>
+                            <a href="#">Consultores</a>
+                        </li> --}}
+
+                    </ul>
                     <a href="#homeSubmenu_3" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle">Assets</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_3">

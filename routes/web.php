@@ -11,6 +11,7 @@ use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
+use App\Http\Controllers\Calendario\CalendarioController;
 use App\Http\Controllers\Escritorio\EscritorioController;
 use App\Http\Controllers\Insolventes\InsolventeController;
 
@@ -79,6 +80,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('escritorio', [EscritorioController::class, 'index'])->name('escritorio');
     Route::post('escritorio/post', [EscritorioController::class, 'store'])->name('escritorio.post');
+
+    Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
+    Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
+
+    Route::get('leiloes', [CalendarioController::class, 'create'])->name('leiloes');
 
     Route::get('users/{id}', function ($id) {
 

@@ -28,6 +28,10 @@
                 <a href="{{ route('assets', $citius->id) }}"> <button class="btn btn-dark">Abrir
                         Asset</button></a>
             </div>
+            <div class="my-3 mx-2">
+                <a href="{{ route('leilao', $citius->id) }}"> <button class="btn btn-dark">Abrir
+                        Calendario</button></a>
+            </div>
         </div>
     </div>
 @endsection
