@@ -48,6 +48,6 @@ class User extends Authenticatable
     }
     public function escritorio()
     {
-        return $this->belongsTo(Escritorio::class, 'departamento_id');
+        return $this->belongsTo(Escritorio::class, 'escritorio_id');
     }
 }
