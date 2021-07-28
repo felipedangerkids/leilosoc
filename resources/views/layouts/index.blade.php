@@ -97,7 +97,7 @@
                         class="dropdown-toggle">Assets</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu_3">
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="{{ route('assets') }}">Buscar</a>
                         </li>
                         <li>
                             <a href="#">Tipo de processos</a>
