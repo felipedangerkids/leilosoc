@@ -79,7 +79,7 @@
                     <a href="#citrus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citius</a>
                     <ul class="collapse list-unstyled" id="citrus">
                         <li>
-                            <a href="{{ route('citrus') }}">Cadastros</a>
+                            <a href="{{ route('citrus') }}">Processos</a>
                         </li>
                         {{-- <li>
                             <a href="#">Tipo de processos</a>
