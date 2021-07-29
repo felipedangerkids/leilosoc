@@ -80,7 +80,7 @@
                             <input name="nif" type="text" class="form-control" id="inputEmail4">
                         </div>
                         <div class="col-md-12 mt-3">
-                            <label for="inputEmail4" class="form-label">Telemovel</label>
+                            <label for="inputEmail4" class="form-label">Telemóvel</label>
                             <input name="telemovel" type="text" class="form-control" id="inputEmail4">
                         </div>
                         <div class="botoes my-5 ">
