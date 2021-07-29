@@ -42,7 +42,7 @@
                                         <button class="btn btn-sm btn-danger mx-1">Excluir</button></a>
                                 </div>
                                 <div class="text-success">
-                                    <p>Abertas</p>
+                                    <p class="text-success">Abertas</p>
                                 </div>
                             </div>
                         </td>
