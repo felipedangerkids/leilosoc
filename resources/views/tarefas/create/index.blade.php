@@ -38,6 +38,9 @@
                                     <a href="" onclick="return confirm('Você tem certeza que deseja deletar isso?');">
                                         <button class="btn btn-sm btn-danger mx-1">Excluir</button></a>
                                 </div>
+                                <div>
+                                    <p>Abertas</p>
+                                </div>
                             </div>
                         </td>
                     </tr>
