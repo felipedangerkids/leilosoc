@@ -9,7 +9,7 @@
                 Nova Tarefa</button>
         </div>
         <div class="mx-3 my-2">
-            <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no
+            <a href="{{ route('calendario') }}"><button class="btn  btn-dark mx-1">Ver no
                     Calendário</button></a>
         </div>
     </div>
