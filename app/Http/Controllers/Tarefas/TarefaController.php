@@ -63,11 +63,6 @@ class TarefaController extends Controller
     {
 
 
-        $image = $request->file('path');
-        $name = time() . '.' . $image->getClientOriginalExtension();
-        $destinationPath = storage_path('app/public/files/');
-
-        $image->move($destinationPath, $name);
 
 
 
@@ -86,7 +81,7 @@ class TarefaController extends Controller
             'distrito' => $request->distrito,
             'conselho' => $request->conselho,
             'freguesia' => $request->freguesia,
-            'path' => $name,
+            'path' => 'path.png',
             'compartilhar' => $request->compartilhar,
         ]);
 
