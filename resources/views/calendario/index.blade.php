@@ -97,8 +97,8 @@
         <div class="form-group col-md-6">
             <label for="exampleFormControlSelect1">Asset</label>
             <select name="asset" class="form-control" id="exampleFormControlSelect1">
-                @foreach ($assets as $asset)
-                <option value="{{ $asset->id }}">{{ $asset->numero }}</option>
+                @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
 
             </select>
