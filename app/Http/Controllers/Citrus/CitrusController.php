@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Models\Citrus;
 use App\Models\Modelo;
 use App\Models\Calendario;
+use App\Models\Insolvente;
 use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
@@ -70,8 +71,9 @@ class CitrusController extends Controller
         $users = User::all();
         $assets = Asset::all();
         $categorias = ModeloCategoria::all();
+        $insolente = Insolvente::where('nif', $processo->nif_adm)->with('responsavel')->first();
         $modelos = Modelo::with('categoria')->get();
-        return view('citrus.ver', compact('citius', 'users', 'assets', 'leiloes', 'categorias', 'modelos', 'departamentos'));
+        return view('citrus.ver', compact('citius', 'users', 'assets', 'leiloes', 'categorias', 'modelos', 'departamentos','insolente'));
     }
 
     /**
