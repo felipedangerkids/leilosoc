@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="my-2">
+        {{-- <div class="my-2">
            <a href="{{ route('citrus.create') }}"> <button type="button" class="btn btn-dark">Inserir Novo</button></a>
-        </div>
+        </div> --}}
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -24,9 +24,9 @@
                     <td>{{ $dado->data }}</td>
                     <td>
                         <div class="d-flex">
-                            <div>
+                            {{-- <div>
                                 <a href="{{ route('painel.tarefas', $dado->id) }}"><button class="btn btn-dark mx-1">Abrir Tarefa</button></a>
-                            </div>
+                            </div> --}}
                             <div>
                                 <a href="{{ route('citrus.show', $dado->id) }}"><button class="btn btn-primary mx-1">Ver</button></a>
                             </div>
