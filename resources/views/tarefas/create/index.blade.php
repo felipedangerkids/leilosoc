@@ -7,6 +7,10 @@
             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
                 Nova Tarefa</button>
         </div>
+        <div>
+            <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no
+                    Calendário</button></a>
+        </div>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -27,10 +31,7 @@
                         <td>{{ $tarefa->modelo }}</td>
                         <td>
                             <div class="d-flex">
-                                <div>
-                                    <a href="{{ route('calendario') }}"><button class="btn btn-sm btn-dark mx-1">Ver no
-                                            Calendário</button></a>
-                                </div>
+
                                 <div>
                                     <a href=""><button class="btn btn-sm btn-primary mx-1">Editar</button></a>
                                 </div>
@@ -38,7 +39,7 @@
                                     <a href="" onclick="return confirm('Você tem certeza que deseja deletar isso?');">
                                         <button class="btn btn-sm btn-danger mx-1">Excluir</button></a>
                                 </div>
-                                <div>
+                                <div class="text-success">
                                     <p>Abertas</p>
                                 </div>
                             </div>
