@@ -17,6 +17,7 @@
                     <th scope="col">Inicio</th>
                     <th scope="col">Fim</th>
                     <th scope="col">Consultor</th>
+                    <th scope="col">Asset</th>
                     <th scope="col">Ações</th>
 
                 </tr>
@@ -28,6 +29,7 @@
                         <td>{{ $leilao->inicio }}</td>
                         <td>{{ $leilao->fim }}</td>
                         <td>{{ $leilao->consultor->name }}</td>
+                        <td>{{ $leilao->assets->name }}</td>
 
                         <td>
                             <div class="d-flex">

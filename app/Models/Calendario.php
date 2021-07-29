@@ -35,4 +35,8 @@ class Calendario extends Model
     {
         return $this->belongsTo(User::class, 'consultora');
     }
+    public function assets()
+    {
+        return $this->belongsTo(User::class, 'asset');
+    }
 }

@@ -18,7 +18,7 @@ class CalendarioController extends Controller
      */
     public function index($id = null)
     {
-        $leiloes = Calendario::with('consultor')->get();
+        $leiloes = Calendario::with('consultor', 'assets')->get();
         $processo = Citrus::find($id);
         $users = User::all();
         $assets = Asset::all();
