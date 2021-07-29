@@ -67,7 +67,7 @@ class CalendarioController extends Controller
             'data_cat' => date('Y-m-d', strtotime(str_replace('/','-',$request->data_cat))),
 
         ]);
-        return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
+        return redirect()->route('leilao')->with('success', 'Tarefa criado com sucesso!');
     }
 
     /**

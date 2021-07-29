@@ -17,7 +17,7 @@ class AssetController extends Controller
     public function index($id = null)
     {
         $processo = Citrus::find($id);
-        $assets = Asset::all();
+        $assets = Asset::orderBy('created_at', 'desc')->get();
 
         return view('asset.index', compact('processo', 'assets'));
     }
@@ -42,7 +42,7 @@ class AssetController extends Controller
     {
         $save = Asset::create($request->all());
 
-        return redirect()->back()->with('success', 'Criado com sucesso!');
+        return redirect()->route('assets')->with('success', 'Criado com sucesso!');
     }
 
     /**

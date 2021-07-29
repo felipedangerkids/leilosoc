@@ -1,7 +1,13 @@
-
+<style>
+    .modal{
+        top: 10% !important;
+        margin-top: 100px !important;
+        padding-bottom: 200px !important;
+    }
+</style>
     <div class="modal fade" id="{{ $idModal }}"  data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">{{ $title }}</h5>
@@ -14,7 +20,7 @@
                     @csrf
 
                     {{ $slot }}
-                    <div class="botoes my-5 ">
+                    <div class="botoes my-5">
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
                     <div class="modal-footer col-md-12">

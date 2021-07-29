@@ -4,11 +4,7 @@
 
     <div class="container">
         <div class="d-flex">
-        <div class="my-2 ">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                Nova Tarefa</button>
-        </div>
-        <div class="mx-3 my-2">
+        <div class=" my-2">
             <a href="{{ route('calendario') }}"><button class="btn  btn-dark mx-1">Ver no
                     Calendário</button></a>
         </div>

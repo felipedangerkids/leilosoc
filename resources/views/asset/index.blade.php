@@ -4,10 +4,7 @@
 
     <div class="container">
         <div class="d-flex">
-            <div class="my-2">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#assets">Criar
-                    Novo asset</button>
-            </div>
+        
 
         </div>
         <table class="table">

@@ -86,7 +86,7 @@ class TarefaController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
+        return redirect()->route('painel.tarefas')->with('success', 'Tarefa criado com sucesso!');
     }
 
     /**
