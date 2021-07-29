@@ -28,7 +28,7 @@ class TarefaController extends Controller
         $users = User::all();
         if (isset($processo)) {
             $insolente = Insolvente::where('nif', $processo->nif_adm)->with('responsavel')->first();
-        }else{
+        } else {
             $insolente = '';
         }
 
@@ -62,14 +62,14 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
 
-        if($request->hasFile('path')){
-            $image = $request->file('path');
-            $name = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = storage_path('app/public/files/');
 
-            $image->move($destinationPath, $name);
+        $image = $request->file('path');
+        $name = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = storage_path('app/public/files/');
 
-        }
+        $image->move($destinationPath, $name);
+
+
 
         $save = TarefaModel::create([
             'name' => $request->name,
@@ -77,16 +77,16 @@ class TarefaController extends Controller
             'description' => $request->description,
             'departamento_id' => $request->departamento_id,
             'user_id' => $request->user_id,
-            'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
-            'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
+            'inicio' => date('Y-m-d', strtotime(str_replace('/', '-', $request->inicio))),
+            'fim' => date('Y-m-d', strtotime(str_replace('/', '-', $request->fim))),
             'cep' => $request->cep,
-            'morada'=> $request->morada,
+            'morada' => $request->morada,
             'porta' => $request->porta,
             'regiao' => $request->regiao,
             'distrito' => $request->distrito,
             'conselho' => $request->conselho,
             'freguesia' => $request->freguesia,
-            'path'=> $name,
+            'path' => $name,
             'compartilhar' => $request->compartilhar,
         ]);
 
@@ -146,7 +146,7 @@ class TarefaController extends Controller
         $valor = $request->search;
         $cep = str_replace('-', '', $valor);
 
-        $url = Http::get('https://api.duminio.com/ptcp/ptapi60ec808f3e8951.33243239/'.$cep);
+        $url = Http::get('https://api.duminio.com/ptcp/ptapi60ec808f3e8951.33243239/' . $cep);
 
         return $url->collect();
     }
