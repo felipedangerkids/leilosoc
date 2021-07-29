@@ -53,7 +53,7 @@
 
 
     </div>
-    @component('components.modal.leilao', ['rota' => route('leilao.post'), 'title' => 'Novo Calendário'])
+    @component('components.modal.modal', ['rota' => route('leilao.post'), 'title' => 'Novo Calendário', 'idModal' => 'staticBackdrop'])
         <div class="form-group col-md-4">
             <label for="exampleFormControlSelect1">Tipo</label>
             <select name="tipo" class="form-control" id="exampleFormControlSelect1">

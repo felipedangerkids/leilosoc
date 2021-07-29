@@ -6,6 +6,7 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Asset\AssetController;
 use App\Http\Controllers\Citrus\CitrusController;
+use App\Http\Controllers\Depesas\DepesaController;
 use App\Http\Controllers\Tarefas\ModeloController;
 use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
@@ -53,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('painel/departamentos/store', [DepertamentoController::class, 'store'])->name('painel.departamento.store');
     Route::any('painel/departamentos/delete/{id}', [DepertamentoController::class, 'destroy'])->name('painel.departamento.delete');
 
-    Route::get('citrus', [CitrusController::class, 'index'])->name('citrus');
+    Route::get('citrus/{id?}', [CitrusController::class, 'index'])->name('citrus');
     Route::get('citrus/create', [CitrusController::class, 'create'])->name('citrus.create');
     Route::get('citrus/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
     Route::post('citrus/store', [CitrusController::class, 'store'])->name('citrus.store');
@@ -85,6 +86,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
 
     Route::get('leiloes', [CalendarioController::class, 'create'])->name('leiloes');
+
+    Route::post('depesas/post', [DepesaController::class, 'store'])->name('depesa.post');
 
     Route::get('users/{id}', function ($id) {
 
