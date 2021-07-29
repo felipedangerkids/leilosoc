@@ -59,6 +59,9 @@
                             <a href="{{ route('escritorio') }}">Escritório</a>
                         </li>
                         <li>
+                            <a href="{{ route('modelos') }}">Modelos</a>
+                        </li>
+                        <li>
                             <a href="#">Mensagem Todos</a>
                         </li>
                     </ul>
@@ -70,9 +73,7 @@
                             <a href="{{ route('painel.tarefas') }}">Todas tarefas</a>
                         </li>
 
-                        <li>
-                            <a href="{{ route('modelos') }}">Modelos</a>
-                        </li>
+
                     </ul>
 
                     <a href="#citrus" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citius</a>
