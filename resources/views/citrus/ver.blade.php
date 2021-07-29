@@ -25,7 +25,7 @@
                         Tarefa</button></a>
             </div>
             <div class="my-3 mx-2">
-                <a href="{{ route('assets', $citius->id) }}"> <button class="btn btn-dark">Abrir
+                <a href="{{ route('assets', $citius->id) }}"> <button class="btn btn-dark">
                         Asset</button></a>
             </div>
             <div class="my-3 mx-2">
