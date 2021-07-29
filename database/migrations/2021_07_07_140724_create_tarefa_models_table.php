@@ -17,20 +17,20 @@ class CreateTarefaModelsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('modelo')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('departamento_id');
             $table->integer('user_id');
-            $table->date('inicio');
-            $table->date('fim');
-            $table->string('cep');
-            $table->string('morada');
-            $table->string('porta');
-            $table->string('regiao');
-            $table->string('distrito');
-            $table->string('conselho');
-            $table->string('freguesia');
-            $table->string('path');
-            $table->string('compartilhar');
+            $table->date('inicio')->nullable();
+            $table->date('fim')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('morada')->nullable();
+            $table->string('porta')->nullable();
+            $table->string('regiao')->nullable();
+            $table->string('distrito')->nullable();
+            $table->string('conselho')->nullable();
+            $table->string('freguesia')->nullable();
+            $table->string('path')->nullable();
+            $table->string('compartilhar')->nullable();
 
 
             $table->timestamps();
