@@ -6,7 +6,7 @@
         <div class="d-flex">
             <div class="my-2">
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                    Novo Administrador insolvente</button>
+                    Novo AI</button>
             </div>
 
         </div>
@@ -54,7 +54,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Novo insolvente</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Novo AI</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -84,7 +84,7 @@
                             <input name="telemovel" type="text" class="form-control" id="inputEmail4">
                         </div>
                         <div class="botoes my-5 ">
-                            <button type="submit" class="btn btn-success">Cadastrar adm insolvente</button>
+                            <button type="submit" class="btn btn-success">Cadastrar AI</button>
                         </div>
                         <div class="modal-footer col-md-12">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
