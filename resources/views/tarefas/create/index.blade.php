@@ -34,12 +34,14 @@
                         <td>
                             <div class="d-flex">
 
-                                <div>
-                                    <a href=""><button class="btn btn-sm btn-primary mx-1">Editar</button></a>
+
+
+                                <div class="text-danger mx-2">
+                                    <span><i class="fas fa-trash"></i></span>
                                 </div>
-                                <div>
-                                    <a href="" onclick="return confirm('Você tem certeza que deseja deletar isso?');">
-                                        <button class="btn btn-sm btn-danger mx-1">Excluir</button></a>
+
+                                <div class="text-primary mx-2">
+                                    <span><i class="fas fa-eye"></i></span>
                                 </div>
                                 <div class="text-success mx-2">
                                     <span><i class="fas fa-check"></i></span>
