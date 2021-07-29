@@ -4,11 +4,10 @@
 
     <div class="container">
         <div class="d-flex">
-            <div class="my-2">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                    Novo Calendário</button>
-            </div>
 
+            <div>
+                <a href="{{ route('leiloes') }}"><button class="btn btn-dark my-2">Ver no calendario</button></a>
+            </div>
         </div>
         <table class="table">
             <thead class="thead-dark">
@@ -36,9 +35,7 @@
                                 <div>
                                     <a href=""><button class="btn btn-primary mx-1">Editar</button></a>
                                 </div>
-                                <div>
-                                    <a href="{{ route('leiloes') }}"><button class="btn btn-primary mx-1">Ver no calendario</button></a>
-                                </div>
+
 
                             </div>
                         </td>
