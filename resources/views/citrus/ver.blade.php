@@ -32,6 +32,9 @@
                 <a href="{{ route('leilao', $citius->id) }}"> <button class="btn btn-dark">Abrir
                         Calendario</button></a>
             </div>
+            <div class="my-3 mx-2">
+                <a href="#"> <button class="btn btn-success">Finalizar Tarefa</button></a>
+            </div>
         </div>
     </div>
 @endsection
