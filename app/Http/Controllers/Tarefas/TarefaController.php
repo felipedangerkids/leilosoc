@@ -69,27 +69,26 @@ class TarefaController extends Controller
 
             $image->move($destinationPath, $name);
 
-            $save = TarefaModel::create([
-                'name' => $request->name,
-                'modelo' => $request->modelo,
-                'description' => $request->description,
-                'departamento_id' => $request->departamento_id,
-                'user_id' => $request->user_id,
-                'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
-                'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
-                'cep' => $request->cep,
-                'morada'=> $request->morada,
-                'porta' => $request->porta,
-                'regiao' => $request->regiao,
-                'distrito' => $request->distrito,
-                'conselho' => $request->conselho,
-                'freguesia' => $request->freguesia,
-                'path'=> $name,
-                'compartilhar' => $request->compartilhar,
-            ]);
-
         }
 
+        $save = TarefaModel::create([
+            'name' => $request->name,
+            'modelo' => $request->modelo,
+            'description' => $request->description,
+            'departamento_id' => $request->departamento_id,
+            'user_id' => $request->user_id,
+            'inicio' => date('Y-m-d', strtotime(str_replace('/','-',$request->inicio))),
+            'fim' => date('Y-m-d', strtotime(str_replace('/','-',$request->fim))),
+            'cep' => $request->cep,
+            'morada'=> $request->morada,
+            'porta' => $request->porta,
+            'regiao' => $request->regiao,
+            'distrito' => $request->distrito,
+            'conselho' => $request->conselho,
+            'freguesia' => $request->freguesia,
+            'path'=> $name,
+            'compartilhar' => $request->compartilhar,
+        ]);
 
 
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
