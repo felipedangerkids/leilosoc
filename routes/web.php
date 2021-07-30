@@ -41,6 +41,8 @@ Route::post('/login/post', [LoginController::class, 'login'])->name('login.store
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/citius/scraping', [CitrusController::class, 'scraping']);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('painel/users', [UserController::class, 'index'])->name('painel.users');
     Route::get('painel/users/edit/{id}', [UserController::class, 'edit'])->name('painel.users.edit');

@@ -28,6 +28,7 @@ class CreateCitrusesTable extends Migration
             $table->string('nif_adm')->nullable();
             $table->string('credor')->nullable();
             $table->string('nif_credor')->nullable();
+            $table->text('document')->nullable();
             $table->timestamps();
         });
     }

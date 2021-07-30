@@ -21,8 +21,8 @@ class Citrus extends Model
         'adm_insolvencia',
         'nif_adm',
         'credor',
-        'nif_credor'
-
+        'nif_credor',
+        'document'
     ];
 }
 

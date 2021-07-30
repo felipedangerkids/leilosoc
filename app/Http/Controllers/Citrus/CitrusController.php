@@ -33,6 +33,109 @@ class CitrusController extends Controller
         return view('citrus.citrus', compact('dados', 'processo', 'users', 'assets', 'leiloes', 'categorias', 'modelos', 'departamentos'));
     }
 
+    // Recebdo dados via posto do node citius scraping
+    public function scraping()
+    {
+        // Essa função serve para arrumar o array vindo do posto
+        function arrumaArray($array){
+            $novoArray = [];
+            foreach($array as $arr1){
+                $arrayDado = [];
+                foreach($arr1 as $arr2){
+                    foreach($arr2 as $arrKey => $arrValue){
+                        if($arrKey == 'insolventes'){
+                            $tempDValue = [];
+                            $tempCont = 0;
+                            $tempLCont = 0;
+                            $tempKName = '';
+                            foreach($arrValue as $arr3){
+                                foreach($arr3 as $arr3Key => $arr3Value){
+                                    if($arr3Key !== $tempKName){
+                                        $tempLCont++;
+                                        $tempKName = $arr3Key;
+                                        $tempDValue[$tempCont][preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($arr3Key)))] = $arr3Value;
+                                        if($tempLCont == 2){
+                                            $tempLCont = 0;
+                                            $tempCont++;
+                                        }
+                                    }else{
+                                        $tempCont++;
+                                        $tempDValue[$tempCont][preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($arr3Key)))] = $arr3Value;
+                                    }
+                                }
+                            }
+                            $arrayDado[preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($arrKey)))] = $tempDValue;
+                        }else{
+                            $arrayDado[preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities(trim($arrKey)))] = $arrValue;
+                        }
+                    }
+                }
+                $novoArray[] = $arrayDado;
+            }
+
+            return $novoArray;
+        }
+
+        $dados =  file_get_contents('php://input');
+
+        // Para gravar log se necessario
+        // $data_hora = date('Y-m-d H:i:s');
+        // $quebra = chr(13).chr(10);
+        // $fp = fopen("./log.log", "a");
+        // $escreve = fwrite($fp, '['.$data_hora.']-------->>>>>>');
+        // $escreve = fwrite($fp, json_encode(arrumaArray(json_decode($dados))).$quebra);
+        // fclose($fp);
+
+        $dados = arrumaArray(json_decode($dados));
+
+        foreach($dados as $data){
+            $citius['tribunal']         = $data['tribunal'];
+            $citius['ato']              = $data['ato'];
+            $citius['referencia']       = $data['referencia'];
+            $citius['processo']         = explode(',', $data['processo'])[0];
+            $citius['especie']          = $data['especie'];
+            $citius['data']             = $data['data'];
+            $citius['data_propositura'] = $data['data_da_propositura_da_acao'];
+            $citius['document']         = $data['document_ins'];
+
+            $contInsol = 0;
+            $contInsolAdm = 0;
+            $contInsolCredor = 0;
+            foreach($data['insolventes'] as $insolventes){
+                $arr = array_keys($insolventes);
+
+                if($arr[0] == 'insolvente'){
+                    if($contInsol == 0){
+                        $citius['insolvente']       = $insolventes['insolvente'] ?? '';
+                        $citius['nif']              = $insolventes['nif_nipc'] ?? '';
+                    }
+                    $contInsol++;
+                }
+                if($arr[0] == 'administrador_insolvencia'){
+                    if($contInsolAdm == 0){
+                        $citius['adm_insolvencia']      = $insolventes['administrador_insolvencia'] ?? '';
+                        $citius['nif_adm']              = $insolventes['nif_nipc'] ?? '';
+                    }
+                    $contInsolAdm++;
+                }
+                if($arr[0] == 'credor'){
+                    if($contInsolCredor == 0){
+                        $citius['credor']       = $insolventes['credor'] ?? '';
+                        $citius['nif_credor']   = $insolventes['nif_nipc'] ?? '';
+                    }
+                    $contInsolCredor++;
+                }
+            }
+
+            $verifCitius = Citrus::where('processo', $citius['processo'])->get();
+            if($verifCitius->count() == 0){
+                Citrus::create($citius);
+            }
+        }
+
+        return true;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
