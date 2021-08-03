@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var user_name = $('#user_name').text();
     user_name = user_name.split(' ');
-    if(user_name.length > 0){
+    if(user_name.length > 1){
         var intials = user_name[0].charAt(0) + user_name[user_name.length-1].charAt(0);
     }else{
         var intials = user_name[0].charAt(0);
