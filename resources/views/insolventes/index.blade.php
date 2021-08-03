@@ -37,7 +37,7 @@
                                             <tr>
                                                 <th scope="row">{{ $insolvente->id }}</th>
                                                 <td>{{ $insolvente->name }}</td>
-                                                <td>{{ $insolvente->responsavel->name }}</td>
+                                                <td>{{ $insolvente->responsavel->name ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div>
