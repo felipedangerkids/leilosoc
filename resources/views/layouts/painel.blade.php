@@ -330,5 +330,7 @@
                 $('[name="idasset"]').val(idprod);
             });
         </script>
+
+        @yield('script')
     </body>
 </html>

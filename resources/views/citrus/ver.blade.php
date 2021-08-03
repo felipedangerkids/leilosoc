@@ -1,42 +1,56 @@
 @extends('layouts.painel')
 
 @section('content')
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex">
+                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#tarefas"><i class="fas fa-calendar-plus"></i> Abrir Tarefa</button></div>
+                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#assets"><i class="fas fa-camera"></i> Asset</button></div>
+                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#calendarioModal"><i class="fas fa-calendar"></i> Abrir Calendario</button></div>
+                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#depesas"><i class="fas fa-euro-sign"></i> Despesas</button></div>
+                                <div class="my-1 mx-2"><button class="btn btn-success"><i class="fas fa-calendar-check"></i> Finalizar Tarefa</button></div>
+                            </div>
+                        </div>
+
+                        <div class="card-body pad">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Tribunal: {{ $citius->tribunal }}</strong></li>
+                                <li class="list-group-item"><strong>Ato: {{ $citius->ato }}</strong></li>
+                                <li class="list-group-item"><strong>Referência: {{ $citius->referencia }}</strong></li>
+                                <li class="list-group-item"><strong>Processo: {{ $citius->processo }}</strong></li>
+                                <li class="list-group-item"><strong>Espécie: {{ $citius->especie }}</strong></li>
+                                <li class="list-group-item"><strong>Data: {{ $citius->data }}</strong></li>
+                                <li class="list-group-item"><strong>Data da propositura da ação: {{ $citius->data_propositura }}</strong></li>
+                                <li class="list-group-item"><strong>Insolvente: {{ $citius->insolvente }}</strong></li>
+                                <li class="list-group-item"><strong>NIF/NIPC: {{ $citius->nif }}</strong></li>
+                                <li class="list-group-item"><strong>Administrador Insolvência: {{ $citius->adm_insolvencia }}</strong></li>
+                                <li class="list-group-item"><strong>NIF/NIPC: {{ $citius->nif_adm }}</strong></li>
+                                <li class="list-group-item"><strong>Credor: {{ $citius->credor }}</strong></li>
+                                <li class="list-group-item"><strong> NIF/NIPC: {{ $citius->nif_credor }}</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Tribunal: {{ $citius->tribunal }}</strong></li>
-            <li class="list-group-item"><strong>Ato: {{ $citius->ato }}</strong></li>
-            <li class="list-group-item"><strong>Referência: {{ $citius->referencia }}</strong></li>
-            <li class="list-group-item"><strong>Processo: {{ $citius->processo }}</strong></li>
-            <li class="list-group-item"><strong>Espécie: {{ $citius->especie }}</strong></li>
-            <li class="list-group-item"><strong>Data: {{ $citius->data }}</strong></li>
-            <li class="list-group-item"><strong>Data da propositura da ação: {{ $citius->data_propositura }}</strong></li>
-            <li class="list-group-item"><strong>Insolvente: {{ $citius->insolvente }}</strong></li>
-            <li class="list-group-item"><strong>NIF/NIPC: {{ $citius->nif }}</strong></li>
-            <li class="list-group-item"><strong>Administrador Insolvência: {{ $citius->adm_insolvencia }}</strong></li>
-            <li class="list-group-item"><strong>NIF/NIPC: {{ $citius->nif_adm }}</strong></li>
-            <li class="list-group-item"><strong>Credor: {{ $citius->credor }}</strong></li>
-            <li class="list-group-item"><strong> NIF/NIPC: {{ $citius->nif_credor }}</strong></li>
-
-
-        </ul>
+        
         <div class="d-flex ">
             <div class="my-3 mx-2">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#tarefas">Abrir
-                    Tarefa</button>
+               
             </div>
             <div class="my-3 mx-2">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#assets">
-                    Asset</button>
+                
             </div>
             <div class="my-3 mx-2">
-               <button class="btn btn-dark" data-toggle="modal" data-target="#calendarioModal">Abrir
-                        Calendario</button>
-            </div>
-            <div class="my-3 mx-2">
-                <button class="btn btn-dark" data-toggle="modal" data-target="#depesas">Despesas</button>
-            </div>
-            <div class="my-3 mx-2">
-                <a href="#"> <button class="btn btn-success">Finalizar Tarefa</button></a>
+                
             </div>
         </div>
     </div>
