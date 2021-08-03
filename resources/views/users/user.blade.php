@@ -1,50 +1,75 @@
 @extends('layouts.painel')
 
 @section('content')
-    <div class="container">
-        <div class="my-2">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                Usuário</button>
-        </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Departamento</th>
-                    <th scope="col">Acão</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
-                        @if ($user->departamento_id == null)
-                        Admin
-
-                             @else
-                        {{ $user->departamento->name ?? 'Departamento Excluido' }}
-                        @endif
-                    </td>
-                    <td>
-                        <div class="d-flex">
-                            <div>
-                                <a href="{{ route('painel.users.edit', $user->id) }}"><button class="btn btn-primary mx-1">Editar</button></a>
-                            </div>
-                            <div>
-                              <a href="{{ route('painel.users.delete', $user->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1">Excluir</button></a>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Usuarios</b></h3></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Usuario</button></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="buscar">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+
+                        <div class="card-body pad">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nome</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Departamento</th>
+                                            <th scope="col">Acão</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <th scope="row">{{ $user->id }}</th>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    @if ($user->departamento_id == null)
+                                                    Admin
+
+                                                        @else
+                                                    {{ $user->departamento->name ?? 'Departamento Excluido' }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <a href="{{ route('painel.users.edit', $user->id) }}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
+                                                        </div>
+                                                        <div>
+                                                        <a href="{{ route('painel.users.delete', $user->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1"><i class="fas fa-trash"></i> Excluir</button></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -78,21 +103,21 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome</label>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" placeholder="Digite um Nome">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">E-mail</label>
-                            <input type="email" name="email" class="form-control">
+                            <input type="email" name="email" class="form-control" placeholder="Digite um Email">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Senha</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="password" name="password" class="form-control" placeholder="Digite uma Senha">
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <div class="modal-footer justify-content-between">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
                     </div>
                 </form>
             </div>

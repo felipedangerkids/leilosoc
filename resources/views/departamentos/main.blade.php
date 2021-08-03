@@ -1,46 +1,62 @@
 @extends('layouts.painel')
 
 @section('content')
-
-    <div class="container">
-        <div class="my-2">
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop">Criar
-                Departamento</button>
-        </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Departamento</th>
-                    <th scope="col">Ação</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($departamentos as $departamento)
-                <tr>
-                    <th scope="row">{{ $departamento->id }}</th>
-                    <td>{{ $departamento->name }}</td>
-                    <td>
-                        <div class="d-flex">
-                            <div>
-                                <a href="{{ route('painel.departamento.edit', $departamento->id) }}"><button class="btn btn-primary mx-1">Editar</button></a>
-                            </div>
-                            <div>
-                              <a href="{{ route('painel.departamento.delete', $departamento->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1">Excluir</button></a>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Departamentos</b></h3></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Departamento</button></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="buscar">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </td>
-                </tr>
 
-                @endforeach
+                        <div class="card-body pad">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Departamento</th>
+                                            <th scope="col">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($departamentos as $departamento)
+                                            <tr>
+                                                <th scope="row">{{ $departamento->id }}</th>
+                                                <td>{{ $departamento->name }}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <a href="{{ route('painel.departamento.edit', $departamento->id) }}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
+                                                        </div>
+                                                        <div>
+                                                            <a href="{{ route('painel.departamento.delete', $departamento->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1"><i class="fas fa-trash"></i> Excluir</button></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-            </tbody>
-        </table>
-
-
-
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -56,14 +72,14 @@
                 <form action="{{ route('painel.departamento.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                             <div class="form-group">
-                              <label for="exampleInputEmail1">Nome do Departamento</label>
-                              <input type="text" name="name"  class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome do Departamento</label>
+                            <input type="text" name="name"  class="form-control" placeholder="Digite o Departamento">
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <div class="modal-footer justify-content-between">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
                     </div>
                 </form>
             </div>

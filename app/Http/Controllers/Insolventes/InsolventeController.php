@@ -62,7 +62,9 @@ class InsolventeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::all();
+        $insolventes = Insolvente::with('responsavel')->find($id);
+        return view('insolventes.edit', compact('users', 'insolventes'));
     }
 
     /**
@@ -74,7 +76,8 @@ class InsolventeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $save = Insolvente::find($id)->update($request->all());
+        return redirect()->route('insolventes')->with('success', 'Ataulizado com sucesso!');
     }
 
     /**
@@ -85,6 +88,8 @@ class InsolventeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Insolvente = Insolvente::find($id);
+        $Insolvente->delete();
+        return redirect()->route('insolventes')->with('success', 'Dados apagados com sucesso!');
     }
 }

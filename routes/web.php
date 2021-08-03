@@ -61,6 +61,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('insolventes', [InsolventeController::class, 'index'])->name('insolventes');
         Route::post('insolventes/post', [InsolventeController::class, 'store'])->name('insolventes.post');
+        Route::get('insolventes/edit/{id}', [InsolventeController::class, 'edit'])->name('insolventes.edit');
+        Route::post('insolventes/update/{id}', [InsolventeController::class, 'update'])->name('insolventes.update');
+        Route::any('insolventes/delete/{id}', [InsolventeController::class, 'destroy'])->name('insolventes.delete');
 
         Route::get('escritorio', [EscritorioController::class, 'index'])->name('escritorio');
         Route::post('escritorio/post', [EscritorioController::class, 'store'])->name('escritorio.post');
