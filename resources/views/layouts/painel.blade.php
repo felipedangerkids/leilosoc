@@ -125,6 +125,18 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Administrador de<br> insolvência</p>
                                         </a>
+                                        <a href="{{route('agentes')}}" class="nav-link @if(Request::is('cadastro/agentes')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Agentes de Execução</p>
+                                        </a>
+                                        <a href="{{route('desinvestimentos')}}" class="nav-link @if(Request::is('cadastro/desinvestimentos')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Desinvestimento</p>
+                                        </a>
+                                        <a href="{{route('centros')}}" class="nav-link @if(Request::is('cadastro/centros')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Centro Logistico</p>
+                                        </a>
                                         <a href="{{route('escritorio')}}" class="nav-link @if(Request::is('cadastro/escritorio')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Escritório</p>

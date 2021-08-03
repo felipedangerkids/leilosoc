@@ -6,6 +6,7 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Asset\AssetController;
 use App\Http\Controllers\Citrus\CitrusController;
+use App\Http\Controllers\Agente\AgentesController;
 use App\Http\Controllers\Depesas\DepesaController;
 use App\Http\Controllers\Tarefas\ModeloController;
 use App\Http\Controllers\Tarefas\TarefaController;
@@ -14,7 +15,9 @@ use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
 use App\Http\Controllers\Calendario\CalendarioController;
 use App\Http\Controllers\Escritorio\EscritorioController;
+use App\Http\Controllers\CentroLogistico\CentroController;
 use App\Http\Controllers\Insolventes\InsolventeController;
+use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +68,24 @@ Route::middleware(['auth'])->group(function () {
         Route::post('insolventes/update/{id}', [InsolventeController::class, 'update'])->name('insolventes.update');
         Route::any('insolventes/delete/{id}', [InsolventeController::class, 'destroy'])->name('insolventes.delete');
 
+        Route::get('agentes', [AgentesController::class, 'index'])->name('agentes');
+        Route::post('agentes/post', [AgentesController::class, 'store'])->name('agentes.post');
+        Route::get('agentes/edit/{id}', [AgentesController::class, 'edit'])->name('agentes.edit');
+        Route::post('agentes/update/{id}', [AgentesController::class, 'update'])->name('agentes.update');
+        Route::any('agentes/delete/{id}', [AgentesController::class, 'destroy'])->name('agentes.delete');
+
+        Route::get('centros', [CentroController::class, 'index'])->name('centros');
+        Route::post('centros/post', [CentroController::class, 'store'])->name('centros.post');
+        Route::get('centros/edit/{id}', [CentroController::class, 'edit'])->name('centros.edit');
+        Route::post('centros/update/{id}', [CentroController::class, 'update'])->name('centros.update');
+        Route::any('centros/delete/{id}', [CentroController::class, 'destroy'])->name('centros.delete');
+
+        Route::get('desinvestimentos', [DesinvestimentosController::class, 'index'])->name('desinvestimentos');
+        Route::post('desinvestimentos/post', [DesinvestimentosController::class, 'store'])->name('desinvestimentos.post');
+        Route::get('desinvestimentos/edit/{id}', [DesinvestimentosController::class, 'edit'])->name('desinvestimentos.edit');
+        Route::post('desinvestimentos/update/{id}', [DesinvestimentosController::class, 'update'])->name('desinvestimentos.update');
+        Route::any('desinvestimentos/delete/{id}', [DesinvestimentosController::class, 'destroy'])->name('desinvestimentos.delete');
+
         Route::get('escritorio', [EscritorioController::class, 'index'])->name('escritorio');
         Route::post('escritorio/post', [EscritorioController::class, 'store'])->name('escritorio.post');
         Route::get('escritorio/edit/{id}', [EscritorioController::class, 'edit'])->name('escritorio.edit');
@@ -109,6 +130,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
     Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 
