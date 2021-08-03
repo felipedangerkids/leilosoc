@@ -21,7 +21,7 @@
                               <div class="form-group col-12 col-md-6">
                                 <label for="user_id">Colaborador responsavel</label>
                                 <select class="form-control" name="user_id" id="user_id">
-                                  <option value="{{ $insolventes->responsavel->id ?? '0' }}">{{ $insolventes->responsavel->name ?? 'Sem departamento' }}</option>
+                                    <option value="{{ $insolventes->responsavel->id ?? '0' }}">{{ $insolventes->responsavel->name ?? 'Sem departamento' }}</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach

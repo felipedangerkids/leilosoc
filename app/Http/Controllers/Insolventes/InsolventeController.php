@@ -17,7 +17,7 @@ class InsolventeController extends Controller
     public function index()
     {
         $users = User::all();
-        $insolventes = Insolvente::with('responsavel')->get();
+        $insolventes = Insolvente::with('responsavel')->paginate(15);
         return view('insolventes.index', compact('users', 'insolventes'));
     }
 

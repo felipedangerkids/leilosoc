@@ -6,6 +6,7 @@ use App\Models\Modelo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ModeloCategoria;
+use App\Models\Depertamento;
 
 class ModeloController extends Controller
 {
@@ -16,9 +17,10 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        $modelos = Modelo::with('categoria')->get();
-        $categorias = ModeloCategoria::all();
-        return view('tarefas.modelo.index', compact('modelos', 'categorias'));
+        $modelos = Modelo::with('departamento')->get();
+        // $categorias = ModeloCategoria::all();
+        $departamentos = Depertamento::all();
+        return view('tarefas.modelo.index', compact('modelos', 'departamentos'));
     }
 
     /**
@@ -67,7 +69,9 @@ class ModeloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modelo = Modelo::with('departamento')->find($id);
+        $departamentos = Depertamento::all();
+        return view('tarefas.modelo.edit', compact('modelo', 'departamentos'));
     }
 
     /**
@@ -79,7 +83,8 @@ class ModeloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $save = Modelo::find($id)->update($request->all());
+        return redirect()->route('modelos')->with('success', 'Ataulizado com sucesso!');
     }
 
     /**
@@ -90,6 +95,8 @@ class ModeloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Modelo = Modelo::find($id);
+        $Modelo->delete();
+        return redirect()->route('modelos')->with('success', 'Dados apagados com sucesso!');
     }
 }

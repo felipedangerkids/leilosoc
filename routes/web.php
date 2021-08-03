@@ -67,10 +67,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('escritorio', [EscritorioController::class, 'index'])->name('escritorio');
         Route::post('escritorio/post', [EscritorioController::class, 'store'])->name('escritorio.post');
+        Route::get('escritorio/edit/{id}', [EscritorioController::class, 'edit'])->name('escritorio.edit');
+        Route::post('escritorio/update/{id}', [EscritorioController::class, 'update'])->name('escritorio.update');
+        Route::any('escritorio/delete/{id}', [EscritorioController::class, 'destroy'])->name('escritorio.delete');
 
         Route::get('modelos', [ModeloController::class, 'index'])->name('modelos');
         Route::post('modelos/post', [ModeloController::class, 'store'])->name('modelos.post');
         Route::post('modelos/cat/post', [ModeloController::class, 'catStore'])->name('modelos.cat.post');
+        Route::get('modelos/edit/{id}', [ModeloController::class, 'edit'])->name('modelos.edit');
+        Route::post('modelos/update/{id}', [ModeloController::class, 'update'])->name('modelos.update');
+        Route::any('modelos/delete/{id}', [ModeloController::class, 'destroy'])->name('modelos.delete');
     });
 
     Route::prefix('tarefa/')->group(function(){

@@ -19,4 +19,9 @@ class Modelo extends Model
     {
         return $this->belongsTo(ModeloCategoria::class, 'categoria_id');
     }
+
+    public function departamento()
+    {
+        return $this->belongsTo(Depertamento::class, 'categoria_id');
+    }
 }

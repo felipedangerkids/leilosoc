@@ -61,7 +61,8 @@ class EscritorioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $escritorio = Escritorio::find($id);
+        return view('escritorio.edit', compact('escritorio'));
     }
 
     /**
@@ -73,7 +74,8 @@ class EscritorioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $save = Escritorio::find($id)->update($request->all());
+        return redirect()->route('escritorio')->with('success', 'Ataulizado com sucesso!');
     }
 
     /**
@@ -84,6 +86,8 @@ class EscritorioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Escritorio = Escritorio::find($id);
+        $Escritorio->delete();
+        return redirect()->route('escritorio')->with('success', 'Dados apagados com sucesso!');
     }
 }

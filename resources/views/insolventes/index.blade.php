@@ -53,6 +53,8 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            {{$insolventes->links()}}
                         </div>
                     </div>
                 </div>
