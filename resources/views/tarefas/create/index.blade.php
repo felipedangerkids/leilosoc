@@ -1,59 +1,71 @@
 @extends('layouts.painel')
 
 @section('content')
-
-    <div class="container">
-        <div class="d-flex">
-        <div class=" my-2">
-            <a href="{{ route('calendario') }}"><button class="btn  btn-dark mx-1">Ver no
-                    Calendário</button></a>
-        </div>
-    </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Numero da tarefa</th>
-                    <th scope="col">Data de conclusão</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Ações
-
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tarefas as $tarefa)
-                    <tr>
-                        <th scope="row">{{ $tarefa->name }}</th>
-                        <td>{{ $tarefa->fim }}</td>
-                        <td>{{ $tarefa->modelo }}</td>
-                        <td>
-                            <div class="d-flex">
-
-
-
-                                <div class="text-danger mx-2">
-                                    <span><i class="fas fa-trash"></i></span>
-                                </div>
-
-                                <div class="text-primary mx-2">
-                                    <span><i class="fas fa-eye"></i></span>
-                                </div>
-                                <div class="text-success mx-2">
-                                    <span><i class="fas fa-check"></i></span>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Tarefas</b></h3></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('calendario') }}" class="btn  btn-dark mx-1"><i class="fas fa-calendar"></i> Agenda de Tarefas</a></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="buscar">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
 
-                @endforeach
+                        <div class="card-body pad">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Numero da Tarefa</th>
+                                            <th scope="col">Data de Conclusão</th>
+                                            <th scope="col">Modelo</th>
+                                            <th scope="col">Colaborador</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($tarefas as $tarefa)
+                                            <tr>
+                                                <th scope="row">{{ $tarefa->name }}</th>
+                                                <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}</td>
+                                                <td>{{ $tarefa->modelo }}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="text-danger mx-2">
+                                                            <span><i class="fas fa-trash"></i></span>
+                                                        </div>
 
+                                                        <div class="text-primary mx-2">
+                                                            <span><i class="fas fa-eye"></i></span>
+                                                        </div>
+                                                        <div class="text-success mx-2">
+                                                            <span><i class="fas fa-check"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-            </tbody>
-        </table>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-
-
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"

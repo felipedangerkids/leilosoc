@@ -2,7 +2,7 @@ $(document).ready(function(){
     var user_name = $('#user_name').text();
     user_name = user_name.split(' ');
     var intials = user_name[0].charAt(0) + user_name[user_name.length-1].charAt(0);
-    $('#image_perfil').text(intials);
+    $('#image_perfil').text(intials.toUpperCase());
 });
 
 document.addEventListener('DOMContentLoaded', function () {

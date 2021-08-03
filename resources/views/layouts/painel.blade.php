@@ -133,9 +133,9 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Modelos</p>
                                         </a>
-                                        <a href="#" class="nav-link @if(Request::is('cadastro/mensagens')) active @endif">
+                                        <a href="#" class="nav-link @if(Request::is('cadastro/fornecedor')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Mensagem Todos</p>
+                                            <p>Fornecedores</p>
                                         </a>
                                     </li>
                                 </ul>
