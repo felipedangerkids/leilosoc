@@ -40,17 +40,22 @@
                                                 <th scope="row">{{ $tarefa->name }}</th>
                                                 <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}</td>
                                                 <td>{{ $tarefa->modelo }}</td>
+                                                <td>{{ $tarefa->responsavel->name }}</td>
+                                                <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <div class="text-danger mx-2">
-                                                            <span><i class="fas fa-trash"></i></span>
+                                                        <div class="btn-custom mx-2">
+                                                            <i class="fas fa-eye"></i>
                                                         </div>
 
-                                                        <div class="text-primary mx-2">
-                                                            <span><i class="fas fa-eye"></i></span>
+                                                        <div class="btn-custom mx-2">
+                                                            <i class="fas fa-trash"></i>
                                                         </div>
-                                                        <div class="text-success mx-2">
-                                                            <span><i class="fas fa-check"></i></span>
+                                                        <div class="btn-custom mx-2">
+                                                            <i class="fas fa-play"></i>
+                                                        </div>
+                                                        <div class="btn-custom mx-2">
+                                                            <i class="fas fa-pause"></i>
                                                         </div>
                                                     </div>
                                                 </td>

@@ -1,98 +1,68 @@
 @extends('layouts.painel')
 
 @section('content')
-
-    <div class="container">
-        <div class="d-flex">
-        
-
-        </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Numero</th>
-                    <th scope="col">Km Inicio</th>
-                    <th scope="col">Data e Hora</th>
-                    <th scope="col">Km Fim</th>
-                    <th scope="col">Data e Hora</th>
-                    <th scope="col">Ações</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($assets as $asset)
-                    <tr>
-                        <th scope="row">{{ $asset->numero }}</th>
-                        <td>{{ $asset->kmini }}</td>
-                        <td>{{ $asset->created_at }}</td>
-                        <td>{{ $asset->kmfim }}</td>
-                        <td>{{ $asset->updated_at }}</td>
-                        <td>
-                            <div class="d-flex">
-                                <div>
-                                  <button class="btn btn-primary mx-1 open" data-toggle="modal" data-id="{{ $asset->id }}" data-target="#edit">Editar</button>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Deslocações</b></h3></div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder="buscar">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
-                        </td>
-                    </tr>
+                        </div>
 
-                @endforeach
-
-
-            </tbody>
-        </table>
-
-
-
-    </div>
-
-
-
-    <div class="modal fade" id="assets" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Novo assets</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <div class="card-body pad">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Numero</th>
+                                            <th scope="col">Km Inicio</th>
+                                            <th scope="col">Data e Hora</th>
+                                            <th scope="col">Km Fim</th>
+                                            <th scope="col">Data e Hora</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($assets as $asset)
+                                            <tr>
+                                                <th scope="row">{{ $asset->numero }}</th>
+                                                <td>{{ $asset->kmini }}</td>
+                                                <td>{{ $asset->created_at }}</td>
+                                                <td>{{ $asset->kmfim }}</td>
+                                                <td>{{ $asset->updated_at }}</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div>
+                                                        <button class="btn btn-primary mx-1 open" data-toggle="modal" data-id="{{ $asset->id }}" data-target="#edit"><i class="fas fa-edit"></i> Editar</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form class="row g-3" action="{{ route('assets.post') }}" method="POST">
-                        @csrf
-                        <div class="col-md-12 mt-3">
-                            <label for="inputEmail4" class="form-label">Numero do Processo</label>
-                            <input name="numero" type="text" value="{{ $processo->processo ?? '' }}" class="form-control"
-                                id="inputEmail4">
-                        </div>
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <div class="col-md-12 mt-3">
-                            <label for="inputEmail4" class="form-label">Km Inicial</label>
-                            <input name="kmini" type="text" class="form-control" id="inputEmail4">
-                        </div>
 
-                        <div class="botoes my-5 ">
-
-                            <button type="submit" class="btn btn-success">SALVAR</button>
-                        </div>
-                        <div class="modal-footer col-md-12">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 
-
 @component('asset.component.modal-edit')
 
 @endcomponent
-
-
-
-
 
 @endsection

@@ -27,6 +27,11 @@ class TarefaModel extends Model
         'freguesia',
         'path',
         'compartilhar',
-
+        'status',
     ];
+
+    public function responsavel()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -23,7 +23,7 @@ class TarefaController extends Controller
     public function index($id = null)
     {
         $processo = Citrus::find($id);
-        $tarefas = TarefaModel::orderBy('created_at', 'desc')->get();
+        $tarefas = TarefaModel::orderBy('created_at', 'desc')->with(['responsavel'])->get();
         $departamentos = Depertamento::all();
         $users = User::all();
         if (isset($processo)) {
