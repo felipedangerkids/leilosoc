@@ -109,7 +109,7 @@
                             <li class="nav-item @if(Request::is('cadastro/*')) menu-open @endif">
                                 <a href="#" class="nav-link @if(Request::is('cadastro/*')) active @endif">
                                     <i class="nav-icon fas fa-edit"></i>
-                                    <p>Cadastros <i class="fas fa-angle-left right"></i></p>
+                                    <p>Organização <i class="fas fa-angle-left right"></i></p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
@@ -123,7 +123,7 @@
                                         </a>
                                         <a href="{{route('insolventes')}}" class="nav-link @if(Request::is('cadastro/insolventes')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Administrador</p>
+                                            <p>Administrador de<br> insolvência</p>
                                         </a>
                                         <a href="{{route('escritorio')}}" class="nav-link @if(Request::is('cadastro/escritorio')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>

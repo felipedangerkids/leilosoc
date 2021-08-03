@@ -26,6 +26,7 @@ use App\Http\Controllers\Insolventes\InsolventeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 
 // Route::get('/', function () {
@@ -39,12 +40,11 @@ Route::get('/entrar', function () {
 })->name('entrar');
 Route::post('/login/post', [LoginController::class, 'login'])->name('login.store');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/citius/scraping', [CitrusController::class, 'scraping']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('cadastro/')->group(function(){
+    Route::prefix('cadastro/')->group(function () {
         // Usuarios
         Route::get('users', [UserController::class, 'index'])->name('painel.users');
         Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('painel.users.edit');
@@ -79,12 +79,12 @@ Route::middleware(['auth'])->group(function () {
         Route::any('modelos/delete/{id}', [ModeloController::class, 'destroy'])->name('modelos.delete');
     });
 
-    Route::prefix('tarefa/')->group(function(){
+    Route::prefix('tarefa/')->group(function () {
         Route::get('tarefas/{id?}', [TarefaController::class, 'index'])->name('painel.tarefas');
         Route::post('tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
     });
 
-    Route::prefix('citius/')->group(function(){
+    Route::prefix('citius/')->group(function () {
         Route::get('processos/{id?}', [CitrusController::class, 'index'])->name('citrus');
         Route::get('processos/create', [CitrusController::class, 'create'])->name('citrus.create');
         Route::get('processos/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
@@ -92,22 +92,23 @@ Route::middleware(['auth'])->group(function () {
         Route::any('processos/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
     });
 
-    Route::prefix('calendario/')->group(function(){
+    Route::prefix('calendario/')->group(function () {
         Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
         Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
-    
+
         Route::get('leiloes', [CalendarioController::class, 'create'])->name('leiloes');
     });
 
-    Route::prefix('assets/')->group(function(){
+    Route::prefix('assets/')->group(function () {
         Route::get('assets/{id?}', [AssetController::class, 'index'])->name('assets');
         Route::post('assets/post', [AssetController::class, 'store'])->name('assets.post');
         Route::post('assets/update', [AssetController::class, 'update'])->name('assets.update');
     });
 
-    Route::prefix('depesas/')->group(function(){
-        
+    Route::prefix('depesas/')->group(function () {
     });
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 
@@ -116,7 +117,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('depesas/post', [DepesaController::class, 'store'])->name('depesa.post');
 
     Route::get('users/{id}', function ($id) {
-
     });
 });
 
