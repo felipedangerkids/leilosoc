@@ -1,0 +1,23 @@
+.brand-link .brand-image-logo {
+    margin-left: .8rem;
+    margin-right: .5rem;
+    max-height: 46px;
+    width: auto;
+}
+
+.user-panel .image {
+    margin-top: 2px;
+}
+
+#image_perfil {
+    font-size: 2rem;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 2px 4px;
+    background: linear-gradient(180deg, rgba(9,9,121,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+#user_name {
+    color: #fff;
+    font-weight: bold;
+}
