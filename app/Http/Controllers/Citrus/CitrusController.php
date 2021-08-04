@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
+
 class CitrusController extends Controller
 {
     /**
@@ -96,7 +98,6 @@ class CitrusController extends Controller
             $citius['especie']          = $data['especie'];
             $citius['data']             = $data['data'];
             $citius['data_propositura'] = $data['data_da_propositura_da_acao'];
-            $citius['document']         = $data['document_ins'];
 
             $contInsol = 0;
             $contInsolAdm = 0;
@@ -129,6 +130,18 @@ class CitrusController extends Controller
 
             $verifCitius = Citrus::where('processo', $citius['processo'])->get();
             if($verifCitius->count() == 0){
+                $retorno_file = $this->reader_document($data['document_ins']);
+                $documento_convertido = 'data:'.$retorno_file['content_type'].';base64,'.base64_encode($retorno_file['document']);
+
+                $extension = explode('/', $retorno_file['content_type']);
+                $extension = '.'.$extension[1];
+                $name = time().$extension;
+                $file = $retorno_file['document'];
+                $path = 'public/documents/';
+                //envia o arquivo
+                Storage::put($path.$name, $file);
+
+                $citius['document'] = 'documents/'.$name;
                 Citrus::create($citius);
             }
         }
@@ -213,5 +226,21 @@ class CitrusController extends Controller
         $dado = Citrus::find($id);
         $dado->delete();
         return redirect()->back();
+    }
+
+    public function reader_document($link){
+        $curl_handle = curl_init();
+        curl_setopt($curl_handle, CURLOPT_URL, $link);
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl_handle, CURLOPT_HEADER, FALSE);
+        curl_setopt($curl_handle, CURLOPT_POST, FALSE);
+        // $response = json_decode(curl_exec($curl_handle), true);
+        $response = curl_exec($curl_handle);
+        $info = curl_getinfo($curl_handle);
+        curl_close($curl_handle);
+        return [
+            'content_type' => $info['content_type'],
+            'document' => $response
+        ];
     }
 }
