@@ -228,7 +228,7 @@ class CitrusController extends Controller
     }
 
     public function reader_document($link){
-        $curl_handle = curl_init();
+        $curl_handle = \curl_init();
         curl_setopt($curl_handle, CURLOPT_URL, $link);
         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($curl_handle, CURLOPT_HEADER, FALSE);
