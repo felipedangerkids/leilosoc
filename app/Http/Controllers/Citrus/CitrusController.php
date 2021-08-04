@@ -229,14 +229,14 @@ class CitrusController extends Controller
 
     public function reader_document($link){
         $curl_handle = \curl_init();
-        curl_setopt($curl_handle, CURLOPT_URL, $link);
-        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl_handle, CURLOPT_HEADER, FALSE);
-        curl_setopt($curl_handle, CURLOPT_POST, FALSE);
+        \curl_setopt($curl_handle, CURLOPT_URL, $link);
+        \curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
+        \curl_setopt($curl_handle, CURLOPT_HEADER, FALSE);
+        \curl_setopt($curl_handle, CURLOPT_POST, FALSE);
         // $response = json_decode(curl_exec($curl_handle), true);
-        $response = curl_exec($curl_handle);
-        $info = curl_getinfo($curl_handle);
-        curl_close($curl_handle);
+        $response = \curl_exec($curl_handle);
+        $info = \curl_getinfo($curl_handle);
+        \curl_close($curl_handle);
         return [
             'content_type' => $info['content_type'],
             'document' => $response
