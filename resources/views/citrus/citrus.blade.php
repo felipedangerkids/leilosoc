@@ -47,7 +47,7 @@
                                                             <a href="{{ route('painel.tarefas', $dado->id) }}"><button class="btn btn-dark mx-1">Abrir Tarefa</button></a>
                                                         </div> --}}
                                                         <div>
-                                                            <a href="{{ $dado->document }}" class="btn btn-primary mx-1 text-nowrap" target="_blank"><i class="fas fa-eye"></i> Documento</a>
+                                                            <a href="{{ asset('storage/'.$dado->document) }}" class="btn btn-primary mx-1 text-nowrap" target="_blank"><i class="fas fa-eye"></i> Documento</a>
                                                         </div>
                                                         <div>
                                                             <a href="{{ route('citrus.show', $dado->id) }}" class="btn btn-primary mx-1 text-nowrap"><i class="fas fa-eye"></i> Ver</a>
