@@ -131,7 +131,6 @@ class CitrusController extends Controller
             $verifCitius = Citrus::where('processo', $citius['processo'])->get();
             if($verifCitius->count() == 0){
                 $retorno_file = $this->reader_document($data['document_ins']);
-                $documento_convertido = 'data:'.$retorno_file['content_type'].';base64,'.base64_encode($retorno_file['document']);
 
                 $extension = explode('/', $retorno_file['content_type']);
                 $extension = '.'.$extension[1];
