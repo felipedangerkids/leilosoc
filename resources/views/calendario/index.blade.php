@@ -27,8 +27,8 @@
                         <th scope="row">{{ $leilao->processo }}</th>
                         <td>{{ $leilao->inicio }}</td>
                         <td>{{ $leilao->fim }}</td>
-                        <td>{{ $leilao->consultor->name }}</td>
-                        <td>{{ $leilao->assets->name }}</td>
+                        <td>{{ $leilao->consultor->name ?? '' }}</td>
+                        <td>{{ $leilao->assets->name ?? ''}}</td>
 
                         <td>
                             <div class="d-flex">
