@@ -23,7 +23,7 @@
                                         {{-- Filtro - Data Inicial & Final --}}
                                         <div class="form-group col-12 col-md-4">
                                             <label for="start_end_date">Data Inicial e Final</label>
-                                            <input type="text" class="form-control form-control-sm date-mask" name="start_end_date" value="@if (isset($_GET['start_end_date'])){{$_GET['start_end_date']}}@else{{date('d/m/Y')}} - {{date('d/m/Y')}}@endif">
+                                            <input type="text" class="form-control form-control-sm date-mask" name="start_end_date" value="@if (isset($_GET['start_end_date'])){{$_GET['start_end_date']}}@else{{date('d/m/Y', strtotime('-1 days'))}} - {{date('d/m/Y')}}@endif">
                                         </div>
                                     </div>
                                     {{-- Botões --}}

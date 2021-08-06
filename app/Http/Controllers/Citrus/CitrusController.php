@@ -29,9 +29,14 @@ class CitrusController extends Controller
             $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[0]))));
             $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[1]))));
         }else{
-            $start_date = date('Y-m-d');
+            $start_date = date('Y-m-d', strtotime('-1 days'));
             $final_date = date('Y-m-d');
         }
+
+        if(date('Y-m-d', strtotime($start_date) == date('Y-m-d', strtotime($final_date)))){
+            $start_date = date('Y-m-d', strtotime('-1 days', strtotime($start_date)));
+        }
+
         $dados = Citrus::where('created_at', '>=', $start_date)->where('created_at', '<=', $final_date)->paginate(15);
         $leiloes = Calendario::with('consultor', 'assets')->get();
         $processo = Citrus::find($id);
