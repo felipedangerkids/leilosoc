@@ -24,20 +24,28 @@ class CitrusController extends Controller
      */
     public function index($id = null)
     {
+        function diasDatas($data_inicial,$data_final) {
+            $diferenca = strtotime($data_final) - strtotime($data_inicial);
+            $dias = floor($diferenca / (60 * 60 * 24)); 
+            return intval($dias);
+        }
+
         if(isset($_GET['start_end_date'])){
             $dates = explode('-', $_GET['start_end_date']);
             $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[0]))));
             $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[1]))));
         }else{
-            $start_date = date('Y-m-d', strtotime('-1 days'));
+            $start_date = date('Y-m-d');
             $final_date = date('Y-m-d');
         }
 
-        if(date('Y-m-d', strtotime($start_date) == date('Y-m-d', strtotime($final_date)))){
-            $start_date = date('Y-m-d', strtotime('-1 days', strtotime($start_date)));
+        $dates = [];
+        $dias = diasDatas($start_date, $final_date);
+        for($i = 0; $i <= $dias; $i++){
+            $dates[] = date("d/m/Y", strtotime("+".$i." days", str_replace("-","/", strtotime($start_date))));
         }
 
-        $dados = Citrus::where('created_at', '>=', $start_date)->where('created_at', '<=', $final_date)->paginate(15);
+        $dados = Citrus::wherein('data',$dates)->paginate(15);
         $leiloes = Calendario::with('consultor', 'assets')->get();
         $processo = Citrus::find($id);
         $departamentos = Depertamento::all();
