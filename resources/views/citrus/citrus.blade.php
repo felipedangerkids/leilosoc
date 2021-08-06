@@ -5,18 +5,44 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 mt-5">
+                    <div class="card collapsed-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><b>Filtros</b></h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body pad">
+                            <div class="container">
+                                <form action="{{route('citrus')}}">
+                                    {{-- Campos --}}
+                                    <div class="row">
+                                        {{-- Filtro - Data Inicial & Final --}}
+                                        <div class="form-group col-12 col-md-4">
+                                            <label for="start_end_date">Data Inicial e Final</label>
+                                            <input type="text" class="form-control form-control-sm date-mask" name="start_end_date" value="@if (isset($_GET['start_end_date'])){{$_GET['start_end_date']}}@else{{date('d/m/Y')}} - {{date('d/m/Y')}}@endif">
+                                        </div>
+                                    </div>
+                                    {{-- Botões --}}
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-sync"></i> Filtrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-5">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Processos</b></h3></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h3 class="card-title"><b>Processos</b></h3>
                             </div>
                         </div>
 
@@ -63,7 +89,11 @@
                                 </table>
                             </div>
 
-                            {{ $dados->links()  }}
+                            @if (isset($_GET['start_end_date']))
+                                {{ $dados->appends(['start_end_date' => $_GET['start_end_date']])->links()  }}
+                            @else
+                                {{ $dados->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>

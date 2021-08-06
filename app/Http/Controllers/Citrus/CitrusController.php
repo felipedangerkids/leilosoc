@@ -24,7 +24,15 @@ class CitrusController extends Controller
      */
     public function index($id = null)
     {
-        $dados = Citrus::paginate(15);
+        if(isset($_GET['start_end_date'])){
+            $dates = explode('-', $_GET['start_end_date']);
+            $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[0]))));
+            $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[1]))));
+        }else{
+            $start_date = date('Y-m-d');
+            $final_date = date('Y-m-d');
+        }
+        $dados = Citrus::where('created_at', '>=', $start_date)->where('created_at', '<=', $final_date)->paginate(15);
         $leiloes = Calendario::with('consultor', 'assets')->get();
         $processo = Citrus::find($id);
         $departamentos = Depertamento::all();

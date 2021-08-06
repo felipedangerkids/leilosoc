@@ -75,3 +75,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calendar.render();
 });
+
+$(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    $('.date-mask').daterangepicker({
+        singleDatePicker: false,
+        showDropdowns: true,
+        locale: {
+            format: 'DD/MM/YYYY',
+            daysOfWeek: ['dom','seg','ter','qua','qui','sex','sab'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','outubro','Novembro','Dezembro'],
+            applyLabel: 'Aplicar',
+            cancelLabel: 'Cancelar'
+        }
+    });
+});
