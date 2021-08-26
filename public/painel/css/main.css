@@ -1,28 +1,49 @@
 .brand-link .brand-image-logo {
-    margin-left: .8rem;
-    margin-right: .5rem;
-    max-height: 46px;
-    width: auto;
+  margin-left: .8rem;
+  margin-right: .5rem;
+  max-height: 46px;
+  width: auto;
 }
 
 .user-panel .image {
-    margin-top: 2px;
+  margin-top: 2px;
 }
 
 #image_perfil {
-    font-size: 2rem;
-    border: 1px solid #fff;
-    color: #fff;
-    padding: 2px 4px;
-    background: linear-gradient(180deg, rgba(9,9,121,1) 0%, rgba(0,0,0,1) 100%);
+  font-size: 2rem;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 2px 4px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#090979), to(black));
+  background: linear-gradient(180deg, #090979 0%, black 100%);
 }
 
 #user_name {
-    color: #fff;
-    font-weight: bold;
+  color: #fff;
+  font-weight: bold;
 }
 
 .btn-custom i {
-    font-size: 1.8rem;
-    cursor: pointer;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
+
+.btn-faq {
+  background-color: #E3E3E3;
+  color: #fff;
+  border-radius: .25rem;
+}
+
+.btn-faq :hover {
+  color: #000;
+}
+
+.btn-close-times {
+  position: absolute;
+  right: 0;
+  background-color: #FF0000;
+  border-radius: 50%;
+  color: #fff;
+  margin-top: -8px;
+}
+/*# sourceMappingURL=main.css.map */

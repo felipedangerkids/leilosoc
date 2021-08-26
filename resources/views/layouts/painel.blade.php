@@ -164,6 +164,12 @@
                                             <p>Todas Tarefas</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('painel.tarefa.criar')}}" class="nav-link @if(Request::is('tarefa/tarefa/criar') || Request::is('tarefa/tarefa/*')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Criar Tarefas</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item @if(Request::is('citius/*')) menu-open @endif">

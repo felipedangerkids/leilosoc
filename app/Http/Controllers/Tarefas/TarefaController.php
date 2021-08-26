@@ -42,9 +42,9 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function criarTarefa()
     {
-        //
+        return view('tarefas.create.criarTarefa');
     }
 
 
@@ -61,11 +61,6 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-
-
         $save = TarefaModel::create([
             'name' => $request->name,
             'modelo' => $request->modelo,
@@ -137,7 +132,6 @@ class TarefaController extends Controller
 
     public function cep(Request $request)
     {
-
         $valor = $request->search;
         $cep = str_replace('-', '', $valor);
 
