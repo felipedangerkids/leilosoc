@@ -102,9 +102,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('tarefa/')->group(function () {
         Route::get('tarefas/{id?}', [TarefaController::class, 'index'])->name('painel.tarefas');
-        Route::post('tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
-
+        
         Route::get('criar', [TarefaController::class, 'criarTarefa'])->name('painel.tarefa.criar');
+        Route::post('tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
     });
 
     Route::prefix('citius/')->group(function () {

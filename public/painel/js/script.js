@@ -3,6 +3,36 @@ $(document).ready(function(){
     user_name = user_name.split(' ');
     var intials = user_name[0].charAt(0) + user_name[user_name.length-1].charAt(0);
     $('#image_perfil').text(intials.toUpperCase());
+
+    $('.select2').select2({
+        placeholder: 'Selecione uma Opção'
+    });
+
+    $('.textarea').summernote({
+        height:200,
+        minHeight: null,
+        maxHeight: null,
+        dialogsInBody: true,
+        dialogsFade: false
+    });
+
+    $(document).on('click', '.btn-close-times', function(){
+        var route = $(this).data('route');
+        var title = $(this).data('title');
+        if(route !== ''){
+            Swal.fire({
+                icon: 'info',
+                title: title,
+                showCancelButton: true,
+                confirmButtonText: 'SIM',
+                cancelButtonText: 'NÃO',
+            }).then((result) => {
+                if(result.isConfirmed){
+                    window.location.href = route;
+                }
+            });
+        }
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
