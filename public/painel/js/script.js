@@ -1,4 +1,21 @@
 $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.date-mask').daterangepicker({
+        singleDatePicker: false,
+        showDropdowns: true,
+        locale: {
+            format: 'DD/MM/YYYY',
+            daysOfWeek: ['dom','seg','ter','qua','qui','sex','sab'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','outubro','Novembro','Dezembro'],
+            applyLabel: 'Aplicar',
+            cancelLabel: 'Cancelar'
+        }
+    });
+    $('.date-mask').mask('99/99/9999 - 99/99/9999');
     var user_name = $('#user_name').text();
     user_name = user_name.split(' ');
     var intials = user_name[0].charAt(0) + user_name[user_name.length-1].charAt(0);
@@ -31,6 +48,39 @@ $(document).ready(function(){
                     window.location.href = route;
                 }
             });
+        }
+    });
+
+    var fileList = new Array;
+    var i =0;
+    $("#my_dropzone").dropzone({
+        addRemoveLinks : true,
+        dictDefaultMessage: "Arraste seus arquivos para cá!",
+        dictResponseError: 'Erro ao fazer o upload !',
+        success: (file, data) => {
+            $('.anexos').append('<input type="hidden" name="anexos[]" value="'+data+'">');
+            fileList[i] = {"serverFileName": data, "fileName": file.name, "fileId" : i, "uuid": file.upload.uuid};
+            i++;
+        },
+        removedfile: function(file) {
+            var rmvFile = "";
+            for(f=0;f<fileList.length;f++){
+                if(fileList[f].uuid == file.upload.uuid)
+                {
+                    rmvFile = fileList[f].serverFileName;
+                    $('.anexos').find('[value="'+rmvFile+'"]').remove();
+                }
+            }
+
+            if (rmvFile){
+                $.ajax({
+                    url: "/tarefa/tarefas/anexos/remove",
+                    type: "POST",
+                    data: { "fileList" : rmvFile }
+                });
+
+                file.previewElement.remove();
+            }
         }
     });
 });

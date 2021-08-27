@@ -41,6 +41,8 @@
         <link href='{{ url('tarefa/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
         <link href='{{ url('tarefa/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
 
+        <link rel="stylesheet" href="{{asset('plugin/dropzone/min/dropzone.min.css')}}">
+
         <link rel="stylesheet" href="{{asset('painel/css/main.min.css')}}">
 
         <style>
@@ -277,6 +279,11 @@
         <script src='{{ url('tarefa/fullcalendar/packages/timegrid/main.js') }}/'></script>
         <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
         <script src='{{ url('tarefa/fullcalendar/packages/core/locales/pt-br.js') }}'></script>
+
+        <script src="{{asset('plugin/dropzone/min/dropzone.min.js')}}"></script>
+        <script>
+            Dropzone.autoDiscover = false;
+        </script>
 
         <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
         {{-- Outros --}}

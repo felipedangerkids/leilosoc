@@ -18,6 +18,8 @@ class TarefaModel extends Model
         'user_id',
         'inicio',
         'fim',
+        'numero_processo',
+        'ai',
         'cep',
         'morada',
         'porta',

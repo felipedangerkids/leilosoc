@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Tarefas;
 
 use App\Models\User;
+use App\Models\Agente;
 use App\Models\Citrus;
 use App\Models\Modelo;
 use App\Models\Insolvente;
 use App\Models\TarefaModel;
+use App\Models\Alocado;
+use App\Models\Anexo;
 use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
+
+use Illuminate\Support\Facades\Storage;
 
 class TarefaController extends Controller
 {
@@ -42,9 +47,27 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function criarTarefa()
+    public function criarTarefa($id = null)
     {
-        return view('tarefas.create.criarTarefa');
+        $citius = null;
+        if($id){
+            $citius = Citrus::find($id);
+        }
+        $users = User::all();
+        $departamentos = Depertamento::all();
+        $AIs = Agente::all();
+        return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'AIs', 'citius'));
+    }
+
+    public function anexos(Request $request)
+    {
+        $upload = $request->file->store('tarefa_images');
+        return response()->json($upload);
+    }
+    public function anexosRemove(Request $request)
+    {
+        Storage::delete($request->fileList);
+        return response()->json();
     }
 
 
@@ -61,27 +84,37 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
+        $dates = explode('-', $request->start_end_date);
+        $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[0]))));
+        $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[1]))));
+
         $save = TarefaModel::create([
-            'name' => $request->name,
+            'name' => $request->modelo,
             'modelo' => $request->modelo,
             'description' => $request->description,
-            'departamento_id' => $request->departamento_id,
-            'user_id' => $request->user_id,
-            'inicio' => date('Y-m-d', strtotime(str_replace('/', '-', $request->inicio))),
-            'fim' => date('Y-m-d', strtotime(str_replace('/', '-', $request->fim))),
-            'cep' => $request->cep,
-            'morada' => $request->morada,
-            'porta' => $request->porta,
-            'regiao' => $request->regiao,
-            'distrito' => $request->distrito,
-            'conselho' => $request->conselho,
-            'freguesia' => $request->freguesia,
-            'path' => 'path.png',
-            'compartilhar' => $request->compartilhar,
+            'departamento_id' => $request->departamento,
+            'user_id' => 0,
+            'inicio' => $start_date,
+            'fim' => $final_date,
+            'numero_processo' => $request->numero_processo,
+            'ai' => $request->ai,
         ]);
 
+        foreach($request->alocados as $alocado){
+            Alocado::create([
+                'tarefa_id' => $save->id,
+                'user_id' => $alocado
+            ]);
+        }
 
-        return redirect()->route('painel.tarefas')->with('success', 'Tarefa criado com sucesso!');
+        foreach($request->anexos as $anexo){
+            Anexo::create([
+                'tarefa_id' => $save->id,
+                'anexo_nome' => $anexo
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
     }
 
     /**
