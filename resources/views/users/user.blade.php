@@ -44,7 +44,7 @@
                                                     Admin
 
                                                         @else
-                                                    {{ $user->departamento->name ?? 'Departamento Excluido' }} <span style="background-color:{{ $user->departamento->color }}; padding: 8px; margin: 0 5px"></span>
+                                                    {{ $user->departamento->name ?? 'Departamento Excluido' }} <span style="background-color:{{ $user->departamento->color ?? 'white' }}; padding: 8px; margin: 0 5px"></span>
                                                     @endif
                                                 </td>
                                                 <td>
