@@ -96,6 +96,10 @@
                             <label for="inputEmail4" class="form-label">Telemóvel</label>
                             <input name="telemovel" type="text" class="form-control" id="inputEmail4">
                         </div>
+                        <div class="col-md-12 mt-3 text-center mb-3">
+                            <label for="inputEmail4" class="form-label">Preferencial</label>
+                            <input name="preferencial" type="checkbox" class="form-control" id="inputEmail4">
+                        </div>
                         <div class="modal-footer col-md-12 justify-content-between">
                             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Cadastrar AI</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>

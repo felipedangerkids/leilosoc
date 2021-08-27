@@ -11,6 +11,7 @@ class Insolvente extends Model
     protected $fillable = [
         'name',
         'nif',
+        'preferencial',
         'telemovel',
         'user_id',
     ];

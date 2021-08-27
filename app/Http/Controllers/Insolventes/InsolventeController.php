@@ -39,6 +39,7 @@ class InsolventeController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $save = Insolvente::create($request->all());
         return redirect()->back()->with('success', 'Criado com sucesso!');
     }
