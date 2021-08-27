@@ -37,6 +37,8 @@ class DepertamentoController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $save = Depertamento::create($request->all());
 
         return redirect()->back()->with('success', 'Departamento criado com sucesso!');
@@ -76,6 +78,7 @@ class DepertamentoController extends Controller
     {
         $departamento = Depertamento::find($id);
         $departamento->name = $request->name;
+        $departamento->color = $request->color;
         $departamento->save();
         return redirect()->route('painel.departamento');
     }

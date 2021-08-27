@@ -11,6 +11,6 @@ class Depertamento extends Model
 
     protected $fillable = [
         'name',
-
+        'color',
     ];
 }

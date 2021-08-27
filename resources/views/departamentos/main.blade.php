@@ -28,6 +28,7 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Departamento</th>
+                                            <th scope="col">Cor</th>
                                             <th scope="col">Ação</th>
                                         </tr>
                                     </thead>
@@ -36,6 +37,7 @@
                                             <tr>
                                                 <th scope="row">{{ $departamento->id }}</th>
                                                 <td>{{ $departamento->name }}</td>
+                                                <td width="10" height="10" style="background: {{ $departamento->color }};"></td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div>
@@ -75,6 +77,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome do Departamento</label>
                             <input type="text" name="name"  class="form-control" placeholder="Digite o Departamento">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Cor do Departamento</label>
+                            <input type="color" name="color"  class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
