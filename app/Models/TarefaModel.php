@@ -42,6 +42,11 @@ class TarefaModel extends Model
         return $this->belongsToMany(User::class, Alocado::class, 'tarefa_id', 'user_id');
     }
 
+    public function departamento()
+    {
+        return $this->belongsTo(Depertamento::class, 'departamento_id');
+    }
+
     public function anexos()
     {
         return $this->hasMany(Anexo::class, 'tarefa_id');
