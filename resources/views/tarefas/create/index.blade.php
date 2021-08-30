@@ -8,13 +8,18 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Tarefas</b></h3></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('calendario') }}" class="btn  btn-dark mx-1"><i class="fas fa-calendar"></i> Agenda de Tarefas</a></div>
+                                <div class="col-2 my-1 d-none d-md-block">
+                                    <h3 class="card-title"><b>Tarefas</b></h3>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('calendario') }}"
+                                        class="btn  btn-dark mx-1"><i class="fas fa-calendar"></i> Agenda de Tarefas</a>
+                                </div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
                                     <div class="input-group">
                                         <input type="search" class="form-control" placeholder="buscar">
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            <button type="button" class="btn btn-dark"><i
+                                                    class="fas fa-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -38,30 +43,42 @@
                                         @foreach ($tarefas as $tarefa)
                                             <tr>
                                                 <th scope="row">{{ $tarefa->numero_processo }}</th>
-                                                <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}</td>
+                                                <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}
+                                                </td>
                                                 <td>{{ $tarefa->modelo }}</td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$tarefa->alocados->count()}} - Responsáveis</button>
+                                                        <button type="button" class="btn btn-light dropdown-toggle"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">{{ $tarefa->alocados->count() }} -
+                                                            Responsáveis</button>
                                                         <div class="dropdown-menu">
                                                             @foreach ($tarefa->alocados as $alocado)
-                                                                <button type="button" class="dropdown-item">{{$alocado->name}}</button>
+                                                                <button type="button"
+                                                                    class="dropdown-item">{{ $alocado->name }}</button>
                                                             @endforeach
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
+                                                <td><button type="button"
+                                                        class="btn btn-{{ $tarefa->status == 'I' ? 'info' : 'danger' }}">{{ $tarefa->status == 'I' ? 'Iniciada' : 'Pausada' }}</button>
+                                                </td>
                                                 <td>
-                                             
+
                                                     <div class="d-flex">
-                                                        <div class="btn-custom mx-2">
-                                                            <i class="fas fa-eye"></i>
+                                                        <div>
+                                                            <a href="{{ route('painel.tarefas.detalhes', $tarefa->id) }}">
+                                                                <div class="btn-custom mx-2">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </div>
+                                                            </a>
                                                         </div>
 
                                                         <div class="btn-custom mx-2">
                                                             <i class="fas fa-trash"></i>
                                                         </div>
-                                                        <div class="btn-custom mx-2" data-id="{{ $tarefa->id }}" onclick="start(this)">
+                                                        <div class="btn-custom mx-2" data-id="{{ $tarefa->id }}"
+                                                            onclick="start(this)">
                                                             <i class="fas fa-play"></i>
                                                         </div>
                                                         <div class="btn-custom mx-2">
@@ -99,7 +116,7 @@
                         @csrf
                         <div class="col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Número do Processo</label>
-                            <input name="name" type="text" value="@if ($processo){{ Str::limit($processo->processo, 14, '')  }}@endif" class="form-control"
+                            <input name="name" type="text" value="@if ($processo){{ Str::limit($processo->processo, 14, '') }}@endif" class="form-control"
                                 id="inputEmail4">
                             <div class="mt-3 ">
                                 <article>
@@ -173,9 +190,9 @@
                                 <option selected>Escolha Departamento</option>
                                 @foreach ($departamentos as $departamento)
 
-                                    <option value="{{ $departamento->id }}" @if ( ($insolente->responsavel->departamento_id ?? '') == $departamento->id )
+                                    <option value="{{ $departamento->id }}" @if (($insolente->responsavel->departamento_id ?? '') == $departamento->id)
                                         selected
-                                    @endif>{{ $departamento->name }}</option>
+                                @endif>{{ $departamento->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -188,8 +205,8 @@
                                 @foreach ($users as $user)
 
                                     <option value="{{ $user->id }}" @if (($insolente->responsavel->id ?? '') == $user->id)
-                                    selected
-                                    @endif>{{ $user->name }}</option>
+                                        selected
+                                @endif>{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>

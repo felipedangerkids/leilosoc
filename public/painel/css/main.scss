@@ -1,6 +1,8 @@
+$fontPrimary: Source Sans Pro;
+
 .brand-link .brand-image-logo {
-    margin-left: .8rem;
-    margin-right: .5rem;
+    margin-left: 0.8rem;
+    margin-right: 0.5rem;
     max-height: 46px;
     width: auto;
 }
@@ -14,7 +16,7 @@
     border: 1px solid #fff;
     color: #fff;
     padding: 2px 4px;
-    background: linear-gradient(180deg, rgba(9,9,121,1) 0%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(180deg, rgba(9, 9, 121, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 #user_name {
@@ -28,9 +30,9 @@
 }
 
 .btn-faq {
-    background-color: #E3E3E3;
+    background-color: #e3e3e3;
     color: #fff;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
 
     :hover {
         color: #000;
@@ -40,7 +42,7 @@
 .btn-close-times {
     position: absolute;
     right: 0;
-    background-color: #FF0000;
+    background-color: #ff0000;
     border-radius: 50%;
     color: #fff;
     margin-top: -8px;
@@ -48,4 +50,58 @@
 
 .select2-container {
     max-width: 100%;
+}
+.tarefas{
+    .nav-link {
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18.4512px;
+        color: #343a40;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        color: rgb(0, 0, 0);
+        background-color: transparent !important;
+    }
+}
+
+.titulo-tarefa {
+    h3 {
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 10px;
+        color: #343a40;
+    }
+    span {
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        color: #a29191;
+    }
+}
+.lateral {
+    text-align: center;
+    margin-top: 25px;
+    div{
+        margin: 8px 0;
+    }
+    h4 {
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    h3 {
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+
+    }
 }

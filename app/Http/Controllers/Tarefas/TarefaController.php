@@ -42,6 +42,12 @@ class TarefaController extends Controller
         return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos', 'processo', 'insolente'));
     }
 
+    public function tarefaDetalhe($id)
+    {
+        $tarefa = TarefaModel::with(['alocados', 'anexos'])->find($id);
+        return view('tarefas.main', compact('tarefa'));
+    }
+
     public function minhaTarefa($id = null)
     {
         $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
