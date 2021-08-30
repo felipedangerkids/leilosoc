@@ -43,6 +43,12 @@
                                                 <td>{{ $tarefa->responsavel->name ?? '' }}</td>
                                                 <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
                                                 <td>
+                                                    <div class="display">
+                                                        <div id="hour">00</div>
+                                                        <div id="min">00</div>
+                                                        <div id="sec">00</div>
+                                                        <div id="msec">00</div>
+                                                      </div>
                                                     <div class="d-flex">
                                                         <div class="btn-custom mx-2">
                                                             <i class="fas fa-eye"></i>
@@ -51,11 +57,11 @@
                                                         <div class="btn-custom mx-2">
                                                             <i class="fas fa-trash"></i>
                                                         </div>
-                                                        <div class="btn-custom mx-2">
+                                                        <div class="btn-custom mx-2" data-id="{{ $tarefa->id }}" onclick="start(this)">
                                                             <i class="fas fa-play"></i>
                                                         </div>
                                                         <div class="btn-custom mx-2">
-                                                            <i class="fas fa-pause"></i>
+                                                            <i class="fas fa-pause" value="Parar" onclick="stop()"></i>
                                                         </div>
                                                     </div>
                                                 </td>
