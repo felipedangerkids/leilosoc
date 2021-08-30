@@ -190,11 +190,25 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{route('calendario')}}" class="nav-link @if(Request::is('calendario')) active @endif">
+                            <li class="nav-item @if(Request::is('calendario/*')) menu-open @endif">
+                                <a href="#" class="nav-link @if(Request::is('calendario/*')) active @endif">
                                     <i class="nav-icon fas fa-calendar-alt"></i>
-                                    <p>Calendario</p>
+                                    <p>Calendario <i class="right fas fa-angle-left"></i></p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{route('tarefa.calendario')}}" class="nav-link @if(Request::is('calendario/tarefa')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tarefas</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('leilao.calendario')}}" class="nav-link @if(Request::is('calendario/leilao') || Request::is('calendario/leilao/*')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Leilões</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item @if(Request::is('assets/*')) menu-open @endif">
                                 <a href="#" class="nav-link @if(Request::is('assets/*')) active @endif">

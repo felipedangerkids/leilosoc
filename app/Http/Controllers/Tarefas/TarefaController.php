@@ -55,11 +55,6 @@ class TarefaController extends Controller
         return view('tarefas.create.minhaTarefa', compact('tarefas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function criarTarefa($id = null)
     {
         $citius = null;
@@ -84,12 +79,12 @@ class TarefaController extends Controller
         return response()->json();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function calendar()
+    {
+        $tarefas = TarefaModel::all();
+        return view('tarefas.calendario.index', compact('tarefas'));
+    }
+
     public function store(Request $request)
     {
         $dates = explode('-', $request->start_end_date);

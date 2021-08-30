@@ -11,7 +11,7 @@
                                 <div class="col-2 my-1 d-none d-md-block">
                                     <h3 class="card-title"><b>Tarefas</b></h3>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('calendario') }}"
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('tarefa.calendario') }}"
                                         class="btn  btn-dark mx-1"><i class="fas fa-calendar"></i> Agenda de Tarefas</a>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">

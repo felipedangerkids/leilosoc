@@ -89,8 +89,14 @@ $(document).ready(function(){
         var events = [];
 
         $.each(json_calendar, (key, value) => {
+            var name = 'Sem Titulo';
+            if(value.name){
+                name = value.name;
+            }else if(value.tipo){
+                name = value.tipo
+            }
             events.push({
-                title: value.name,
+                title: name,
                 start: value.inicio,
                 end: value.fim,
                 url: '/tarefa/tarefaDetalhe/'+value.id,
