@@ -62,8 +62,10 @@ class TarefaController extends Controller
         }
         $users = User::all();
         $departamentos = Depertamento::all();
-        $AIs = Agente::all();
-        return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'AIs', 'citius'));
+        $insolventes = Insolvente::all();
+
+
+        return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'insolventes', 'citius'));
     }
 
     public function anexos(Request $request)

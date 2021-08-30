@@ -66,8 +66,8 @@
                                                 <div class="col-4">
                                                     <select name="ai" class="select2 form-control">
                                                         <option value="">Selecione uma Opção</option>
-                                                        @foreach ($AIs as $AI)
-                                                            <option value="{{$AI->id}}">{{$AI->name}}</option>
+                                                        @foreach ($insolventes as $insolvente)
+                                                            <option value="{{$insolvente->id}}" @if($citius) @if($citius->nif_adm == $insolvente->nif) selected @endif @endif>{{$insolvente->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
