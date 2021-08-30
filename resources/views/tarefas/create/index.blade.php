@@ -29,7 +29,7 @@
                                             <th scope="col">Numero da Tarefa</th>
                                             <th scope="col">Data de Conclusão</th>
                                             <th scope="col">Modelo</th>
-                                            <th scope="col">Colaborador</th>
+                                            <th scope="col">Responsáveis</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Ações</th>
                                         </tr>
@@ -37,10 +37,19 @@
                                     <tbody>
                                         @foreach ($tarefas as $tarefa)
                                             <tr>
-                                                <th scope="row">{{ $tarefa->name }}</th>
+                                                <th scope="row">{{ $tarefa->numero_processo }}</th>
                                                 <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}</td>
                                                 <td>{{ $tarefa->modelo }}</td>
-                                                <td>{{ $tarefa->responsavel->name ?? '' }}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$tarefa->alocados->count()}} - Responsáveis</button>
+                                                        <div class="dropdown-menu">
+                                                            @foreach ($tarefa->alocados as $alocado)
+                                                                <button type="button" class="dropdown-item">{{$alocado->name}}</button>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </td>
                                                 <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
                                                 <td>
                                                     <div class="d-flex">

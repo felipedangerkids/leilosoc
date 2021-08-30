@@ -28,7 +28,7 @@ class TarefaController extends Controller
     public function index($id = null)
     {
         $processo = Citrus::find($id);
-        $tarefas = TarefaModel::orderBy('created_at', 'desc')->with(['responsavel'])->get();
+        $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
         $departamentos = Depertamento::all();
         $users = User::all();
         if (isset($processo)) {
@@ -40,6 +40,13 @@ class TarefaController extends Controller
         $categorias = ModeloCategoria::all();
         $modelos = Modelo::with('categoria')->get();
         return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos', 'processo', 'insolente'));
+    }
+
+    public function minhaTarefa($id = null)
+    {
+        $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
+
+        return view('tarefas.create.minhaTarefa', compact('tarefas'));
     }
 
     /**

@@ -102,6 +102,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('tarefa/')->group(function () {
         Route::get('tarefas/{id?}', [TarefaController::class, 'index'])->name('painel.tarefas');
+        Route::get('minhas/tarefas/{id?}', [TarefaController::class, 'minhaTarefa'])->name('painel.minhas.tarefas');
         
         Route::get('criar/{id?}', [TarefaController::class, 'criarTarefa'])->name('painel.tarefa.criar');
         Route::post('tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');

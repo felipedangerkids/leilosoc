@@ -167,6 +167,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{route('painel.minhas.tarefas')}}" class="nav-link @if(Request::is('tarefa/minhas/tarefas') || Request::is('tarefa/minhas/tarefas/*')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Minhas Tarefas</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{route('painel.tarefa.criar')}}" class="nav-link @if(Request::is('tarefa/criar') || Request::is('tarefa/criar/*')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Criar Tarefas</p>
