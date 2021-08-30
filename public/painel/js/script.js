@@ -85,25 +85,25 @@ $(document).ready(function(){
     });
 
     $(function(){
-        var json_calendar = JSON.parse($('#json_calendar').val());
-        var events = [];
-
-        $.each(json_calendar, (key, value) => {
-            var name = 'Sem Titulo';
-            if(value.name){
-                name = value.name;
-            }else if(value.tipo){
-                name = value.tipo
-            }
-            events.push({
-                title: name,
-                start: value.inicio,
-                end: value.fim,
-                url: '/tarefa/tarefaDetalhe/'+value.id,
+        if($('#json_calendar').val()){
+            var json_calendar = JSON.parse($('#json_calendar').val());
+            var events = [];
+    
+            $.each(json_calendar, (key, value) => {
+                var name = 'Sem Titulo';
+                if(value.name){
+                    name = value.name;
+                }else if(value.tipo){
+                    name = value.tipo
+                }
+                events.push({
+                    title: name,
+                    start: value.inicio,
+                    end: value.fim,
+                    url: '/tarefa/tarefaDetalhe/'+value.id,
+                });
             });
-        });
 
-        if(json_calendar.length > 0){
             var calendarEl = document.getElementById('calendar');
             var Calendar = FullCalendar.Calendar;
             var calendar = new Calendar(calendarEl, {
