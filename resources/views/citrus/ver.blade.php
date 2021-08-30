@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex">
-                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#tarefas"><i class="fas fa-calendar-plus"></i> Abrir Tarefa</button></div>
+                                <div class="my-1 mx-2"><a href="{{route('painel.tarefa.criar', $citius->id)}}" class="btn btn-dark"><i class="fas fa-calendar-plus"></i> Abrir Tarefa</a></div>
                                 <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#assets"><i class="fas fa-camera"></i> Asset</button></div>
                                 <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#calendarioModal"><i class="fas fa-calendar"></i> Abrir Calendario</button></div>
                                 <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#depesas"><i class="fas fa-euro-sign"></i> Despesas</button></div>
@@ -39,22 +39,6 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-        
-        <div class="d-flex ">
-            <div class="my-3 mx-2">
-               
-            </div>
-            <div class="my-3 mx-2">
-                
-            </div>
-            <div class="my-3 mx-2">
-                
-            </div>
-        </div>
-    </div>
-
 
     @component('components.modal.modal', ['rota' => route('depesa.post'), 'title' => 'Depesas', 'idModal' => 'depesas'])
         <div class="form-group col-md-12">

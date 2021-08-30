@@ -41,6 +41,8 @@
         <link href='{{ url('tarefa/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
         <link href='{{ url('tarefa/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
 
+        <link rel="stylesheet" href="{{asset('plugin/dropzone/min/dropzone.min.css')}}">
+
         <link rel="stylesheet" href="{{asset('painel/css/main.min.css')}}">
 
         <style>
@@ -165,6 +167,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{route('painel.minhas.tarefas')}}" class="nav-link @if(Request::is('tarefa/minhas/tarefas') || Request::is('tarefa/minhas/tarefas/*')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Minhas Tarefas</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{route('painel.tarefa.criar')}}" class="nav-link @if(Request::is('tarefa/criar') || Request::is('tarefa/criar/*')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Criar Tarefas</p>
@@ -277,6 +285,11 @@
         <script src='{{ url('tarefa/fullcalendar/packages/timegrid/main.js') }}/'></script>
         <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
         <script src='{{ url('tarefa/fullcalendar/packages/core/locales/pt-br.js') }}'></script>
+
+        <script src="{{asset('plugin/dropzone/min/dropzone.min.js')}}"></script>
+        <script>
+            Dropzone.autoDiscover = false;
+        </script>
 
         <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
         {{-- Outros --}}

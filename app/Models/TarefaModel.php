@@ -18,6 +18,8 @@ class TarefaModel extends Model
         'user_id',
         'inicio',
         'fim',
+        'numero_processo',
+        'ai',
         'cep',
         'morada',
         'porta',
@@ -33,5 +35,15 @@ class TarefaModel extends Model
     public function responsavel()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function alocados()
+    {
+        return $this->belongsToMany(User::class, Alocado::class, 'tarefa_id', 'user_id');
+    }
+
+    public function anexos()
+    {
+        return $this->hasMany(Anexo::class, 'tarefa_id');
     }
 }
