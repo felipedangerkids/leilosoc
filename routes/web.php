@@ -121,12 +121,11 @@ Route::middleware(['auth'])->group(function () {
         Route::any('processos/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
     });
 
-    Route::prefix('calendario/')->group(function () {
-        Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
-        Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
+    Route::get('calendario', [CalendarioController::class, 'index'])->name('calendario');
 
-        Route::get('leiloes', [CalendarioController::class, 'create'])->name('leiloes');
-    });
+    // Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
+    // Route::get('leiloes', [CalendarioController::class, 'create'])->name('leiloes');
+    Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
 
     Route::prefix('assets/')->group(function () {
         Route::get('assets/{id?}', [AssetController::class, 'index'])->name('assets');
@@ -152,4 +151,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::get('taferas/calendario', [TarefaController::class, 'calendar'])->name('calendario');
+// Route::get('taferas/calendario', [TarefaController::class, 'calendar'])->name('calendario');

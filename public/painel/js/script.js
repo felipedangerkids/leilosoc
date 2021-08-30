@@ -16,7 +16,6 @@ $(document).ready(function(){
         }
     });
     $('.date-mask').mask('99/99/9999 - 99/99/9999');
-$(document).ready(function () {
     var user_name = $('#user_name').text();
     user_name = user_name.split(' ');
     var intials = user_name[0].charAt(0) + user_name[user_name.length - 1].charAt(0);
@@ -84,96 +83,35 @@ $(document).ready(function () {
             }
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('calendar');
-    var dados = $('#dados').val();
-    var events = [];
+    $(function(){
+        var json_calendar = JSON.parse($('#json_calendar').val());
+        var events = [];
 
-    $.each(JSON.parse(dados), (key, value) => {
-        events.push({
-            title: value.modelo,
-            start: value.inicio,
-            end: value.fim,
+        $.each(json_calendar, (key, value) => {
+            events.push({
+                title: value.name,
+                start: value.inicio,
+                end: value.fim,
+                url: '/tarefa/tarefaDetalhe/'+value.id,
+            });
         });
 
-    });
+        if(json_calendar.length > 0){
+            var calendarEl = document.getElementById('calendar');
+            var Calendar = FullCalendar.Calendar;
+            var calendar = new Calendar(calendarEl, {
+                headerToolbar: {
+                    left  : 'prev,next today',
+                    center: 'title',
+                    right : 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                locale: 'pt',
+                themeSystem: 'bootstrap',
+                events: events
+            });
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
-        height: 'parent',
-        locale: 'pt-br',
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        defaultView: 'dayGridMonth',
-        // defaultDate: '2021-08-12',
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: events, //
-    });
-
-    calendar.render();
-});
-
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    var calendarEl = document.getElementById('leilao');
-    var dados = $('#date').val();
-    var events = [];
-
-    $.each(JSON.parse(dados), (key, value) => {
-        events.push({
-            title: value.processo,
-            start: value.inicio,
-            end: value.fim,
-        });
-
-    });
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
-        height: 'parent',
-        locale: 'pt-br',
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        defaultView: 'dayGridMonth',
-        // defaultDate: '2021-08-12',
-        navLinks: true, // can click day/week names to navigate views
-        editable: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: events, //
-    });
-
-    calendar.render();
-});
-
-$(document).ready(function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('.date-mask').daterangepicker({
-        singleDatePicker: false,
-        showDropdowns: true,
-        locale: {
-            format: 'DD/MM/YYYY',
-            daysOfWeek: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'],
-            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'outubro', 'Novembro', 'Dezembro'],
-            applyLabel: 'Aplicar',
-            cancelLabel: 'Cancelar'
+            calendar.render();
         }
     });
 });
-

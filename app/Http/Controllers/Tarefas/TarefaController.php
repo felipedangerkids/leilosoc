@@ -70,7 +70,6 @@ class TarefaController extends Controller
         $departamentos = Depertamento::all();
         $insolventes = Insolvente::all();
 
-
         return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'insolventes', 'citius'));
     }
 
@@ -85,12 +84,6 @@ class TarefaController extends Controller
         return response()->json();
     }
 
-
-    public function calendar()
-    {
-        $dados = TarefaModel::all();
-        return view('tarefas.fullcalendar', compact('dados'));
-    }
     /**
      * Store a newly created resource in storage.
      *

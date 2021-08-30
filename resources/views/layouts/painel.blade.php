@@ -28,18 +28,14 @@
         <link rel="stylesheet" href="{{asset('plugin/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
         {{-- Colopicker --}}
         <link rel="stylesheet" href="{{asset('plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{{asset('plugin/AdminLTE/css/adminlte.min.css')}}">
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{asset('plugin/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
         <!-- summernote -->
         <link rel="stylesheet" href="{{asset('plugin/summernote/summernote-bs4.min.css')}}">
-
-        {{-- fullcalendar --}}
-        <link href='{{ url('tarefa/fullcalendar/packages/core/main.css') }}' rel='stylesheet' />
-        <link href='{{ url('tarefa/fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />
-        <link href='{{ url('tarefa/fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />
-        <link href='{{ url('tarefa/fullcalendar/packages/list/main.css') }}' rel='stylesheet' />
+        <!-- fullCalendar -->
+        <link rel="stylesheet" href="{{asset('plugin/fullcalendar/main.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{asset('plugin/AdminLTE/css/adminlte.min.css')}}">
 
         <link rel="stylesheet" href="{{asset('plugin/dropzone/min/dropzone.min.css')}}">
 
@@ -194,19 +190,11 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item @if(Request::is('calendario/*')) menu-open @endif">
-                                <a href="#" class="nav-link @if(Request::is('calendario/*')) active @endif">
+                            <li class="nav-item">
+                                <a href="{{route('calendario')}}" class="nav-link @if(Request::is('calendario')) active @endif">
                                     <i class="nav-icon fas fa-calendar-alt"></i>
-                                    <p>Calendario <i class="fas fa-angle-left right"></i></p>
+                                    <p>Calendario</p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{route('leilao')}}" class="nav-link @if(Request::is('calendario/leilao') || Request::is('calendario/leilao/*')) active @endif">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Ver Todos</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="nav-item @if(Request::is('assets/*')) menu-open @endif">
                                 <a href="#" class="nav-link @if(Request::is('assets/*')) active @endif">
@@ -266,6 +254,9 @@
         <script src="{{asset('plugin/sweetalert2/sweetalert2.min.js')}}"></script>
         <!-- Moment -->
         <script src="{{asset('plugin/moment/moment.min.js')}}"></script>
+        {{-- Calander --}}
+        <script src="{{asset('plugin/fullcalendar/main.js')}}"></script>
+        <script src="{{asset('plugin/fullcalendar/locales/pt.js')}}"></script>
         <!-- Colorpicker -->
         <script src="{{asset('plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
         <!-- DateRangerPicker -->
@@ -278,22 +269,14 @@
         <!-- AdminLTE App -->
         <script src="{{asset('plugin/AdminLTE/js/adminlte.min.js')}}"></script>
 
-        {{-- fullcalendar --}}
-        <script src='{{ url('tarefa/fullcalendar/packages/core/main.js') }}'></script>
-        <script src='{{ url('tarefa/fullcalendar/packages/interaction/main.js') }}'></script>
-        <script src='{{ url('tarefa/fullcalendar/packages/daygrid/main.js') }}'></script>
-        <script src='{{ url('tarefa/fullcalendar/packages/timegrid/main.js') }}/'></script>
-        <script src='{{ url('tarefa/fullcalendar/packages/list/main.js') }}'></script>
-        <script src='{{ url('tarefa/fullcalendar/packages/core/locales/pt-br.js') }}'></script>
-
         <script src="{{asset('plugin/dropzone/min/dropzone.min.js')}}"></script>
         <script>
             Dropzone.autoDiscover = false;
         </script>
 
-        <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script>
+        {{-- <script src="{{ url('tarefa/fullcalendar/js/scripts.js') }}"></script> --}}
         {{-- Outros --}}
-        <script src="{{ url('tarefa/js/script.js') }}"></script>
+        {{-- <script src="{{ url('tarefa/js/script.js') }}"></script> --}}
 
         <script src="{{ url('painel/js/script.js') }}"></script>
 
