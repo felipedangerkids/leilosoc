@@ -52,12 +52,7 @@
                                                 </td>
                                                 <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
                                                 <td>
-                                                    <div class="display">
-                                                        <div id="hour">00</div>
-                                                        <div id="min">00</div>
-                                                        <div id="sec">00</div>
-                                                        <div id="msec">00</div>
-                                                      </div>
+                                             
                                                     <div class="d-flex">
                                                         <div class="btn-custom mx-2">
                                                             <i class="fas fa-eye"></i>
