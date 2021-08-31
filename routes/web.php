@@ -110,6 +110,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('tarefas/anexos', [TarefaController::class, 'anexos'])->name('painel.tarefas.anexos');
         Route::post('tarefas/anexos/remove', [TarefaController::class, 'anexosRemove'])->name('painel.tarefas.anexos.remove');
+        Route::get('tarefas/anexoRemove/{id}', [TarefaController::class, 'anexosTarefaRemove'])->name('painel.tarefas.anexoTarefa');
+        Route::get('tarefas/anexos/{tarefa_id}', [TarefaController::class, 'anexoBaixar'])->name('painel.tarefas.anexos.baixar');
 
         Route::get('tarefaDetalhe/{id}', [TarefaController::class, 'tarefaDetalhe'])->name('painel.tarefas.detalhes');
 
