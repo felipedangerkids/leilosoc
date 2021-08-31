@@ -23,7 +23,7 @@
             <div class="card col-md-9">
                 <div class="titulo-tarefa mt-4 mx-5">
                     <h3>{{ $tarefa->modelo }}</h3>
-                    <span class="baixo">Criada por: @foreach ($tarefa->alocados as $alocado)   @if ($loop->first){{ $alocado->name }} {{ date('d/m/Y H:m:i', strtotime($tarefa->created_at)) }} @endif @endforeach</span>
+                    <span class="baixo">Criada por: {{ $tarefa->responsavel->name ?? 'Sem Responsável' }} {{ date('d/m/Y H:m:i', strtotime($tarefa->created_at)) }}</span>
                 </div>
                 <div class="m-5">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
