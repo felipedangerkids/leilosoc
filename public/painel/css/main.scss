@@ -66,7 +66,21 @@ $fontPrimary: Source Sans Pro;
         background-color: transparent !important;
     }
 }
-
+.coment-corpo{
+    height: 300px;
+    overflow-y: scroll;
+}
+.coment{
+    span{
+        font-family: $fontPrimary;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+    }
+}
+.bg-azul{
+    background-color: #EBF8FF;
+}
 .titulo-tarefa {
     h3 {
         font-family: $fontPrimary;

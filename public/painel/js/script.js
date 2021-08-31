@@ -1,3 +1,52 @@
+
+$(document).ready(function(){
+    $('#form-coment').on('submit', function(e){
+        e.preventDefault();
+        // if(e.keyCode == 13){
+        //     $('#btn-coment').trigger('click');
+        // }
+    });
+
+    $('#form-coment').find('input').on('keyup', function(e){
+        if(e.keyCode == 13){
+            $('#btn-coment').trigger('click');
+        }
+    });
+
+    $(document).on('click', '#btn-coment', function(){
+        var btn = $(this);
+        var form = $('#form-coment').serialize();
+        var url = $('#form-coment').attr('action');
+        var input = $('#coment').val();
+        // btn.html('<div class="spinner-border text-light" role="status"></div>');
+        // btn.prop('disabled', true);
+        // $('#form-coment').find('input').prop('disabled', true);
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: form,
+            success: (data) => {
+                console.log(data);
+                document.getElementById('coment').value='';
+                document.location.reload(true);
+            },
+            error: (err) => {
+                console.log(err);
+                // btn.html('ENTRAR');
+                // btn.prop('disabled', false);
+                // $('#form-login').find('input').prop('disabled', false);
+
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: 'Email ou Senha invalidos'
+                // });
+            }
+        });
+    });
+});
+
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {

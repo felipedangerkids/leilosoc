@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Tarefas;
 
 use App\Models\User;
+use App\Models\Anexo;
 use App\Models\Agente;
 use App\Models\Citrus;
 use App\Models\Modelo;
+use App\Models\Alocado;
+use App\Models\Comentario;
 use App\Models\Insolvente;
 use App\Models\TarefaModel;
-use App\Models\Alocado;
-use App\Models\Anexo;
 use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Http;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class TarefaController extends Controller
@@ -45,7 +46,8 @@ class TarefaController extends Controller
     public function tarefaDetalhe($id)
     {
         $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
-        return view('tarefas.main', compact('tarefa'));
+        $comentarios = Comentario::with('user')->where('tarefa_id', $id)->get();
+        return view('tarefas.main', compact('tarefa', 'comentarios'));
     }
 
     public function minhaTarefa($id = null)

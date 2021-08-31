@@ -32,12 +32,12 @@
                                 aria-controls="pills-home" aria-selected="true">Descrição</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Comentários</a>
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                role="tab" aria-controls="pills-profile" aria-selected="false">Comentários</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
-                                aria-controls="pills-contact" aria-selected="false">Anexos</a>
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                role="tab" aria-controls="pills-contact" aria-selected="false">Anexos</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
@@ -48,10 +48,35 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            ...</div>
+                            <div class="mx-3 coment-corpo">
+                                @foreach ($comentarios as $comentario)
+                                    <div class="w-100 bg-azul p-3 coment my-3">
+                                        <span>{{ $comentario->user->name }} {{ date('d/m/Y H:m:i', strtotime($comentario->created_at)) }}</span>
+                                        <p>{{ $comentario->coment }}</p>
+                                    </div>
+                                @endforeach
+
+
+                            </div>
+                            <div class="mx-3 my-3">
+                                <form action="{{ url('tarefa/comment/post') }}" id="form-coment" method="post">
+                                    @csrf
+                                    <input type="hidden" name="tarefa_id" value="{{ $tarefa->id }}">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="coment" class="form-control"
+                                            placeholder="Escreva seu comentário" id="coment">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="btn-coment">Comentar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                             @foreach ($tarefa->anexos as $anexo)
-                            {{ $anexo->anexo_nome }}
+                                {{ $anexo->anexo_nome }}
                             @endforeach
                         </div>
                     </div>

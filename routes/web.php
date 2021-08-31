@@ -13,6 +13,7 @@ use App\Http\Controllers\Tarefas\TarefaController;
 use App\Http\Controllers\Painel\ColaboradorController;
 use App\Http\Controllers\Painel\DepertamentoController;
 use App\Http\Controllers\Painel\FullcalendarController;
+use App\Http\Controllers\Tarefas\ComentariosController;
 use App\Http\Controllers\Calendario\CalendarioController;
 use App\Http\Controllers\Escritorio\EscritorioController;
 use App\Http\Controllers\CentroLogistico\CentroController;
@@ -113,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tarefaDetalhe/{id}', [TarefaController::class, 'tarefaDetalhe'])->name('painel.tarefas.detalhes');
 
         Route::get('calendario', [TarefaController::class, 'calendar'])->name('calendario');
+
+        Route::post('comment/post', [ComentariosController::class, 'store'])->name('comentario.post');
     });
 
     Route::prefix('calendario/')->group(function () {
