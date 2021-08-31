@@ -62,8 +62,12 @@
                                                 <td><button type="button" class="btn btn-{{$tarefa->status == 'I' ? 'info' : 'danger'}}">{{$tarefa->status == 'I' ? 'Iniciada' : 'Pausada'}}</button></td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <div class="btn-custom mx-2">
-                                                            <i class="fas fa-eye"></i>
+                                                        <div>
+                                                            <a href="{{ route('painel.tarefas.detalhes', $tarefa->id) }}">
+                                                                <div class="btn-custom mx-2">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </div>
+                                                            </a>
                                                         </div>
 
                                                         <div class="btn-custom mx-2">
