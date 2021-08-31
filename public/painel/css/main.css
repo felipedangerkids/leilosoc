@@ -1,6 +1,6 @@
 .brand-link .brand-image-logo {
-  margin-left: .8rem;
-  margin-right: .5rem;
+  margin-left: 0.8rem;
+  margin-right: 0.5rem;
   max-height: 46px;
   width: auto;
 }
@@ -29,9 +29,9 @@
 }
 
 .btn-faq {
-  background-color: #E3E3E3;
+  background-color: #e3e3e3;
   color: #fff;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .btn-faq :hover {
@@ -41,7 +41,7 @@
 .btn-close-times {
   position: absolute;
   right: 0;
-  background-color: #FF0000;
+  background-color: #ff0000;
   border-radius: 50%;
   color: #fff;
   margin-top: -8px;
@@ -49,5 +49,59 @@
 
 .select2-container {
   max-width: 100%;
+}
+
+.tarefas .nav-link {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18.4512px;
+  color: #343a40;
+}
+
+.tarefas .nav-pills .nav-link.active,
+.tarefas .nav-pills .show > .nav-link {
+  color: black;
+  background-color: transparent !important;
+}
+
+.titulo-tarefa h3 {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 10px;
+  color: #343a40;
+}
+
+.titulo-tarefa span {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #a29191;
+}
+
+.lateral {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.lateral div {
+  margin: 8px 0;
+}
+
+.lateral h4 {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.lateral h3 {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
 }
 /*# sourceMappingURL=main.css.map */

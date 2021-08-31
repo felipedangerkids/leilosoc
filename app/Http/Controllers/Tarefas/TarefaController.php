@@ -25,30 +25,19 @@ class TarefaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id = null)
+    public function index()
     {
-        $processo = Citrus::find($id);
         $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
-        $departamentos = Depertamento::all();
-        $users = User::all();
-        if (isset($processo)) {
-            $insolente = Insolvente::where('nif', $processo->nif_adm)->with('responsavel')->first();
-        } else {
-            $insolente = '';
-        }
-
-        $categorias = ModeloCategoria::all();
-        $modelos = Modelo::with('categoria')->get();
-        return view('tarefas.create.index', compact('departamentos', 'users', 'tarefas', 'categorias', 'modelos', 'processo', 'insolente'));
+        return view('tarefas.create.index', compact('tarefas'));
     }
 
     public function tarefaDetalhe($id)
     {
-        $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
+        $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento', 'responsavel'])->find($id);
         return view('tarefas.main', compact('tarefa'));
     }
 
-    public function minhaTarefa($id = null)
+    public function minhaTarefa()
     {
         $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
 
@@ -96,7 +85,7 @@ class TarefaController extends Controller
             'modelo' => $request->modelo,
             'description' => $request->description,
             'departamento_id' => $request->departamento,
-            'user_id' => 0,
+            'user_id' => auth()->user()->id,
             'inicio' => $start_date,
             'fim' => $final_date,
             'numero_processo' => $request->numero_processo,
@@ -119,52 +108,6 @@ class TarefaController extends Controller
 
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 
     public function cep(Request $request)
     {
