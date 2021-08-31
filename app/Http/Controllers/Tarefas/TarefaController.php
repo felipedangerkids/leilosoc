@@ -34,8 +34,7 @@ class TarefaController extends Controller
 
     public function tarefaDetalhe($id)
     {
-        $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento', 'responsavel'])->find($id);
-        return view('tarefas.main', compact('tarefa'));
+
         $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
         $comentarios = Comentario::with('user')->where('tarefa_id', $id)->get();
         return view('tarefas.main', compact('tarefa', 'comentarios'));
