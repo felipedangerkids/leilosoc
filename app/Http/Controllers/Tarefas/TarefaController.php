@@ -19,6 +19,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\File;
+use ZipArchive;
+
 class TarefaController extends Controller
 {
     /**
@@ -62,13 +65,61 @@ class TarefaController extends Controller
 
     public function anexos(Request $request)
     {
-        $upload = $request->file->store('tarefa_images');
-        return response()->json($upload);
+        $upload = $request->file->store('public/tarefa_images');
+        $path_file = explode('/', $upload);
+        if($request->tarefa_id){
+            Anexo::create([
+                'tarefa_id' => $request->tarefa_id,
+                'anexo_nome' => $path_file[1].'/'.$path_file[2]
+            ]);
+        }
+        return response()->json($path_file[1].'/'.$path_file[2]);
     }
     public function anexosRemove(Request $request)
     {
-        Storage::delete($request->fileList);
+        Storage::delete('public/'.$request->fileList);
+        if($request->tarefa_id){
+            Anexo::where('tarefa_id', $request->tarefa_id)->where('anexo_nome', $request->fileList)->delete();
+        }
         return response()->json();
+    }
+
+    public function anexosTarefaRemove($id)
+    {
+        $anexo = Anexo::find($id);
+        Storage::delete('public/'.$anexo->anexo_nome);
+        $anexo->delete();
+        return response()->json();
+    }
+
+    public function anexoBaixar($tarefa_id)
+    {
+        $anexos = Anexo::where('tarefa_id',$tarefa_id)->get();
+
+        // Criar instancia de ZipArchive
+        $zip = new ZipArchive;
+        $zipPath = 'anexos.zip'; // path do zip
+
+        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE){
+            foreach($anexos as $anexo){
+                // adicionar arquivo ao zip
+                $zip->addFile('storage/'.$anexo->anexo_nome, basename(explode('/', $anexo->anexo_nome)[1]));
+            }
+            // concluir a operacao
+            $zip->close();
+        }
+
+        if(file_exists($zipPath)){
+            // Forçamos o donwload do arquivo.
+            header('Content-Type: application/zip');
+            header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+            header('Content-Disposition: attachment; filename="'.$zipPath.'"');
+            readfile($zipPath);
+            //removemos o arquivo zip após download
+            unlink($zipPath);
+        }
+
+        return true;
     }
 
     public function calendar()

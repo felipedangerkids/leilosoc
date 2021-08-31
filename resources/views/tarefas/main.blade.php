@@ -75,9 +75,27 @@
 
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            @foreach ($tarefa->anexos as $anexo)
-                                {{ $anexo->anexo_nome }}
-                            @endforeach
+                            <div class="row">
+                                @foreach ($tarefa->anexos as $anexo)
+                                    <div class="col-2 p-2" id="anexo-{{$anexo->id}}">
+                                        <div class="pb-2 text-center">
+                                            <a title="Baixar Arquivo" target="_blank" href="{{asset('storage/'.$anexo->anexo_nome)}}" class="btn btn-dark"><i class="fas fa-file-pdf"></i></a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a title="Apagar Arquivo" type="button" data-id="{{$anexo->id}}" data-route="{{route('painel.tarefas.anexoTarefa', $anexo->id)}}" class="btn btn-link btn-remove-anexo">Apagar</a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <a target="_blank" class="btn btn-dark" href="{{route('painel.tarefas.anexos.baixar', $tarefa->id)}}">Baixar Todos Anexos</a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#anexos">Anexar Arquivos</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,4 +127,27 @@
         </div>
     </div>
 
+    {{-- Anexos --}}
+    <div class="modal fade" id="anexos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="anexosLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="anexosLabel">Anexar Aquivos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" action="/tarefa/tarefas/anexos" class="dropzone" id="my_dropzone">
+                        @csrf
+                        <input type="hidden" name="tarefa_id" value="{{$tarefa->id}}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                    {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Limpar</button> --}}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

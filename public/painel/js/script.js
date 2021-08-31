@@ -125,12 +125,34 @@ $(document).ready(function(){
                 $.ajax({
                     url: "/tarefa/tarefas/anexos/remove",
                     type: "POST",
-                    data: { "fileList" : rmvFile }
+                    data: {"fileList": rmvFile, tarefa_id: $('[name="tarefa_id"]').val()}
                 });
 
                 file.previewElement.remove();
             }
         }
+    });
+
+    $(document).on('click', '.btn-remove-anexo', function(){
+        var btn = $(this);
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Gostaria remover esse arquivo',
+            showCancelButton: true,
+            confirmButtonText: 'SIM',
+            cancelButtonText: 'NÃO',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: btn.data('route'),
+                    type: 'GET',
+                    success: (data) => {
+                        $('#anexo-'+btn.data('id')).remove();
+                    }
+                });
+            }
+        });
     });
 
     $(function(){
