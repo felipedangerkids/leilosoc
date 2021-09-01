@@ -232,7 +232,7 @@ $(document).ready(function(){
         if($('#json_calendar').val()){
             var json_calendar = JSON.parse($('#json_calendar').val());
             var events = [];
-    
+
             $.each(json_calendar, (key, value) => {
                 var name = 'Sem Titulo';
                 if(value.name){
@@ -265,3 +265,4 @@ $(document).ready(function(){
         }
     });
 });
+

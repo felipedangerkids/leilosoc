@@ -121,6 +121,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('comment/post', [ComentariosController::class, 'store'])->name('comentario.post');
 
         Route::post('timer', [TarefaController::class, 'timer'])->name('timer');
+
+        Route::any('delete/{id}', [TarefaController::class, 'destroy'])->name('tarefas.delete');
     });
 
     Route::prefix('calendario/')->group(function () {

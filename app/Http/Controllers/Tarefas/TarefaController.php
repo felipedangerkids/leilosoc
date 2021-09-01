@@ -77,7 +77,7 @@ class TarefaController extends Controller
     public function criarTarefa($id = null)
     {
         $citius = null;
-        if($id){
+        if ($id) {
             $citius = Citrus::find($id);
         }
         $users = User::all();
@@ -91,18 +91,18 @@ class TarefaController extends Controller
     {
         $upload = $request->file->store('public/tarefa_images');
         $path_file = explode('/', $upload);
-        if($request->tarefa_id){
+        if ($request->tarefa_id) {
             Anexo::create([
                 'tarefa_id' => $request->tarefa_id,
-                'anexo_nome' => $path_file[1].'/'.$path_file[2]
+                'anexo_nome' => $path_file[1] . '/' . $path_file[2]
             ]);
         }
-        return response()->json($path_file[1].'/'.$path_file[2]);
+        return response()->json($path_file[1] . '/' . $path_file[2]);
     }
     public function anexosRemove(Request $request)
     {
-        Storage::delete('public/'.$request->fileList);
-        if($request->tarefa_id){
+        Storage::delete('public/' . $request->fileList);
+        if ($request->tarefa_id) {
             Anexo::where('tarefa_id', $request->tarefa_id)->where('anexo_nome', $request->fileList)->delete();
         }
         return response()->json();
@@ -111,33 +111,33 @@ class TarefaController extends Controller
     public function anexosTarefaRemove($id)
     {
         $anexo = Anexo::find($id);
-        Storage::delete('public/'.$anexo->anexo_nome);
+        Storage::delete('public/' . $anexo->anexo_nome);
         $anexo->delete();
         return response()->json();
     }
 
     public function anexoBaixar($tarefa_id)
     {
-        $anexos = Anexo::where('tarefa_id',$tarefa_id)->get();
+        $anexos = Anexo::where('tarefa_id', $tarefa_id)->get();
 
         // Criar instancia de ZipArchive
         $zip = new ZipArchive;
         $zipPath = 'anexos.zip'; // path do zip
 
-        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE){
-            foreach($anexos as $anexo){
+        if ($zip->open($zipPath, ZipArchive::CREATE) === TRUE) {
+            foreach ($anexos as $anexo) {
                 // adicionar arquivo ao zip
-                $zip->addFile('storage/'.$anexo->anexo_nome, basename(explode('/', $anexo->anexo_nome)[1]));
+                $zip->addFile('storage/' . $anexo->anexo_nome, basename(explode('/', $anexo->anexo_nome)[1]));
             }
             // concluir a operacao
             $zip->close();
         }
 
-        if(file_exists($zipPath)){
+        if (file_exists($zipPath)) {
             // Forçamos o donwload do arquivo.
             header('Content-Type: application/zip');
             header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
-            header('Content-Disposition: attachment; filename="'.$zipPath.'"');
+            header('Content-Disposition: attachment; filename="' . $zipPath . '"');
             readfile($zipPath);
             //removemos o arquivo zip após download
             unlink($zipPath);
@@ -155,8 +155,8 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
         $dates = explode('-', $request->start_end_date);
-        $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[0]))));
-        $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($dates[1]))));
+        $start_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[0]))));
+        $final_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[1]))));
 
         $save = TarefaModel::create([
             'name' => $request->modelo,
@@ -170,14 +170,14 @@ class TarefaController extends Controller
             'ai' => $request->ai,
         ]);
 
-        foreach($request->alocados as $alocado){
+        foreach ($request->alocados as $alocado) {
             Alocado::create([
                 'tarefa_id' => $save->id,
                 'user_id' => $alocado
             ]);
         }
 
-        foreach($request->anexos as $anexo){
+        foreach ($request->anexos as $anexo) {
             Anexo::create([
                 'tarefa_id' => $save->id,
                 'anexo_nome' => $anexo
@@ -192,7 +192,7 @@ class TarefaController extends Controller
         $dateTime = date('Y-m-d H:i:s');
         $tarefa = TarefaModel::find($request->tarefa_id);
         $tarefa_play['evento'] = $request->evento;
-        if($tarefa->start_time == null) $tarefa_play['start_time'] = $dateTime;
+        if ($tarefa->start_time == null) $tarefa_play['start_time'] = $dateTime;
         $tarefa_play['tempo'] = date('H:i:s', strtotime($request->timer));
 
         $tarefa->update($tarefa_play);
@@ -207,5 +207,14 @@ class TarefaController extends Controller
         $url = Http::get('https://api.duminio.com/ptcp/ptapi60ec808f3e8951.33243239/' . $cep);
 
         return $url->collect();
+    }
+
+    public function destroy($id)
+    {
+
+        $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
+
+        $tarefa->delete();
+        return redirect()->back();
     }
 }

@@ -79,8 +79,13 @@
                                                             </a>
                                                         </div>
 
-                                                        <div class="btn-custom mx-2">
-                                                            <i class="fas fa-trash"></i>
+                                                        <div>
+                                                            <a
+                                                               style="color: red;" href="{{ route('tarefas.delete', $tarefa->id) }}" onclick="return confirm('Você tem certeza que gostaria de deletar isso?');">
+                                                                <div class="btn-custom mx-2">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </div>
+                                                            </a>
                                                         </div>
                                                         <div class="btn-custom mx-2 btn-relogio" data-evento="{{$tarefa->evento == 'play' ? 'stop' : 'play'}}" data-id="{{ $tarefa->id }}">
                                                             <i class="fas {{$tarefa->evento == 'play' ? 'fa-pause text-danger' : 'fa-play text-success'}}"></i>
