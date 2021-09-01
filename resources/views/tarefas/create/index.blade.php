@@ -68,24 +68,35 @@
                                                         $minutes += $since_start->i * 60;
                                                         $minutes += $since_start->s;
                                                     @endphp
-                                                    <div class="relogio-{{$tarefa->id}} relogios" data-evento="{{$tarefa->evento}}" data-start_time="{{$minutes}}">{{$tarefa->tempo ?? '00:00:00'}}</div>
+                                                    <div class="relogio-{{ $tarefa->id }} relogios"
+                                                        data-evento="{{ $tarefa->evento }}"
+                                                        data-start_time="{{ $minutes }}">
+                                                        {{ $tarefa->tempo ?? '00:00:00' }}</div>
                                                 </td>
                                                 <td>
 
                                                     <div class="d-flex">
                                                         <div>
-                                                            <a href="{{ route('painel.tarefas.detalhes', $tarefa->id) }}">
+                                                            <a
+                                                                href="{{ route('painel.tarefas.detalhes', $tarefa->id) }}">
                                                                 <div class="btn-custom mx-2">
                                                                     <i class="fas fa-eye"></i>
                                                                 </div>
                                                             </a>
                                                         </div>
-
-                                                        <div class="btn-custom mx-2">
-                                                            <i class="fas fa-trash"></i>
+                                                        <div>
+                                                            <a
+                                                               style="color: red;" href="{{ route('tarefas.delete', $tarefa->id) }}" onclick="return confirm('Você tem certeza que gostaria de deletar isso?');">
+                                                                <div class="btn-custom mx-2">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                        <div class="btn-custom mx-2 btn-relogio" data-evento="{{$tarefa->evento == 'play' ? 'stop' : 'play'}}" data-id="{{ $tarefa->id }}">
-                                                            <i class="fas {{$tarefa->evento == 'play' ? 'fa-pause text-danger' : 'fa-play text-success'}}"></i>
+                                                        <div class="btn-custom mx-2 btn-relogio"
+                                                            data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}"
+                                                            data-id="{{ $tarefa->id }}">
+                                                            <i
+                                                                class="fas {{ $tarefa->evento == 'play' ? 'fa-pause text-danger' : 'fa-play text-success' }}"></i>
                                                         </div>
                                                         {{-- <div class="btn-custom mx-2">
                                                             <i class="fas fa-pause" value="Parar" onclick="stop()"></i>
