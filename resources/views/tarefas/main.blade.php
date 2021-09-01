@@ -1,6 +1,13 @@
 @extends('layouts.painel')
 
 @section('content')
+    @php
+        $alocados = [];
+        foreach ($tarefa->alocados as $alcoado) {
+            $alocados[] = $alcoado->id;
+        }
+    @endphp
+
     <div class="container my-3">
         <div class="tarefa-header card">
             <div class="row justify-content-between my-4">
@@ -15,7 +22,7 @@
                         @endif
                     </div>
                     <div class="ml-3">
-                        <button class="btn btn-primary"><i class="fas fa-user-plus"></i></button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#alocados"><i class="fas fa-user-plus"></i></button>
                     </div>
                 </div>
                 <div class="mr-5 d-flex ">
@@ -29,7 +36,7 @@
             <div class="card col-md-9">
                 <div class="titulo-tarefa mt-4 mx-5">
                     <h3>{{ $tarefa->modelo }}</h3>
-                    <span class="baixo">Criada por: {{ $tarefa->responsavel->name ?? 'Sem Responsável' }} {{ date('d/m/Y H:m:i', strtotime($tarefa->created_at)) }}</span>
+                    <span class="baixo">Criada por: {{ $tarefa->responsavel->name ?? 'Admin' }} {{ date('d/m/Y H:m:i', strtotime($tarefa->created_at)) }}</span>
                 </div>
                 <div class="m-5">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -61,8 +68,6 @@
                                         <p>{{ $comentario->coment }}</p>
                                     </div>
                                 @endforeach
-
-
                             </div>
                             <div class="mx-3 my-3">
                                 <form action="{{ url('tarefa/comment/post') }}" id="form-coment" method="post">
@@ -78,7 +83,6 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                             <div class="row">
@@ -165,6 +169,38 @@
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
                     {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Limpar</button> --}}
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Alocados --}}
+    <div class="modal fade" id="alocados" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="alocadosLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alocadosLabel">Usuarios Alocados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form enctype="multipart/form-data" action="{{route('painel.tarefas.alocados')}}">
+                    @csrf
+                    <input type="hidden" name="tarefa_id" value="{{$tarefa->id}}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Usuarios Alocados na Tarefa</label>
+                            <select name="alocados[]" class="select2" multiple>
+                                @foreach ($users as $user)
+                                    <option value="{{$user->id}}" @if(in_array($user->id, $alocados)) selected @endif>{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-success btn-save" data-save_target="#alocados">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

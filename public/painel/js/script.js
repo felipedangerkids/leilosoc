@@ -1,4 +1,39 @@
 $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // Função salva dados gerais
+    $(document).on('click', '.btn-save', function(){
+        // Pegamos os dados do data
+        let save_target = $(this).data('save_target');
+        let save_route = $(save_target).find('form').attr('action');
+
+        // Pegamos o parente do id para adicionar um modelo de carregamento
+        let modal = $(save_target).find('.modal-content');
+        modal.append('<div class="overlay d-flex justify-content-center align-items-center"><i class="fas fa-2x fa-sync fa-spin"></i></div>');
+
+        $.ajax({
+            url: save_route,
+            type: "POST",
+            data: $(save_target).find('form').serialize(),
+            success: (data) => {
+                // console.log(data);
+                // Procuramos a div adcionada recentemente para removemos e fechamos o modal
+                $(modal).find('.overlay').remove();
+                $(modal).parent().parent().modal('hide');
+
+                $('[data-target="#entregadorModal"]').html('ENTREGADOR ATRIBUIDO').removeClass('btn-dark').addClass('btn-info').removeAttr('data-toggle');
+            },
+            error: (err) => {
+                // console.log(err);
+                $(modal).find('.overlay').remove();
+            }
+        });
+    });
+
     $('#form-coment').on('submit', function(e){
         e.preventDefault();
         // if(e.keyCode == 13){
@@ -90,14 +125,7 @@ $(document).ready(function(){
             }
         });
     });
-});
 
-$(document).ready(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $('.date-mask').daterangepicker({
         singleDatePicker: false,
         showDropdowns: true,

@@ -107,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('criar/{id?}', [TarefaController::class, 'criarTarefa'])->name('painel.tarefa.criar');
         Route::post('tarefas/post', [TarefaController::class, 'store'])->name('painel.tarefas.store');
+        Route::post('tarefas/alocados', [TarefaController::class, 'alocadosAtualizar'])->name('painel.tarefas.alocados');
 
         Route::post('tarefas/anexos', [TarefaController::class, 'anexos'])->name('painel.tarefas.anexos');
         Route::post('tarefas/anexos/remove', [TarefaController::class, 'anexosRemove'])->name('painel.tarefas.anexos.remove');

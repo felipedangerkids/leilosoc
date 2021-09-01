@@ -37,10 +37,34 @@ class TarefaController extends Controller
 
     public function tarefaDetalhe($id)
     {
-
+        $users = User::all();
         $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
         $comentarios = Comentario::with('user')->where('tarefa_id', $id)->get();
-        return view('tarefas.main', compact('tarefa', 'comentarios'));
+        return view('tarefas.main', compact('tarefa', 'comentarios', 'users'));
+    }
+
+    public function alocadosAtualizar(Request $request)
+    {
+        $alocados = Alocado::where('tarefa_id', $request->tarefa_id)->get();
+        $alocadosExistentes = [];
+        foreach($alocados as $alocado){
+            // Verificação para apagar
+            if(!in_array($alocado->user_id, $request->alocados)){
+                Alocado::where('tarefa_id', $request->tarefa_id)->where('user_id', $alocado->user_id)->delete();
+            }else{
+                $alocadosExistentes[] = $alocado->user_id;
+            }
+        }
+
+        foreach($request->alocados as $novoAlocado){
+            if(!in_array($novoAlocado, $alocadosExistentes)){
+                Alocado::create([
+                    'tarefa_id' => $request->tarefa_id,
+                    'user_id' => $novoAlocado
+                ]);
+            }
+        }
+        return response()->json();
     }
 
     public function minhaTarefa()
