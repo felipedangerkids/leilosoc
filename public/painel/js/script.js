@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $('#form-coment').on('submit', function(e){
         e.preventDefault();
@@ -44,8 +43,54 @@ $(document).ready(function(){
             }
         });
     });
-});
 
+    $(document).on('click', '.btn-relogio', function(){
+        var btn = $(this);
+        var evento = btn.attr('data-evento');
+        var tempo = $('.relogio-'+btn.data('id')).text().split(':');
+        var tempoH = parseInt(tempo[0]) || 0;
+        var tempoM = parseInt(tempo[1]) || 0;
+        var tempoS = parseInt(tempo[2]) || 0;
+
+
+        // Função de temporizador
+        if(evento == 'play'){
+            btn.find('i').removeClass('fa-play').addClass('fa-pause');
+            btn.find('i').removeClass('text-success').addClass('text-danger');
+            btn.attr('data-evento', 'stop');
+
+            console.log(Date.parse($('.relogio-'+btn.data('id')).text()));
+
+            $('.relogio-'+btn.data('id')).stopwatch({startTime: ((tempoH*3600)+(tempoM*60)+(tempoS))*1000}).stopwatch('start');
+        }else if(evento == 'stop'){
+            btn.find('i').removeClass('fa-pause').addClass('fa-play');
+            btn.find('i').removeClass('text-danger').addClass('text-success');
+            btn.attr('data-evento', 'play');
+
+            $('.relogio-'+btn.data('id')).stopwatch().stopwatch('stop');
+        }
+
+        $.ajax({
+            url: '/tarefa/timer',
+            type: 'POST',
+            data: {tarefa_id: btn.data('id'), timer: $('.relogio-'+btn.data('id')).text(), evento: evento},
+            success: (data) => {
+                console.log(data);
+            }
+        });
+    });
+
+    $(function(){
+        $('.relogios').each(function(){
+            var evento = $(this).data('evento');
+            var start_time = $(this).data('start_time');
+
+            if(evento == 'play'){
+                $(this).stopwatch({startTime: ((parseInt(start_time) || 0)*1000)}).stopwatch('start');
+            }
+        });
+    });
+});
 
 $(document).ready(function(){
     $.ajaxSetup({

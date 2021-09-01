@@ -118,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('calendario', [TarefaController::class, 'calendar'])->name('calendario');
 
         Route::post('comment/post', [ComentariosController::class, 'store'])->name('comentario.post');
+
+        Route::post('timer', [TarefaController::class, 'timer'])->name('timer');
     });
 
     Route::prefix('calendario/')->group(function () {

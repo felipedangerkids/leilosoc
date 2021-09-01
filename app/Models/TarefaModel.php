@@ -30,6 +30,9 @@ class TarefaModel extends Model
         'path',
         'compartilhar',
         'status',
+        'evento',
+        'start_time',
+        'tempo',
     ];
 
     public function responsavel()

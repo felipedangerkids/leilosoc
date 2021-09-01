@@ -35,7 +35,7 @@
                                             <th scope="col">Data de Conclusão</th>
                                             <th scope="col">Modelo</th>
                                             <th scope="col">Responsáveis</th>
-                                            <th scope="col">Status</th>
+                                            <th scope="col">Time</th>
                                             <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
@@ -60,8 +60,15 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><button type="button"
-                                                        class="btn btn-{{ $tarefa->status == 'I' ? 'info' : 'danger' }}">{{ $tarefa->status == 'I' ? 'Iniciada' : 'Pausada' }}</button>
+                                                <td>
+                                                    @php
+                                                        $since_start = getTimeDiff(date('Y-m-d H:i:s'), $tarefa->start_time);
+                                                        $minutes = $since_start->days * 24 * 60;
+                                                        $minutes += $since_start->h * 3600;
+                                                        $minutes += $since_start->i * 60;
+                                                        $minutes += $since_start->s;
+                                                    @endphp
+                                                    <div class="relogio-{{$tarefa->id}} relogios" data-evento="{{$tarefa->evento}}" data-start_time="{{$minutes}}">{{$tarefa->tempo ?? '00:00:00'}}</div>
                                                 </td>
                                                 <td>
 
@@ -77,13 +84,12 @@
                                                         <div class="btn-custom mx-2">
                                                             <i class="fas fa-trash"></i>
                                                         </div>
-                                                        <div class="btn-custom mx-2" data-id="{{ $tarefa->id }}"
-                                                            onclick="start(this)">
-                                                            <i class="fas fa-play"></i>
+                                                        <div class="btn-custom mx-2 btn-relogio" data-evento="{{$tarefa->evento == 'play' ? 'stop' : 'play'}}" data-id="{{ $tarefa->id }}">
+                                                            <i class="fas {{$tarefa->evento == 'play' ? 'fa-pause text-danger' : 'fa-play text-success'}}"></i>
                                                         </div>
-                                                        <div class="btn-custom mx-2">
+                                                        {{-- <div class="btn-custom mx-2">
                                                             <i class="fas fa-pause" value="Parar" onclick="stop()"></i>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </td>
                                             </tr>

@@ -283,6 +283,7 @@
         <!-- AdminLTE App -->
         <script src="{{asset('plugin/AdminLTE/js/adminlte.min.js')}}"></script>
 
+        <script src="{{asset('plugin/jquery.stopwatch.js')}}"></script>
         <script src="{{asset('plugin/dropzone/min/dropzone.min.js')}}"></script>
         <script>
             Dropzone.autoDiscover = false;

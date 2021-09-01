@@ -163,6 +163,18 @@ class TarefaController extends Controller
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
     }
 
+    public function timer(Request $request)
+    {
+        $dateTime = date('Y-m-d H:i:s');
+        $tarefa = TarefaModel::find($request->tarefa_id);
+        $tarefa_play['evento'] = $request->evento;
+        if($tarefa == null) $tarefa_play['start_time'] = $dateTime;
+        $tarefa_play['tempo'] = date('H:i:s', strtotime($request->timer));
+
+        $tarefa->update($tarefa_play);
+        return response()->json($request->all());
+    }
+
     public function cep(Request $request)
     {
         $valor = $request->search;
