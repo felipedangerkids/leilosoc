@@ -6,7 +6,13 @@
             <div class="row justify-content-between my-4">
                 <div class="ml-5 d-flex">
                     <div>
-                        <button class="btn btn-primary">Não iniciado</button>
+                        @if ($tarefa->evento == 'play')
+                            <button class="btn btn-success">Iniciado</button>
+                        @elseif($tarefa->evento == 'stop')
+                            <button class="btn btn-warning">Pausada</button>
+                        @else
+                            <button class="btn btn-primary">Não iniciado</button>
+                        @endif
                     </div>
                     <div class="ml-3">
                         <button class="btn btn-primary"><i class="fas fa-user-plus"></i></button>
@@ -108,7 +114,12 @@
                     </div>
                     <div>
                         <h4>Incio da tarefa</h4>
-                        <h3 class="text-danger">Não iniciada</h3>
+                        @if ($tarefa->evento == 'play' || $tarefa->evento == 'stop')
+                            <h3 class="text-success">Iniciada</h3>
+                            <h3>{{date('d-m-Y H:i:s', strtotime($tarefa->start_time))}}</h3>
+                        @else
+                            <h3 class="text-danger">Não iniciada</h3>
+                        @endif
                     </div>
                     <div>
                         <h4>Processo</h4>
@@ -120,7 +131,14 @@
                     </div>
                     <div>
                         <h4>Total trabalhado</h4>
-                        <h3>00:00:00</h3>
+                        @php
+                            $since_start = getTimeDiff(date('Y-m-d H:i:s'), $tarefa->start_time);
+                            $minutes = $since_start->days * 24 * 60;
+                            $minutes += $since_start->h * 3600;
+                            $minutes += $since_start->i * 60;
+                            $minutes += $since_start->s;
+                        @endphp
+                        <h3 class="relogio-{{$tarefa->id}} relogios" data-evento="{{$tarefa->evento}}" data-start_time="{{$minutes}}">{{$tarefa->tempo ?? '00:00:00'}}</h3>
                     </div>
                 </div>
             </div>
