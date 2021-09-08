@@ -120,7 +120,7 @@
                         <h4>Incio da tarefa</h4>
                         @if ($tarefa->evento == 'play' || $tarefa->evento == 'stop')
                             <h3 class="text-success">Iniciada</h3>
-                            <h3>{{date('d-m-Y H:i:s', strtotime($tarefa->start_time))}}</h3>
+                            <h3>{{date('d-m-Y H:i:s', strtotime($tarefa->start_task))}}</h3>
                         @else
                             <h3 class="text-danger">Não iniciada</h3>
                         @endif
