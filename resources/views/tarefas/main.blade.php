@@ -14,11 +14,11 @@
                 <div class="ml-5 d-flex">
                     <div>
                         @if ($tarefa->evento == 'play')
-                            <button class="btn btn-success">Iniciado</button>
+                            <button class="btn btn-success btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Iniciado</button>
                         @elseif($tarefa->evento == 'stop')
-                            <button class="btn btn-warning">Pausada</button>
+                            <button class="btn btn-success btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Pausada</button>
                         @else
-                            <button class="btn btn-primary">Não iniciado</button>
+                            <button class="btn btn-danger btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Não iniciado</button>
                         @endif
                     </div>
                     <div class="ml-3">

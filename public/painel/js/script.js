@@ -87,19 +87,27 @@ $(document).ready(function(){
         var tempoM = parseInt(tempo[1]) || 0;
         var tempoS = parseInt(tempo[2]) || 0;
 
-
         // Função de temporizador
         if(evento == 'play'){
-            btn.find('i').removeClass('fa-play').addClass('fa-pause');
-            btn.find('i').removeClass('text-success').addClass('text-danger');
+            if($(this).data('tarefa') == 'interna'){
+                btn.removeClass('btn-danger').addClass('btn-success');
+                btn.html('Iniciado');
+            }else{
+                btn.find('i').removeClass('fa-play').addClass('fa-pause');
+                btn.find('i').removeClass('text-success').addClass('text-danger');
+            }
             btn.attr('data-evento', 'stop');
 
             console.log(Date.parse($('.relogio-'+btn.data('id')).text()));
 
             $('.relogio-'+btn.data('id')).stopwatch({startTime: ((tempoH*3600)+(tempoM*60)+(tempoS))*1000}).stopwatch('start');
         }else if(evento == 'stop'){
-            btn.find('i').removeClass('fa-pause').addClass('fa-play');
-            btn.find('i').removeClass('text-danger').addClass('text-success');
+            if($(this).data('tarefa') == 'interna'){
+                btn.html('Pausado');
+            }else{
+                btn.find('i').removeClass('fa-pause').addClass('fa-play');
+                btn.find('i').removeClass('text-danger').addClass('text-success');
+            }
             btn.attr('data-evento', 'play');
 
             $('.relogio-'+btn.data('id')).stopwatch().stopwatch('stop');
