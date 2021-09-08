@@ -98,8 +98,6 @@ $(document).ready(function(){
             }
             btn.attr('data-evento', 'stop');
 
-            console.log(Date.parse($('.relogio-'+btn.data('id')).text()));
-
             $('.relogio-'+btn.data('id')).stopwatch({startTime: ((tempoH*3600)+(tempoM*60)+(tempoS))*1000}).stopwatch('start');
         }else if(evento == 'stop'){
             if($(this).data('tarefa') == 'interna'){
@@ -123,13 +121,21 @@ $(document).ready(function(){
         });
     });
 
+    // Ativando o timer quando estivber no play
     $(function(){
         $('.relogios').each(function(){
             var evento = $(this).data('evento');
             var start_time = $(this).data('start_time');
+            var tempo = $(this).text().split(':');
 
             if(evento == 'play'){
-                $(this).stopwatch({startTime: ((parseInt(start_time) || 0)*1000)}).stopwatch('start');
+                var tempoH = parseInt(tempo[0]) || 0;
+                var tempoM = parseInt(tempo[1]) || 0;
+                var tempoS = parseInt(tempo[2]) || 0;
+
+                start_time = ((parseInt(start_time) || 0)*1000)+(((tempoH*3600)+(tempoM*60)+(tempoS))*1000);
+
+                $(this).stopwatch({startTime: start_time}).stopwatch('start');
             }
         });
     });

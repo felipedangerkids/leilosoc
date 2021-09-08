@@ -192,7 +192,7 @@ class TarefaController extends Controller
         $dateTime = date('Y-m-d H:i:s');
         $tarefa = TarefaModel::find($request->tarefa_id);
         $tarefa_play['evento'] = $request->evento;
-        if ($tarefa->start_time == null) $tarefa_play['start_time'] = $dateTime;
+        $tarefa_play['start_time'] = $dateTime;
         $tarefa_play['tempo'] = date('H:i:s', strtotime($request->timer));
 
         $tarefa->update($tarefa_play);
