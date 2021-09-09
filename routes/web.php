@@ -46,7 +46,7 @@ Route::post('/login/post', [LoginController::class, 'login'])->name('login.store
 
 
 Route::post('/citius/scraping', [CitrusController::class, 'scraping']);
-Route::get('/tarefa/{id}', [TarefaController::class, 'tarefaCompartilhada']);
+Route::get('/tarefa-compartilhada/{id}', [TarefaController::class, 'tarefaCompartilhada']);
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('cadastro/')->group(function () {

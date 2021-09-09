@@ -228,7 +228,7 @@ class TarefaController extends Controller
         $tarefas = TarefasCompartilhada::where('tarefa_id', $request->tarefa_id)->where('tarefa_email', $request->tarefa_email)->get();
 
         if($tarefas->count() == 0){
-            $link_tarefa = asset('/tarefa/'.bin2hex(base64_encode($request->tarefa_id.','.$request->tarefa_email)));
+            $link_tarefa = asset('/tarefa-compartilhada/'.bin2hex(base64_encode($request->tarefa_id.','.$request->tarefa_email)));
 
             $tarefa_compartilhada['tarefa_id']      = $request->tarefa_id;
             $tarefa_compartilhada['tarefa_email']   = $request->tarefa_email;
