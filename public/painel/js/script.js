@@ -278,5 +278,85 @@ $(document).ready(function(){
             calendar.render();
         }
     });
+
+    $(document).on('click', '.btn-compartilhar', function(){
+        var tarefa_email = '';
+        var tarefa_text = '';
+        Swal.fire({
+            title: 'Compartilhar Tarefa',
+            input: 'email',
+            inputLabel: 'Email para enviar a tarefa',
+            inputPlaceholder: 'Email',
+            validationMessage: 'Email incorreto!'
+        }).then((result) => {
+            tarefa_email = result.value; //----
+            if(result.isConfirmed){
+                Swal.fire({
+                    title: 'Compartilhar Tarefa',
+                    input: 'textarea',
+                    inputLabel: 'Corpo da mensagem',
+                    inputPlaceholder: 'Messagem',
+                    showCancelButton: true
+                }).then((result) => {
+                    tarefa_text = result.value; //-----
+                    if(result.isConfirmed){
+                        Swal.fire({
+                            title: 'Enviando email, aguarde.',
+                            allowOutsideClick: false,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: $(this).data('url'),
+                            type: 'POST',
+                            data: {tarefa_id: $(this).data('id'), tarefa_email: tarefa_email, tarefa_text: tarefa_text},
+                            success: (data) => {
+                                console.log(data);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Email enviado com successo!'
+                                });
+                            },
+                            error: (err) => {
+                                console.log(err);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'ops, servidor de email fora do ar ou email incorreto!'
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        // Swal.fire({
+        //     title: 'Gerando link, aguarde!',
+        //     allowOutsideClick: false,
+        //     timerProgressBar: true,
+        //     didOpen: () => {
+        //         Swal.showLoading();
+        //     }
+        // });
+
+        // setTimeout(() => {
+        //     $.ajax({
+        //         url: $(this).data('url'),
+        //         type: 'POST',
+        //         data: {tarefa_id: $(this).data('id')},
+        //         success: (data) => {
+        //             console.log(data);
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Link gerado com sucesso',
+        //                 text: 'teste'
+        //             });
+        //         }
+        //     });
+        // }, 2000)
+    });
 });
 

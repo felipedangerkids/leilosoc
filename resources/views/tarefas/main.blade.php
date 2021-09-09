@@ -27,7 +27,7 @@
                 </div>
                 <div class="mr-5 d-flex ">
                     <div>
-                        <button class="btn btn-primary">Compartilhar</button>
+                        <button class="btn btn-primary btn-compartilhar" data-id="{{$tarefa->id}}" data-url="{{route('painel.tarefas.compartilhar')}}">Compartilhar</button>
                     </div>
                 </div>
             </div>

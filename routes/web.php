@@ -46,6 +46,7 @@ Route::post('/login/post', [LoginController::class, 'login'])->name('login.store
 
 
 Route::post('/citius/scraping', [CitrusController::class, 'scraping']);
+Route::get('/tarefa/{id}', [TarefaController::class, 'tarefaCompartilhada']);
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('cadastro/')->group(function () {
@@ -113,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('tarefas/anexos/remove', [TarefaController::class, 'anexosRemove'])->name('painel.tarefas.anexos.remove');
         Route::get('tarefas/anexoRemove/{id}', [TarefaController::class, 'anexosTarefaRemove'])->name('painel.tarefas.anexoTarefa');
         Route::get('tarefas/anexos/{tarefa_id}', [TarefaController::class, 'anexoBaixar'])->name('painel.tarefas.anexos.baixar');
+
+        Route::post('tarefa/compartilhar', [TarefaController::class, 'compartilharTarefa'])->name('painel.tarefas.compartilhar');
 
         Route::get('tarefaDetalhe/{id}', [TarefaController::class, 'tarefaDetalhe'])->name('painel.tarefas.detalhes');
 

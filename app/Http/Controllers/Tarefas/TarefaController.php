@@ -11,16 +11,20 @@ use App\Models\Alocado;
 use App\Models\Comentario;
 use App\Models\Insolvente;
 use App\Models\TarefaModel;
+use App\Models\TarefasCompartilhada;
 use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\File;
 use ZipArchive;
+
+use App\Mail\TarefaCompartilhada;
 
 class TarefaController extends Controller
 {
@@ -217,5 +221,44 @@ class TarefaController extends Controller
 
         $tarefa->delete();
         return redirect()->back();
+    }
+
+    public function compartilharTarefa(Request $request)
+    {
+        $tarefas = TarefasCompartilhada::where('tarefa_id', $request->tarefa_id)->where('tarefa_email', $request->tarefa_email)->get();
+
+        if($tarefas->count() == 0){
+            $link_tarefa = asset('/tarefa/'.bin2hex(base64_encode($request->tarefa_id.','.$request->tarefa_email)));
+
+            $tarefa_compartilhada['tarefa_id']      = $request->tarefa_id;
+            $tarefa_compartilhada['tarefa_email']   = $request->tarefa_email;
+            $tarefa_compartilhada['tarefa_texto']   = ($request->tarefa_text ?? '.');
+            $tarefa_compartilhada['tarefa_link']    = $link_tarefa;
+
+            TarefasCompartilhada::create($tarefa_compartilhada);
+
+            Mail::to($request->tarefa_email)->send(new TarefaCompartilhada(($request->tarefa_text ?? ''), $link_tarefa));
+        }
+
+        return response()->json();
+    }
+
+    public function tarefaCompartilhada($id)
+    {
+        $hash = hex2bin($id);
+        $hash = base64_decode($hash);
+        $hash = explode(',', $hash);
+        $id = $hash[0];
+        $email = $hash[1];
+
+        $tarefa_compartilhada = TarefasCompartilhada::where('tarefa_id', $id)->where('tarefa_email', $email)->first();
+
+        if($tarefa_compartilhada){
+
+            $users = User::all();
+            $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
+            $comentarios = Comentario::with('user')->where('tarefa_id', $id)->get();
+            return view('tarefas.compartilhada.main', compact('tarefa', 'comentarios', 'users'));
+        }
     }
 }
