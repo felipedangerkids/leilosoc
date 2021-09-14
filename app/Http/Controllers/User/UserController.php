@@ -49,6 +49,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'permission' => $request->permission,
 
         ]);
         return redirect()->back();
@@ -94,6 +95,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->escritorio_id = $request->escritorio_id;
+        $user->permission = $request->permission;
         $user->save();
         return redirect()->route('painel.users');
     }

@@ -48,6 +48,13 @@
                                 <label for="password">Senha</label>
                                 <input type="password" name="password"  class="form-control">
                               </div>
+                              <div class="form-group col-12 col-md-4">
+                                <label for="exampleFormControlSelect1">Permissão</label>
+                                <select class="form-control" name="permission" id="permissãoexampleFormControlSelect1">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">Usuário</option>
+                                </select>
+                            </div>
                               <div class="col-12">
                                   <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Atualizar</button>
                               </div>
