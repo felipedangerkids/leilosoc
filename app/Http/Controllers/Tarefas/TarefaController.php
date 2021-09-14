@@ -81,14 +81,17 @@ class TarefaController extends Controller
     public function criarTarefa($id = null)
     {
         $citius = null;
+        $insolvente = null;
         if ($id) {
             $citius = Citrus::find($id);
+            $insolvente = Insolvente::where('nif', $citius->nif_adm)->first();
         }
         $users = User::all();
         $departamentos = Depertamento::all();
         $insolventes = Insolvente::all();
+        $modelos = Modelo::all();
 
-        return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'insolventes', 'citius'));
+        return view('tarefas.create.criarTarefa', compact('users', 'modelos', 'departamentos', 'insolventes', 'insolvente', 'citius'));
     }
 
     public function anexos(Request $request)
@@ -162,8 +165,10 @@ class TarefaController extends Controller
         $start_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[0]))));
         $final_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[1]))));
 
+        $modelo = Modelo::find($request->modelo);
+
         $save = TarefaModel::create([
-            'name' => $request->modelo,
+            'name' => $modelo->name,
             'modelo' => $request->modelo,
             'description' => $request->description,
             'departamento_id' => $request->departamento,
@@ -181,11 +186,13 @@ class TarefaController extends Controller
             ]);
         }
 
-        foreach ($request->anexos as $anexo) {
-            Anexo::create([
-                'tarefa_id' => $save->id,
-                'anexo_nome' => $anexo
-            ]);
+        if($request->anexos){
+            foreach ($request->anexos as $anexo) {
+                Anexo::create([
+                    'tarefa_id' => $save->id,
+                    'anexo_nome' => $anexo
+                ]);
+            }
         }
 
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
