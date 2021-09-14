@@ -14,11 +14,11 @@
                 <div class="ml-5 d-flex">
                     <div>
                         @if ($tarefa->evento == 'play')
-                            <button class="btn btn-success">Iniciado</button>
+                            <button class="btn btn-success btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Iniciado</button>
                         @elseif($tarefa->evento == 'stop')
-                            <button class="btn btn-warning">Pausada</button>
+                            <button class="btn btn-success btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Pausada</button>
                         @else
-                            <button class="btn btn-primary">Não iniciado</button>
+                            <button class="btn btn-danger btn-relogio" data-evento="{{ $tarefa->evento == 'play' ? 'stop' : 'play' }}" data-id="{{ $tarefa->id }}" data-tarefa="interna">Não iniciado</button>
                         @endif
                     </div>
                     <div class="ml-3">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mr-5 d-flex ">
                     <div>
-                        <button class="btn btn-primary">Compartilhar</button>
+                        <button class="btn btn-primary btn-compartilhar" data-id="{{$tarefa->id}}" data-url="{{route('painel.tarefas.compartilhar')}}">Compartilhar</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                         <h4>Incio da tarefa</h4>
                         @if ($tarefa->evento == 'play' || $tarefa->evento == 'stop')
                             <h3 class="text-success">Iniciada</h3>
-                            <h3>{{date('d-m-Y H:i:s', strtotime($tarefa->start_time))}}</h3>
+                            <h3>{{date('d-m-Y H:i:s', strtotime($tarefa->start_task))}}</h3>
                         @else
                             <h3 class="text-danger">Não iniciada</h3>
                         @endif

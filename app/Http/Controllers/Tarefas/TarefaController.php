@@ -11,16 +11,20 @@ use App\Models\Alocado;
 use App\Models\Comentario;
 use App\Models\Insolvente;
 use App\Models\TarefaModel;
+use App\Models\TarefasCompartilhada;
 use App\Models\Depertamento;
 use Illuminate\Http\Request;
 use App\Models\ModeloCategoria;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\File;
 use ZipArchive;
+
+use App\Mail\TarefaCompartilhada;
 
 class TarefaController extends Controller
 {
@@ -77,14 +81,17 @@ class TarefaController extends Controller
     public function criarTarefa($id = null)
     {
         $citius = null;
+        $insolvente = null;
         if ($id) {
             $citius = Citrus::find($id);
+            $insolvente = Insolvente::where('nif', $citius->nif_adm)->first();
         }
         $users = User::all();
         $departamentos = Depertamento::all();
         $insolventes = Insolvente::all();
+        $modelos = Modelo::all();
 
-        return view('tarefas.create.criarTarefa', compact('users', 'departamentos', 'insolventes', 'citius'));
+        return view('tarefas.create.criarTarefa', compact('users', 'modelos', 'departamentos', 'insolventes', 'insolvente', 'citius'));
     }
 
     public function anexos(Request $request)
@@ -158,8 +165,10 @@ class TarefaController extends Controller
         $start_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[0]))));
         $final_date = date('Y-m-d', strtotime(str_replace('/', '-', trim($dates[1]))));
 
+        $modelo = Modelo::find($request->modelo);
+
         $save = TarefaModel::create([
-            'name' => $request->modelo,
+            'name' => $modelo->name,
             'modelo' => $request->modelo,
             'description' => $request->description,
             'departamento_id' => $request->departamento,
@@ -177,11 +186,13 @@ class TarefaController extends Controller
             ]);
         }
 
-        foreach ($request->anexos as $anexo) {
-            Anexo::create([
-                'tarefa_id' => $save->id,
-                'anexo_nome' => $anexo
-            ]);
+        if($request->anexos){
+            foreach ($request->anexos as $anexo) {
+                Anexo::create([
+                    'tarefa_id' => $save->id,
+                    'anexo_nome' => $anexo
+                ]);
+            }
         }
 
         return redirect()->back()->with('success', 'Tarefa criado com sucesso!');
@@ -192,7 +203,8 @@ class TarefaController extends Controller
         $dateTime = date('Y-m-d H:i:s');
         $tarefa = TarefaModel::find($request->tarefa_id);
         $tarefa_play['evento'] = $request->evento;
-        if ($tarefa->start_time == null) $tarefa_play['start_time'] = $dateTime;
+        if ($tarefa->start_task == null) $tarefa_play['start_task'] = $dateTime;
+        $tarefa_play['start_time'] = $dateTime;
         $tarefa_play['tempo'] = date('H:i:s', strtotime($request->timer));
 
         $tarefa->update($tarefa_play);
@@ -216,5 +228,44 @@ class TarefaController extends Controller
 
         $tarefa->delete();
         return redirect()->back();
+    }
+
+    public function compartilharTarefa(Request $request)
+    {
+        $tarefas = TarefasCompartilhada::where('tarefa_id', $request->tarefa_id)->where('tarefa_email', $request->tarefa_email)->get();
+
+        if($tarefas->count() == 0){
+            $link_tarefa = asset('/tarefa-compartilhada/'.bin2hex(base64_encode($request->tarefa_id.','.$request->tarefa_email)));
+
+            $tarefa_compartilhada['tarefa_id']      = $request->tarefa_id;
+            $tarefa_compartilhada['tarefa_email']   = $request->tarefa_email;
+            $tarefa_compartilhada['tarefa_texto']   = ($request->tarefa_text ?? '.');
+            $tarefa_compartilhada['tarefa_link']    = $link_tarefa;
+
+            TarefasCompartilhada::create($tarefa_compartilhada);
+
+            Mail::to($request->tarefa_email)->send(new TarefaCompartilhada(($request->tarefa_text ?? ''), $link_tarefa));
+        }
+
+        return response()->json();
+    }
+
+    public function tarefaCompartilhada($id)
+    {
+        $hash = hex2bin($id);
+        $hash = base64_decode($hash);
+        $hash = explode(',', $hash);
+        $id = $hash[0];
+        $email = $hash[1];
+
+        $tarefa_compartilhada = TarefasCompartilhada::where('tarefa_id', $id)->where('tarefa_email', $email)->first();
+
+        if($tarefa_compartilhada){
+
+            $users = User::all();
+            $tarefa = TarefaModel::with(['alocados', 'anexos', 'departamento'])->find($id);
+            $comentarios = Comentario::with('user')->where('tarefa_id', $id)->get();
+            return view('tarefas.compartilhada.main', compact('tarefa', 'comentarios', 'users'));
+        }
     }
 }

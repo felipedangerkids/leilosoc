@@ -87,19 +87,25 @@ $(document).ready(function(){
         var tempoM = parseInt(tempo[1]) || 0;
         var tempoS = parseInt(tempo[2]) || 0;
 
-
         // Função de temporizador
         if(evento == 'play'){
-            btn.find('i').removeClass('fa-play').addClass('fa-pause');
-            btn.find('i').removeClass('text-success').addClass('text-danger');
+            if($(this).data('tarefa') == 'interna'){
+                btn.removeClass('btn-danger').addClass('btn-success');
+                btn.html('Iniciado');
+            }else{
+                btn.find('i').removeClass('fa-play').addClass('fa-pause');
+                btn.find('i').removeClass('text-success').addClass('text-danger');
+            }
             btn.attr('data-evento', 'stop');
-
-            console.log(Date.parse($('.relogio-'+btn.data('id')).text()));
 
             $('.relogio-'+btn.data('id')).stopwatch({startTime: ((tempoH*3600)+(tempoM*60)+(tempoS))*1000}).stopwatch('start');
         }else if(evento == 'stop'){
-            btn.find('i').removeClass('fa-pause').addClass('fa-play');
-            btn.find('i').removeClass('text-danger').addClass('text-success');
+            if($(this).data('tarefa') == 'interna'){
+                btn.html('Pausado');
+            }else{
+                btn.find('i').removeClass('fa-pause').addClass('fa-play');
+                btn.find('i').removeClass('text-danger').addClass('text-success');
+            }
             btn.attr('data-evento', 'play');
 
             $('.relogio-'+btn.data('id')).stopwatch().stopwatch('stop');
@@ -115,13 +121,21 @@ $(document).ready(function(){
         });
     });
 
+    // Ativando o timer quando estivber no play
     $(function(){
         $('.relogios').each(function(){
             var evento = $(this).data('evento');
             var start_time = $(this).data('start_time');
+            var tempo = $(this).text().split(':');
 
             if(evento == 'play'){
-                $(this).stopwatch({startTime: ((parseInt(start_time) || 0)*1000)}).stopwatch('start');
+                var tempoH = parseInt(tempo[0]) || 0;
+                var tempoM = parseInt(tempo[1]) || 0;
+                var tempoS = parseInt(tempo[2]) || 0;
+
+                start_time = ((parseInt(start_time) || 0)*1000)+(((tempoH*3600)+(tempoM*60)+(tempoS))*1000);
+
+                $(this).stopwatch({startTime: start_time}).stopwatch('start');
             }
         });
     });
@@ -263,6 +277,86 @@ $(document).ready(function(){
 
             calendar.render();
         }
+    });
+
+    $(document).on('click', '.btn-compartilhar', function(){
+        var tarefa_email = '';
+        var tarefa_text = '';
+        Swal.fire({
+            title: 'Compartilhar Tarefa',
+            input: 'email',
+            inputLabel: 'Email para enviar a tarefa',
+            inputPlaceholder: 'Email',
+            validationMessage: 'Email incorreto!'
+        }).then((result) => {
+            tarefa_email = result.value; //----
+            if(result.isConfirmed){
+                Swal.fire({
+                    title: 'Compartilhar Tarefa',
+                    input: 'textarea',
+                    inputLabel: 'Corpo da mensagem',
+                    inputPlaceholder: 'Messagem',
+                    showCancelButton: true
+                }).then((result) => {
+                    tarefa_text = result.value; //-----
+                    if(result.isConfirmed){
+                        Swal.fire({
+                            title: 'Enviando email, aguarde.',
+                            allowOutsideClick: false,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: $(this).data('url'),
+                            type: 'POST',
+                            data: {tarefa_id: $(this).data('id'), tarefa_email: tarefa_email, tarefa_text: tarefa_text},
+                            success: (data) => {
+                                console.log(data);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Email enviado com successo!'
+                                });
+                            },
+                            error: (err) => {
+                                console.log(err);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'ops, servidor de email fora do ar ou email incorreto!'
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+        // Swal.fire({
+        //     title: 'Gerando link, aguarde!',
+        //     allowOutsideClick: false,
+        //     timerProgressBar: true,
+        //     didOpen: () => {
+        //         Swal.showLoading();
+        //     }
+        // });
+
+        // setTimeout(() => {
+        //     $.ajax({
+        //         url: $(this).data('url'),
+        //         type: 'POST',
+        //         data: {tarefa_id: $(this).data('id')},
+        //         success: (data) => {
+        //             console.log(data);
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Link gerado com sucesso',
+        //                 text: 'teste'
+        //             });
+        //         }
+        //     });
+        // }, 2000)
     });
 });
 

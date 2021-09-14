@@ -45,7 +45,7 @@
                                                 <th scope="row">{{ $tarefa->numero_processo }}</th>
                                                 <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}
                                                 </td>
-                                                <td>{{ $tarefa->modelo }}</td>
+                                                <td>{{ $tarefa->name }}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-light dropdown-toggle"
@@ -63,15 +63,12 @@
                                                 <td>
                                                     @php
                                                         $since_start = getTimeDiff(date('Y-m-d H:i:s'), $tarefa->start_time);
-                                                        $minutes = $since_start->days * 24 * 60;
-                                                        $minutes += $since_start->h * 3600;
-                                                        $minutes += $since_start->i * 60;
-                                                        $minutes += $since_start->s;
+                                                        $seconds = $since_start->days * 24 * 60;
+                                                        $seconds += $since_start->h * 3600;
+                                                        $seconds += $since_start->i * 60;
+                                                        $seconds += $since_start->s;
                                                     @endphp
-                                                    <div class="relogio-{{ $tarefa->id }} relogios"
-                                                        data-evento="{{ $tarefa->evento }}"
-                                                        data-start_time="{{ $minutes }}">
-                                                        {{ $tarefa->tempo ?? '00:00:00' }}</div>
+                                                    <div class="relogio-{{ $tarefa->id }} relogios" data-evento="{{ $tarefa->evento }}" data-start_time="{{ $seconds }}">{{ $tarefa->tempo ?? '00:00:00' }}</div>
                                                 </td>
                                                 <td>
 
@@ -85,8 +82,7 @@
                                                             </a>
                                                         </div>
                                                         <div>
-                                                            <a
-                                                               style="color: red;" href="{{ route('tarefas.delete', $tarefa->id) }}" onclick="return confirm('Você tem certeza que gostaria de deletar isso?');">
+                                                            <a style="color: red;" href="{{ route('tarefas.delete', $tarefa->id) }}" onclick="return confirm('Você tem certeza que gostaria de deletar isso?');">
                                                                 <div class="btn-custom mx-2">
                                                                     <i class="fas fa-trash"></i>
                                                                 </div>

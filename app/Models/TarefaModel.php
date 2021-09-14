@@ -32,6 +32,7 @@ class TarefaModel extends Model
         'status',
         'evento',
         'start_time',
+        'start_task',
         'tempo',
     ];
 

@@ -19,7 +19,14 @@
                                         <div class="col-9 my-2">
                                             <div class="row">
                                                 <div class="col-3 d-flex align-items-center justify-content-end"><label for="">Modelo da Tarefa</label></div>
-                                                <div class="col-9"><input type="text" name="modelo" placeholder="Titulo da Tarefa" class="form-control"></div>
+                                                <div class="col-9">
+                                                    <select name="modelo" class="select2 form-control">
+                                                        <option value="">Selecione uma Opção</option>
+                                                        @foreach ($modelos as $modelo)
+                                                            <option value="{{$modelo->id}}">{{$modelo->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
     
@@ -32,7 +39,7 @@
                                                     <div class="mr-2"><button type="button" class="btn btn-primary"><i class="fas fa-user-plus"></i></button></div>
                                                     <select name="alocados[]" class="select2 form-control" multiple>
                                                         @foreach ($users as $user)
-                                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                                            <option value="{{$user->id}}" @if($citius) @if($insolvente->user_id == $user->id) selected @endif @endif>{{$user->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

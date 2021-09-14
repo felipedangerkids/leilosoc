@@ -48,7 +48,7 @@
                                             <tr>
                                                 <th scope="row">{{ $tarefa->numero_processo }}</th>
                                                 <td>{{ date('d/m/Y', strtotime(str_replace('-', '/', $tarefa->fim))) }}</td>
-                                                <td>{{ $tarefa->modelo }}</td>
+                                                <td>{{ $tarefa->name }}</td>
                                                 <td>
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$tarefa->alocados->count()}} - Responsáveis</button>
