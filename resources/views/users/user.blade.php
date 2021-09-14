@@ -8,13 +8,18 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Usuarios</b></h3></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Usuario</button></div>
+                                <div class="col-2 my-1 d-none d-md-block">
+                                    <h3 class="card-title"><b>Usuarios</b></h3>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark"
+                                        data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i>
+                                        Novo Usuario</button></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
                                     <div class="input-group">
                                         <input type="search" class="form-control" placeholder="buscar">
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            <button type="button" class="btn btn-dark"><i
+                                                    class="fas fa-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -41,19 +46,25 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     @if ($user->departamento_id == null)
-                                                    Admin
+                                                        Admin
 
-                                                        @else
-                                                    {{ $user->departamento->name ?? 'Departamento Excluido' }} <span style="background-color:{{ $user->departamento->color ?? 'white' }}; padding: 8px; margin: 0 5px"></span>
+                                                    @else
+                                                        {{ $user->departamento->name ?? 'Departamento Excluido' }} <span
+                                                            style="background-color:{{ $user->departamento->color ?? 'white' }}; padding: 8px; margin: 0 5px"></span>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div>
-                                                            <a href="{{ route('painel.users.edit', $user->id) }}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
+                                                            <a href="{{ route('painel.users.edit', $user->id) }}"><button
+                                                                    class="btn btn-primary mx-1"><i
+                                                                        class="fas fa-edit"></i> Editar</button></a>
                                                         </div>
                                                         <div>
-                                                        <a href="{{ route('painel.users.delete', $user->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"> <button class="btn btn-danger mx-1"><i class="fas fa-trash"></i> Excluir</button></a>
+                                                            <a href="{{ route('painel.users.delete', $user->id) }}"
+                                                                onclick="return confirm('Você tem certeza que deseja deletar isso?');">
+                                                                <button class="btn btn-danger mx-1"><i
+                                                                        class="fas fa-trash"></i> Excluir</button></a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -113,11 +124,23 @@
                             <label for="exampleInputEmail1">Senha</label>
                             <input type="password" name="password" class="form-control" placeholder="Digite uma Senha">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input type="text" name="name" class="form-control" placeholder="Digite um Nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Permissão</label>
+                            <select class="form-control" name="permission" id="permissãoexampleFormControlSelect1">
+                                <option value="admin">Admin</option>
+                                <option value="user">Usuário</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="modal-footer justify-content-between">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cadastrar</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i> Fechar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times"></i>
+                            Fechar</button>
                     </div>
                 </form>
             </div>
