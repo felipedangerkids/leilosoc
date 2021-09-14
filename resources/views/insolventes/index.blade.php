@@ -28,6 +28,8 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">AI</th>
+                                            <th scope="col">Email da AI</th>
+                                            <th scope="col">Contato da AI</th>
                                             <th scope="col">Responsavel</th>
                                             <th scope="col">Ações</th>
                                         </tr>
@@ -37,6 +39,8 @@
                                             <tr>
                                                 <th scope="row">{{ $insolvente->id }}</th>
                                                 <td>{{ $insolvente->name }}</td>
+                                                <td>{{ $insolvente->email }}</td>
+                                                <td>{{ $insolvente->telemovel }}</td>
                                                 <td>{{ $insolvente->responsavel->name ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex">
@@ -76,7 +80,7 @@
                 <div class="modal-body">
                     <form class="row g-3" action="{{ route('insolventes.post') }}" method="POST">
                         @csrf
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-12">
                             <label for="exampleFormControlSelect1">Colaborador responsavel</label>
                             <select class="form-control" name="user_id" id="exampleFormControlSelect1">
                                 @foreach ($users as $user)
@@ -84,21 +88,63 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <label for="inputEmail4" class="form-label">Nome do adm</label>
-                            <input name="name" type="text" class="form-control" id="inputEmail4">
+                        <div class="form-group col-12 col-md-6 mt-3">
+                            <label for="name" class="form-label">Nome do adm</label>
+                            <input name="name" type="text" class="form-control">
                         </div>
-                        <div class="col-md-12 mt-3">
+                        <div class="form-group col-12 col-md-6 mt-3">
+                            <label for="inputEmail4" class="form-label">Email do adm</label>
+                            <input name="email" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-12 col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">NIF</label>
-                            <input name="nif" type="text" class="form-control" id="inputEmail4">
+                            <input name="nif" type="text" class="form-control">
                         </div>
-                        <div class="col-md-12 mt-3">
+                        <div class="form-group col-12 col-md-6 mt-3">
                             <label for="inputEmail4" class="form-label">Telemóvel</label>
-                            <input name="telemovel" type="text" class="form-control" id="inputEmail4">
+                            <input name="telemovel" type="text" class="form-control">
                         </div>
+
+                        <div class="form-group col-12"><h5>Morada:</h5></div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Código Postal</label>
+                            <input type="text" class="form-control" id="ceping" name="codigo_postal">
+                        </div>
+                        <div style="margin-top: 32px;" class="form-group col-md-6">
+                            <button type="button" id="buscaring" class="btn btn-dark">Buscar</button>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Morada</label>
+                            <input type="text" id="morada" class="form-control" name="morada">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Região</label>
+                            <input type="text" id="regiao" class="form-control" name="regiao">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Porta</label>
+                            <input type="text" id="porta" class="form-control" name="porta">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Distrito</label>
+                            <input type="text" id="distrito" class="form-control" name="distrito">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Conselho</label>
+                            <input type="text" id="conselho" class="form-control" name="conselho">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Freguesia</label>
+                            <input type="text" id="freguesia" class="form-control" name="freguesia">
+                        </div>
+    
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+
                         <div class="col-md-12 mt-3 text-center mb-3">
                             <label for="inputEmail4" class="form-label">Preferencial</label>
-                            <input name="preferencial" type="checkbox" class="form-control" id="inputEmail4">
+                            <input name="preferencial" type="checkbox" class="form-control">
                         </div>
                         <div class="modal-footer col-md-12 justify-content-between">
                             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Cadastrar AI</button>

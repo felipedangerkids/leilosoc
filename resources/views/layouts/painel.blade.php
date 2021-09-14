@@ -308,8 +308,12 @@
             </script>
         @endif
         <script type="text/javascript">
-            $('#buscar').on('click', function() {
-                $value = $('#cep').val();
+            $('#buscaring').on('click', function() {
+                var btn = $(this);
+                $value = $('#ceping').val();
+
+                btn.html('<div class="spinner-border" style="width: 1rem; height: 1rem;" role="status"></div>');
+                btn.prop('disabled', true);
                 $.ajax({
                     type: 'get',
                     url: '{{ url('cep') }}',
@@ -317,17 +321,22 @@
                         'search': $value
                     },
                     success: function(data) {
-                        console.log(data);
-                        $('#morada').val(data.Morada);
-                        $('#regiao').val(data.Localidade);
-                        $('#distrito').val(data.Distrito);
-                        $('#conselho').val(data.Concelho);
-                        $('#freguesia').val(data.Freguesia);
-                        $('#latitude').val(data.Latitude);
-                        $('#longitude').val(data.Longitude);
+                            console.log(data);
+                            $('#morada').val(data.Morada);
+                            $('#regiao').val(data.Localidade);
+                            $('#distrito').val(data.Distrito);
+                            $('#conselho').val(data.Concelho);
+                            $('#freguesia').val(data.Freguesia);
+                            $('#latitude').val(data.Latitude);
+                            $('#longitude').val(data.Longitude);
+
+                            btn.html('Buscar');
+                            btn.prop('disabled', false);
                     }
                 });
-            })
+            });
+
+            $('#ceping').mask('0000-000');
         </script>
         <style>
             .fc-header-toolbar {

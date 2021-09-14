@@ -14,6 +14,16 @@ class Insolvente extends Model
         'preferencial',
         'telemovel',
         'user_id',
+        'email',
+        'codigo_postal',
+        'morada',
+        'regiao',
+        'porta',
+        'distrito',
+        'conselho',
+        'freguesia',
+        'latitude',
+        'longitude',
     ];
 
     public function responsavel()
