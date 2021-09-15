@@ -20,10 +20,25 @@
                                 <form action="{{route('citrus')}}">
                                     {{-- Campos --}}
                                     <div class="row">
-                                        {{-- Filtro - Data Inicial & Final --}}
-                                        <div class="form-group col-12 col-md-4">
-                                            <label for="start_end_date">Data Inicial e Final</label>
-                                            <input type="text" class="form-control form-control-sm date-mask" name="start_end_date" value="@if (isset($_GET['start_end_date'])){{$_GET['start_end_date']}}@else{{date('d/m/Y', strtotime('-1 days'))}} - {{date('d/m/Y')}}@endif">
+                                        <div class="form-group col-6 col-md-2">
+                                            <label for="data_inicial">Data Inicial</label>
+                                            <input type="text" class="form-control form-control-sm date-mask" name="data_inicial" value="@isset($_GET['data_inicial']){{$_GET['data_inicial']}}@else{{date('d/m/Y')}}@endisset">
+                                        </div>
+                                        <div class="form-group col-6 col-md-2">
+                                            <label for="data_final">Data Final</label>
+                                            <input type="text" class="form-control form-control-sm date-mask" name="data_final" value="@isset($_GET['data_final']){{$_GET['data_final']}}@else{{date('d/m/Y')}}@endisset">
+                                        </div>
+                                        <div class="form-group col-6 col-md-2">
+                                            <label for="ato">Ato</label>
+                                            <input type="text" class="form-control form-control-sm" name="ato" value="@isset($_GET['ato']){{$_GET['ato']}}@endisset">
+                                        </div>
+                                        <div class="form-group col-6 col-md-3">
+                                            <label for="tribunal">Triutal</label>
+                                            <input type="text" class="form-control form-control-sm" name="tribunal" value="@isset($_GET['tribunal']){{$_GET['tribunal']}}@endisset">
+                                        </div>
+                                        <div class="form-group col-6 col-md-3">
+                                            <label for="referencia">Referência</label>
+                                            <input type="text" class="form-control form-control-sm" name="referencia" value="@isset($_GET['referencia']){{$_GET['referencia']}}@endisset">
                                         </div>
                                     </div>
                                     {{-- Botões --}}
@@ -38,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 mt-5">
+                <div class="col-12 mt-1">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
@@ -89,11 +104,13 @@
                                 </table>
                             </div>
 
-                            @if (isset($_GET['start_end_date']))
-                                {{ $dados->appends(['start_end_date' => $_GET['start_end_date']])->links()  }}
-                            @else
-                                {{ $dados->links()  }}
-                            @endif
+                            {{ $dados->appends([
+                                'data_inicial'  => (isset($_GET['data_inicial']) ? $_GET['data_inicial'] : ''),
+                                'data_final'    => (isset($_GET['data_final']) ? $_GET['data_final'] : ''),
+                                'tribunal'      => (isset($_GET['tribunal']) ? $_GET['tribunal'] : ''),
+                                'ato'           => (isset($_GET['ato']) ? $_GET['ato'] : ''),
+                                'referencia'    => (isset($_GET['referencia']) ? $_GET['referencia'] : ''),
+                            ])->links()  }}
                         </div>
                     </div>
                 </div>
