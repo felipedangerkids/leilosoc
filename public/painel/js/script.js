@@ -141,7 +141,7 @@ $(document).ready(function(){
     });
 
     $('.date-mask').daterangepicker({
-        singleDatePicker: false,
+        singleDatePicker: true,
         showDropdowns: true,
         locale: {
             format: 'DD/MM/YYYY',
@@ -151,7 +151,20 @@ $(document).ready(function(){
             cancelLabel: 'Cancelar'
         }
     });
-    $('.date-mask').mask('99/99/9999 - 99/99/9999');
+    $('.date-mask').mask('99/99/9999');
+
+    $('[name="coluna"]').on('change', function (e) {
+        var thiss = $(this);
+
+        if(thiss.val() == 'data'){
+            $('.no-date').addClass('d-none').prop('disabled', true);
+            $('.date-mask').removeClass('d-none').prop('disabled', false);
+        }else{
+            $('.no-date').removeClass('d-none').prop('disabled', false).val('');
+            $('.date-mask').addClass('d-none').prop('disabled', true);
+        }
+    });
+
     var user_name = $('#user_name').text();
     user_name = user_name.split(' ');
     var intials = user_name[0].charAt(0) + user_name[user_name.length - 1].charAt(0);

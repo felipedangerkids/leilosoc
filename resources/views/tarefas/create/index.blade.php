@@ -14,14 +14,21 @@
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><a href="{{ route('tarefa.calendario') }}"
                                         class="btn  btn-dark mx-1"><i class="fas fa-calendar"></i> Agenda de Tarefas</a>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i
-                                                    class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control no-date @isset($_GET['coluna']) @if($_GET['coluna'] == 'data') d-none @endif @endisset" value="@isset($_GET['name']){{$_GET['name']}}@endisset" @isset($_GET['coluna']) @if($_GET['coluna'] == 'data') disabled @endif @endisset placeholder="buscar">
+                                            <input type="text" name="name" class="form-control date-mask {{!empty($_GET['coluna']) ? ($_GET['coluna'] !== 'data' ? 'd-none' : '') : 'd-none'}}" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar" {{!empty($_GET['coluna']) ? ($_GET['coluna'] !== 'data' ? 'disabled' : '') : 'disabled'}}>
+                                            <select name="coluna" class="form-control">
+                                                <option value="numero_tarefa" @isset($_GET['coluna']) @if($_GET['coluna'] == 'numero_tarefa') selected @endif @endisset>Numero da Tarefa</option>
+                                                <option value="data" @isset($_GET['coluna']) @if($_GET['coluna'] == 'data') selected @endif @endisset>Data</option>
+                                                <option value="modelo" @isset($_GET['coluna']) @if($_GET['coluna'] == 'modelo') selected @endif @endisset>Modelo</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -105,6 +112,12 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @if (isset($_GET['name']))
+                                {{ $tarefas->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                            @else
+                                {{ $tarefas->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>

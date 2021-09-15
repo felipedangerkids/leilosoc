@@ -35,7 +35,23 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'numero_tarefa':
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('numero_processo', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+                case 'data':
+                    $data = date('Y-m-d', strtotime(str_replace('/','-',$_GET['name'])));
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('fim', $data)->paginate(10);
+                break;
+                case 'modelo':
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+            }
+        }else{
+            $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->paginate(10);
+        }
+
         return view('tarefas.create.index', compact('tarefas'));
     }
 
@@ -73,7 +89,22 @@ class TarefaController extends Controller
 
     public function minhaTarefa()
     {
-        $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->get();
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'numero_tarefa':
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('numero_processo', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+                case 'data':
+                    $data = date('Y-m-d', strtotime(str_replace('/','-',$_GET['name'])));
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('fim', $data)->paginate(10);
+                break;
+                case 'modelo':
+                    $tarefas = TarefaModel::with('alocados', 'anexos')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+            }
+        }else{
+            $tarefas = TarefaModel::with(['alocados', 'anexos'])->orderBy('created_at', 'desc')->paginate(10);
+        }
 
         return view('tarefas.create.minhaTarefa', compact('tarefas'));
     }
