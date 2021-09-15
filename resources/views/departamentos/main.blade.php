@@ -11,12 +11,14 @@
                                 <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Departamentos</b></h3></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Departamento</button></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -53,10 +55,15 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @if (isset($_GET['name']))
+                                {{ $departamentos->appends(['name' => $_GET['name']])->links()  }}
+                            @else
+                                {{ $departamentos->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

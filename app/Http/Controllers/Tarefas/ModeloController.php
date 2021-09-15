@@ -17,7 +17,20 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        $modelos = Modelo::with('departamento')->get();
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $modelos = Modelo::with('departamento')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+                case 'departamento':
+                    $modelos = Modelo::with('departamento')->whereHas('departamento', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $modelos = Modelo::with('departamento')->paginate(10);
+        }
         // $categorias = ModeloCategoria::all();
         $departamentos = Depertamento::all();
         return view('tarefas.modelo.index', compact('modelos', 'departamentos'));

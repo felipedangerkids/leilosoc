@@ -10,13 +10,20 @@
                             <div class="row">
                                 <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Administradores</b></h3></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo AI</button></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar">
+                                            <select name="coluna" class="form-control">
+                                                <option value="name" @isset($_GET['coluna']) @if($_GET['coluna'] == 'name') selected @endif @endisset>AI</option>
+                                                <option value="email" @isset($_GET['coluna']) @if($_GET['coluna'] == 'email') selected @endif @endisset>EMail da AI</option>
+                                                <option value="responsavel" @isset($_GET['coluna']) @if($_GET['coluna'] == 'responsavel') selected @endif @endisset>Responsavel</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +65,11 @@
                                 </table>
                             </div>
 
-                            {{$insolventes->links()}}
+                            @if (isset($_GET['name']))
+                                {{ $insolventes->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                            @else
+                                {{ $insolventes->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>

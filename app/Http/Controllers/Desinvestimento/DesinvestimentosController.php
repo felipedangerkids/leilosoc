@@ -16,9 +16,22 @@ class DesinvestimentosController extends Controller
      */
     public function index()
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $desinvestimentos = Desinvestimento::with('responsavel')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(15);
+                break;
+                case 'responsavel':
+                    $desinvestimentos = Desinvestimento::with('responsavel')->whereHas('responsavel', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $desinvestimentos = Desinvestimento::with('responsavel')->paginate(15);
+        }
         $users = User::all();
-        $insolventes = Desinvestimento::with('responsavel')->paginate(15);
-        return view('desinvestimentos.index', compact('users', 'insolventes'));
+        return view('desinvestimentos.index', compact('users', 'desinvestimentos'));
     }
 
     /**

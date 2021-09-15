@@ -10,13 +10,19 @@
                             <div class="row">
                                 <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Modelos</b></h3></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Modelo</button></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar">
+                                            <select name="coluna" class="form-control">
+                                                <option value="name" @isset($_GET['coluna']) @if($_GET['coluna'] == 'name') selected @endif @endisset>Nome</option>
+                                                <option value="departamento" @isset($_GET['coluna']) @if($_GET['coluna'] == 'departamento') selected @endif @endisset>Departamento</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -53,6 +59,12 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @if (isset($_GET['name']))
+                                {{ $modelos->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                            @else
+                                {{ $modelos->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>

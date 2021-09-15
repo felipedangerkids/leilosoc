@@ -14,14 +14,20 @@
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark"
                                         data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i>
                                         Novo Usuario</button></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i
-                                                    class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar">
+                                            <select name="coluna" class="form-control">
+                                                <option value="name" @isset($_GET['coluna']) @if($_GET['coluna'] == 'name') selected @endif @endisset>Nome</option>
+                                                <option value="email" @isset($_GET['coluna']) @if($_GET['coluna'] == 'email') selected @endif @endisset>EMail</option>
+                                                <option value="departamento" @isset($_GET['coluna']) @if($_GET['coluna'] == 'departamento') selected @endif @endisset>Departamento</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -72,6 +78,12 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                                @if (isset($_GET['name']))
+                                    {{ $users->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                                @else
+                                    {{ $users->links()  }}
+                                @endif
                             </div>
                         </div>
                     </div>

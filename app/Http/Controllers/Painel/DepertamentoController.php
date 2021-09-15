@@ -15,7 +15,11 @@ class DepertamentoController extends Controller
      */
     public function index()
     {
-        $departamentos = Depertamento::all();
+        if(!empty($_GET['name'])){
+            $departamentos = Depertamento::where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+        }else{
+            $departamentos = Depertamento::paginate(10);
+        }
         return view('departamentos.main', compact('departamentos'));
     }
 

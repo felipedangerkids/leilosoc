@@ -15,7 +15,11 @@ class EscritorioController extends Controller
      */
     public function index()
     {
-        $escritorios = Escritorio::all();
+        if(!empty($_GET['name'])){
+            $escritorios = Escritorio::where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+        }else{
+            $escritorios = Escritorio::paginate(10);
+        }
         return view('escritorio.index', compact('escritorios'));
     }
 

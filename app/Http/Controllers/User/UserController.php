@@ -18,9 +18,25 @@ class UserController extends Controller
      */
     public function index()
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $users = User::with('departamento', 'escritorio')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+                case 'email':
+                    $users = User::with('departamento', 'escritorio')->where('email', 'like', '%'.$_GET['name'].'%')->paginate(10);
+                break;
+                case 'departamento':
+                    $users = User::with('departamento', 'escritorio')->whereHas('departamento', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $users = User::with('departamento', 'escritorio')->paginate(10);
+        }
         $departamentos = Depertamento::all();
         $escritorios = Escritorio::all();
-        $users = User::with('departamento', 'escritorio')->get();
         return view('users.user', compact('departamentos', 'users', 'escritorios'));
     }
 

@@ -10,13 +10,19 @@
                             <div class="row">
                                 <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Administradores</b></h3></div>
                                 <div class="col-12 col-sm-6 col-md-3 my-1"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-plus"></i> Novo Centro Logistico</button></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar">
+                                            <select name="coluna" class="form-control">
+                                                <option value="name" @isset($_GET['coluna']) @if($_GET['coluna'] == 'name') selected @endif @endisset>Centro Logistico</option>
+                                                <option value="responsavel" @isset($_GET['coluna']) @if($_GET['coluna'] == 'responsavel') selected @endif @endisset>Responsavel</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -33,18 +39,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($insolventes as $insolvente)
+                                        @foreach ($centros as $centro)
                                             <tr>
-                                                <th scope="row">{{ $insolvente->id }}</th>
-                                                <td>{{ $insolvente->name }}</td>
-                                                <td>{{ $insolvente->responsavel->name ?? '' }}</td>
+                                                <th scope="row">{{ $centro->id }}</th>
+                                                <td>{{ $centro->name }}</td>
+                                                <td>{{ $centro->responsavel->name ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <div>
-                                                            <a href="{{route('insolventes.edit', $insolvente->id)}}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
+                                                            <a href="{{route('insolventes.edit', $centro->id)}}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
                                                         </div>
                                                         <div>
-                                                            <a href="{{ route('insolventes.delete', $insolvente->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"><button class="btn btn-danger mx-1"><i class="fas fa-trash"></i> Excluir</button></a>
+                                                            <a href="{{ route('insolventes.delete', $centro->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');"><button class="btn btn-danger mx-1"><i class="fas fa-trash"></i> Excluir</button></a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -54,7 +60,11 @@
                                 </table>
                             </div>
 
-                            {{$insolventes->links()}}
+                            @if (isset($_GET['name']))
+                                {{ $centros->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                            @else
+                                {{ $centros->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>

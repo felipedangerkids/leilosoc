@@ -16,9 +16,22 @@ class AgentesController extends Controller
      */
     public function index()
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $Agentes = Agente::with('responsavel')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(15);
+                break;
+                case 'responsavel':
+                    $Agentes = Agente::with('responsavel')->whereHas('responsavel', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $Agentes = Agente::with('responsavel')->paginate(15);
+        }
         $users = User::all();
-        $insolventes = Agente::with('responsavel')->paginate(15);
-        return view('agentes.index', compact('users', 'insolventes'));
+        return view('agentes.index', compact('users', 'Agentes'));
     }
 
     /**

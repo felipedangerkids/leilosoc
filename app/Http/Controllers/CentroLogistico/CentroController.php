@@ -16,9 +16,22 @@ class CentroController extends Controller
      */
     public function index()
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $centros = Centro::with('responsavel')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(15);
+                break;
+                case 'responsavel':
+                    $centros = Centro::with('responsavel')->whereHas('responsavel', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $centros = Centro::with('responsavel')->paginate(15);
+        }
         $users = User::all();
-        $insolventes = Centro::with('responsavel')->paginate(15);
-        return view('centro.index', compact('users', 'insolventes'));
+        return view('centro.index', compact('users', 'centros'));
     }
 
     /**

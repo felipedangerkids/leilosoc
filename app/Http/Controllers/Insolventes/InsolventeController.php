@@ -16,8 +16,24 @@ class InsolventeController extends Controller
      */
     public function index()
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'name':
+                    $insolventes = Insolvente::with('responsavel')->where('name', 'like', '%'.$_GET['name'].'%')->paginate(15);
+                break;
+                case 'email':
+                    $insolventes = Insolvente::with('responsavel')->where('email', 'like', '%'.$_GET['name'].'%')->paginate(15);
+                break;
+                case 'responsavel':
+                    $insolventes = Insolvente::with('responsavel')->whereHas('responsavel', function ($query){
+                        $query->where('name', 'like', '%'.$_GET['name'].'%');
+                    })->paginate(10);
+                break;
+            }
+        }else{
+            $insolventes = Insolvente::with('responsavel')->paginate(15);
+        }
         $users = User::all();
-        $insolventes = Insolvente::with('responsavel')->paginate(15);
         return view('insolventes.index', compact('users', 'insolventes'));
     }
 
