@@ -16,8 +16,31 @@ class AssetController extends Controller
      */
     public function index($id = null)
     {
+        if(!empty($_GET['name'])){
+            switch($_GET['coluna']){
+                case 'numero':
+                    $assets = Asset::where('numero', 'like', '%'.$_GET['name'].'%')->orderBy('created_at', 'desc')->paginate(10);
+                break;
+                case 'km_inicio':
+                    $assets = Asset::where('kmini', 'like', '%'.$_GET['name'].'%')->orderBy('created_at', 'desc')->paginate(10);
+                break;
+                case 'km_inicio_data':
+                    $data = date('Y-m-d', strtotime(str_replace('/','-',$_GET['name'])));
+                    $assets = Asset::whereDate('created_at', '=', $data)->orderBy('created_at', 'desc')->paginate(10);
+                break;
+                break;
+                case 'km_fim':
+                    $assets = Asset::where('kmfim', 'like', '%'.$_GET['name'].'%')->orderBy('created_at', 'desc')->paginate(10);
+                break;
+                case 'km_fim_data':
+                    $data = date('Y-m-d', strtotime(str_replace('/','-',$_GET['name'])));
+                    $assets = Asset::whereDate('updated_at', '=', $data)->orderBy('created_at', 'desc')->paginate(10);
+                break;
+            }
+        }else{
+            $assets = Asset::orderBy('created_at', 'desc')->paginate(10);
+        }
         $processo = Citrus::find($id);
-        $assets = Asset::orderBy('created_at', 'desc')->get();
 
         return view('asset.index', compact('processo', 'assets'));
     }

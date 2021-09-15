@@ -156,7 +156,7 @@ $(document).ready(function(){
     $('[name="coluna"]').on('change', function (e) {
         var thiss = $(this);
 
-        if(thiss.val() == 'data'){
+        if(thiss.val() == 'data' || thiss.val() == 'km_inicio_data' || thiss.val() == 'km_fim_data'){
             $('.no-date').addClass('d-none').prop('disabled', true);
             $('.date-mask').removeClass('d-none').prop('disabled', false);
         }else{

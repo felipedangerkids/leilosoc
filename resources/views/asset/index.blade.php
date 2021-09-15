@@ -9,13 +9,23 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-2 my-1 d-none d-md-block"><h3 class="card-title"><b>Deslocações</b></h3></div>
-                                <div class="col-12 col-sm-6 col-md-3 my-1 ml-auto">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" placeholder="buscar">
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                <div class="col-12 col-sm-6 col-md-6 my-1 ml-auto">
+                                    <form action="" method="get">
+                                        <div class="input-group">
+                                            <input type="search" name="name" class="form-control no-date {{!empty($_GET['coluna']) ? ($_GET['coluna'] == 'km_inicio_data' || $_GET['coluna'] == 'km_fim_data' ? 'd-none' : '') : ''}}" value="@isset($_GET['name']){{$_GET['name']}}@endisset" {{!empty($_GET['coluna']) ? ($_GET['coluna'] == 'km_inicio_data' || $_GET['coluna'] == 'km_fim_data' ? 'disabled' : '') : ''}} placeholder="buscar">
+                                            <input type="text" name="name" class="form-control date-mask {{!empty($_GET['coluna']) ? ($_GET['coluna'] !== 'km_inicio_data' && $_GET['coluna'] !== 'km_fim_data' ? 'd-none' : '') : 'd-none'}}" value="@isset($_GET['name']){{$_GET['name']}}@endisset" placeholder="buscar" {{!empty($_GET['coluna']) ? ($_GET['coluna'] !== 'km_inicio_data' && $_GET['coluna'] !== 'km_fim_data' ? 'disabled' : '') : 'disabled'}}>
+                                            <select name="coluna" class="form-control">
+                                                <option value="numero" @isset($_GET['coluna']) @if($_GET['coluna'] == 'numero') selected @endif @endisset>Numero</option>
+                                                <option value="km_inicio" @isset($_GET['coluna']) @if($_GET['coluna'] == 'km_inicio') selected @endif @endisset>KM Inicio</option>
+                                                <option value="km_inicio_data" @isset($_GET['coluna']) @if($_GET['coluna'] == 'km_inicio_data') selected @endif @endisset>KM Inicio Data</option>
+                                                <option value="km_fim" @isset($_GET['coluna']) @if($_GET['coluna'] == 'km_fim') selected @endif @endisset>KM Fim</option>
+                                                <option value="km_fim_data" @isset($_GET['coluna']) @if($_GET['coluna'] == 'km_fim_data') selected @endif @endisset>KM Fim Data</option>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -53,6 +63,12 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @if (isset($_GET['name']))
+                                {{ $assets->appends(['name' => $_GET['name'], 'coluna' => $_GET['coluna']])->links()  }}
+                            @else
+                                {{ $assets->links()  }}
+                            @endif
                         </div>
                     </div>
                 </div>
