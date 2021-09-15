@@ -55,7 +55,7 @@
                                                     <select name="departamento" class="select2 form-control">
                                                         <option value="">Selecione uma Opção</option>
                                                         @foreach ($departamentos as $departamento)
-                                                            <option value="{{$departamento->id}}">{{$departamento->name}}</option>
+                                                            <option value="{{$departamento->id}}" @if($citius) @if($user->departamento->id == $departamento->id) selected @endif @endif>{{$departamento->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

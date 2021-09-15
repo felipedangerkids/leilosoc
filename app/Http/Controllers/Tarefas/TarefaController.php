@@ -82,16 +82,18 @@ class TarefaController extends Controller
     {
         $citius = null;
         $insolvente = null;
+        $user = null;
         if ($id) {
             $citius = Citrus::find($id);
             $insolvente = Insolvente::where('nif', $citius->nif_adm)->first();
+            $user = User::with('departamento')->find($insolvente->user_id);
         }
         $users = User::all();
         $departamentos = Depertamento::all();
         $insolventes = Insolvente::all();
         $modelos = Modelo::all();
 
-        return view('tarefas.create.criarTarefa', compact('users', 'modelos', 'departamentos', 'insolventes', 'insolvente', 'citius'));
+        return view('tarefas.create.criarTarefa', compact('users', 'modelos', 'departamentos', 'insolventes', 'insolvente', 'user', 'citius'));
     }
 
     public function anexos(Request $request)
