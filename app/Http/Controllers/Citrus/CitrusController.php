@@ -26,11 +26,11 @@ class CitrusController extends Controller
     {
         $dados = new Citrus;
         if(!empty($_GET['data_inicial']) && !empty($_GET['data_final'])){
-            $dados = $dados->where('created_at', '>=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_inicial']))));
-            $dados = $dados->where('created_at', '<=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_final']))));
+            $dados = $dados->whereDate('created_at', '>=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_inicial']))));
+            $dados = $dados->whereDate('created_at', '<=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_final']))));
         }else{
-            $dados = $dados->where('created_at', '>=', date('Y-m-d'));
-            $dados = $dados->where('created_at', '<=', date('Y-m-d'));
+            $dados = $dados->whereDate('created_at', '>=', date('Y-m-d'));
+            $dados = $dados->whereDate('created_at', '<=', date('Y-m-d'));
         }
         if(!empty($_GET['tribunal'])) $dados = $dados->where('tribunal', 'like', '%'.$_GET['tribunal'].'%');
         if(!empty($_GET['ato'])) $dados = $dados->where('ato', 'like', '%'.$_GET['ato'].'%');
