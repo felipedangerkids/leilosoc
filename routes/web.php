@@ -19,6 +19,7 @@ use App\Http\Controllers\Escritorio\EscritorioController;
 use App\Http\Controllers\CentroLogistico\CentroController;
 use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tribunal\TribunalController;
+use App\Http\Controllers\Processo\TipoProcessoController;
 use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
 /*
@@ -107,6 +108,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tribunal/edit/{id}', [TribunalController::class, 'edit'])->name('tribunal.edit');
         Route::post('tribunal/edit/{id}', [TribunalController::class, 'update'])->name('tribunal.edit');
         Route::get('tribunal/delete/{id}', [TribunalController::class, 'destroy'])->name('tribunal.destroy');
+
+        Route::get('tipo_processo', [TipoProcessoController::class, 'index'])->name('tipo_processo');
+        Route::post('tipo_processo', [TipoProcessoController::class, 'store'])->name('tipo_processo');
+        Route::get('tipo_processo/edit/{id}', [TipoProcessoController::class, 'edit'])->name('tipo_processo.edit');
+        Route::post('tipo_processo/edit/{id}', [TipoProcessoController::class, 'update'])->name('tipo_processo.edit');
+        Route::get('tipo_processo/delete/{id}', [TipoProcessoController::class, 'destroy'])->name('tipo_processo.destroy');
     });
 
     Route::prefix('tarefa/')->group(function () {

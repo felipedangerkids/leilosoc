@@ -147,6 +147,10 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tribunais</p>
                                         </a>
+                                        <a href="{{route('tipo_processo')}}" class="nav-link @if(Request::is('organizacao/tipo_processo')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tipos de Processos</p>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
