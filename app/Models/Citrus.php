@@ -22,7 +22,8 @@ class Citrus extends Model
         'nif_adm',
         'credor',
         'nif_credor',
-        'document'
+        'document',
+        'status'
     ];
 }
 

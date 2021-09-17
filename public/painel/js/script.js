@@ -371,5 +371,33 @@ $(document).ready(function(){
         //     });
         // }, 2000)
     });
+
+    $(document).on('click', '.btn-liberar-processo', function(){
+        var id = $(this).data('id');
+        var route = $(this).data('route');
+
+        Swal.fire({
+            icon: 'info',
+            title: 'Liberar Processo?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Liberar Processo',
+            denyButtonText: 'Liberar e Abrir Processo',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                confirmButton: 'btn my-1 mr-2 btn-primary',
+                denyButton: 'btn my-1 mr-2 btn-info',
+                cancelButton: 'btn my-1 btn-danger'
+            },
+            buttonsStyling: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = route+'/'+id+'/liberar';
+            }
+            if(result.isDenied){
+                window.location.href = route+'/'+id+'/liberar-abrir';
+            }
+        });
+    });
 });
 

@@ -47,6 +47,11 @@
   margin-top: -8px;
 }
 
+.swal2-deny {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+}
+
 .select2-container {
   max-width: 100%;
 }
@@ -63,6 +68,22 @@
 .tarefas .nav-pills .show > .nav-link {
   color: black;
   background-color: transparent !important;
+}
+
+.coment-corpo {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.coment span {
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.bg-azul {
+  background-color: #EBF8FF;
 }
 
 .titulo-tarefa h3 {

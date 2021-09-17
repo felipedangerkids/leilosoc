@@ -8,11 +8,16 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex">
-                                <div class="my-1 mx-2"><a href="{{route('painel.tarefa.criar', $citius->id)}}" class="btn btn-dark"><i class="fas fa-calendar-plus"></i> Abrir Tarefa</a></div>
-                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#assets"><i class="fas fa-camera"></i> Asset</button></div>
-                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#calendarioModal"><i class="fas fa-calendar"></i> Abrir Calendario</button></div>
-                                <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#depesas"><i class="fas fa-euro-sign"></i> Despesas</button></div>
-                                <div class="my-1 mx-2"><button class="btn btn-success"><i class="fas fa-calendar-check"></i> Finalizar Tarefa</button></div>
+                                @if (Request::is('processo/*'))
+                                    <div class="my-1 mx-2"><a href="{{route('processo.abrir', $citius->id)}}" class="btn btn-dark"><i class="fas fa-file-invoice"></i> Abrir Processo</a></div>
+                                @else
+                                    <div class="my-1 mx-2"><a href="{{route('painel.tarefa.criar', $citius->id)}}" class="btn btn-dark"><i class="fas fa-calendar-plus"></i> Abrir Tarefa</a></div>
+                                    <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#assets"><i class="fas fa-camera"></i> Asset</button></div>
+                                    <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#calendarioModal"><i class="fas fa-calendar"></i> Abrir Calendario</button></div>
+                                    <div class="my-1 mx-2"><button class="btn btn-dark" data-toggle="modal" data-target="#depesas"><i class="fas fa-euro-sign"></i> Despesas</button></div>
+                                    <div class="my-1 mx-2"><button class="btn btn-success"><i class="fas fa-calendar-check"></i> Finalizar Tarefa</button></div>
+                                    <div class="my-1 mx-2"><button class="btn {{$citius->status == 1 ? 'btn-warning btn-liberar-processo' : 'btn-success'}}" data-route="{{route('processo.liberar')}}" data-id="{{$citius->id}}"><i class="fas fa-file-invoice"></i> {{$citius->status == 1 ? 'Liberar Processo' : 'Processo Liberado'}}</button></div>
+                                @endif
                             </div>
                         </div>
 

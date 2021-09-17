@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-body pad">
                             <div class="container">
-                                <form action="{{route('citrus')}}">
+                                <form action="" method="get">
                                     {{-- Campos --}}
                                     <div class="row">
                                         <div class="form-group col-6 col-md-2">
@@ -90,11 +90,17 @@
                                                         <div>
                                                             <a href="{{ asset('storage/'.$dado->document) }}" class="btn btn-primary mx-1 text-nowrap" target="_blank"><i class="fas fa-eye"></i> Documento</a>
                                                         </div>
+                                                        @if (Request::is('processo/*'))
+                                                            <div>
+                                                                <a href="{{ route('processo.liberado.ver', $dado->id) }}" class="btn btn-primary mx-1 text-nowrap"><i class="fas fa-eye"></i> Ver</a>
+                                                            </div>
+                                                        @else
+                                                            <div>
+                                                                <a href="{{ route('citrus.show', $dado->id) }}" class="btn btn-primary mx-1 text-nowrap"><i class="fas fa-eye"></i> Ver</a>
+                                                            </div>
+                                                        @endif
                                                         <div>
-                                                            <a href="{{ route('citrus.show', $dado->id) }}" class="btn btn-primary mx-1 text-nowrap"><i class="fas fa-eye"></i> Ver</a>
-                                                        </div>
-                                                        <div>
-                                                        <a href="{{ route('citrus.delete', $dado->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');" class="btn btn-danger mx-1 text-nowrap"><i class="fas fa-trash"></i> Excluir</a>
+                                                            <a href="{{ route('citrus.delete', $dado->id) }}" onclick="return confirm('Você tem certeza que deseja deletar isso?');" class="btn btn-danger mx-1 text-nowrap"><i class="fas fa-trash"></i> Excluir</a>
                                                         </div>
                                                     </div>
                                                 </td>

@@ -184,16 +184,28 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item @if(Request::is('citius/*')) menu-open @endif">
-                                <a href="#" class="nav-link @if(Request::is('citius/*')) active @endif">
+                            <li class="nav-item">
+                                <a href="{{route('citrus')}}" class="nav-link @if(Request::is('citius') || Request::is('citius/*')) active @endif">
                                     <i class="nav-icon fas fa-sync"></i>
-                                    <p>Citius <i class="fas fa-angle-left right"></i></p>
+                                    <p>Citius</p>
+                                </a>
+                            </li>
+                            <li class="nav-item @if(Request::is('processo/*')) menu-open @endif">
+                                <a href="#" class="nav-link @if(Request::is('processo/*')) active @endif">
+                                    <i class="nav-icon fas fa-file-invoice"></i>
+                                    <p>Processos <i class="right fas fa-angle-left"></i></p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{route('citrus')}}" class="nav-link @if(Request::is('citius/processos') || Request::is('citius/processos/*')) active @endif">
+                                        <a href="{{route('processo')}}" class="nav-link @if(Request::is('processo/processos') || Request::is('processo/processos/*')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Processos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('processo.liberado')}}" class="nav-link @if(Request::is('processo/liberados') || Request::is('processo/liberados/*')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Processos Liberados</p>
                                         </a>
                                     </li>
                                 </ul>

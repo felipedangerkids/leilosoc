@@ -20,6 +20,7 @@ use App\Http\Controllers\CentroLogistico\CentroController;
 use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tribunal\TribunalController;
 use App\Http\Controllers\Processo\TipoProcessoController;
+use App\Http\Controllers\Processo\ProcessoController;
 use App\Http\Controllers\Comarca\ComarcaController;
 use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
@@ -156,17 +157,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('leilao/leiloes', [CalendarioController::class, 'calendar'])->name('leiloes.calendario');
     });
 
-    Route::prefix('citius/')->group(function () {
-        Route::get('processos/{id?}', [CitrusController::class, 'index'])->name('citrus');
-        Route::get('processos/create', [CitrusController::class, 'create'])->name('citrus.create');
-        Route::get('processos/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
-        Route::post('processos/store', [CitrusController::class, 'store'])->name('citrus.store');
-        Route::any('processos/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
-    });
-
-    Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
-    Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
-
     Route::prefix('assets/')->group(function () {
         Route::get('assets/{id?}', [AssetController::class, 'index'])->name('assets');
         Route::post('assets/post', [AssetController::class, 'store'])->name('assets.post');
@@ -174,10 +164,28 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('depesas/')->group(function () {
+        // ...
     });
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('citius/{id?}', [CitrusController::class, 'index'])->name('citrus');
+    Route::get('citius/create', [CitrusController::class, 'create'])->name('citrus.create');
+    Route::get('citius/show/{id}', [CitrusController::class, 'show'])->name('citrus.show');
+    Route::post('citius/store', [CitrusController::class, 'store'])->name('citrus.store');
+    Route::any('citius/delete/{id}', [CitrusController::class, 'destroy'])->name('citrus.delete');
 
+    Route::get('processo/liberar/{id?}/{metodo?}', [ProcessoController::class, 'liberarProcesso'])->name('processo.liberar');
+
+    Route::get('processo/processos', [ProcessoController::class, 'index'])->name('processo');
+    Route::get('processo/processos/ver/{id}', [ProcessoController::class, 'processoVer'])->name('processo.ver');
+    Route::get('processo/liberados', [ProcessoController::class, 'liberado'])->name('processo.liberado');
+    Route::get('processo/liberados/ver/{id}', [ProcessoController::class, 'liberadoVer'])->name('processo.liberado.ver');
+    
+    Route::get('processo/abrir/{id}', [ProcessoController::class, 'abrirProcesso'])->name('processo.abrir');
+
+    Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
+    Route::post('leilao/post', [CalendarioController::class, 'store'])->name('leilao.post');
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('cep', [TarefaController::class, 'cep'])->name('painel.cep');
 

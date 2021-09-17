@@ -38,13 +38,12 @@ class CitrusController extends Controller
         $dados = $dados->orderBy('created_at', 'desc')->paginate(15);
 
         $leiloes = Calendario::with('consultor', 'assets')->get();
-        $processo = Citrus::find($id);
         $departamentos = Depertamento::all();
         $users = User::all();
         $assets = Asset::all();
         $categorias = ModeloCategoria::all();
         $modelos = Modelo::with('categoria')->get();
-        return view('citrus.citrus', compact('dados', 'processo', 'users', 'assets', 'leiloes', 'categorias', 'modelos', 'departamentos'));
+        return view('citrus.citrus', compact('dados', 'users', 'assets', 'leiloes', 'categorias', 'modelos', 'departamentos'));
     }
 
     // Recebdo dados via posto do node citius scraping
