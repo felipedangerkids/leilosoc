@@ -24,38 +24,17 @@ class CitrusController extends Controller
      */
     public function index($id = null)
     {
-        // function diasDatas($data_inicial,$data_final) {
-        //     $diferenca = strtotime($data_final) - strtotime($data_inicial);
-        //     $dias = floor($diferenca / (60 * 60 * 24)); 
-        //     return intval($dias);
-        // }
-
-        // if(!empty($_GET['data_inicial']) && !empty($_GET['data_final'])){
-        //     $start_date = date('Y-m-d', strtotime(str_replace('/','-',trim($_GET['data_inicial']))));
-        //     $final_date = date('Y-m-d', strtotime(str_replace('/','-',trim($_GET['data_final']))));
-        // }else{
-        //     $start_date = date('Y-m-d');
-        //     $final_date = date('Y-m-d');
-        // }
-
-        // $dates = [];
-        // $dias = diasDatas($start_date, $final_date);
-        // for($i = 0; $i <= $dias; $i++){
-        //     $dates[] = date("d/m/Y", strtotime("+".$i." days", str_replace("-","/", strtotime($start_date))));
-        // }
-
-        // $dados = Citrus::wherein('data',$dates)->paginate(15);
         $dados = new Citrus;
         if(!empty($_GET['data_inicial']) && !empty($_GET['data_final'])){
-            $dados->where('created_at', '>=', $_GET['data_inicial']);
-            $dados->where('created_at', '<=', $_GET['data_final']);
+            $dados = $dados->where('created_at', '>=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_inicial']))));
+            $dados = $dados->where('created_at', '<=', date('Y-m-d', strtotime(str_replace('/','-', $_GET['data_final']))));
         }else{
-            $dados->where('created_at', '>=', date('Y-m-d'));
-            $dados->where('created_at', '<=', date('Y-m-d'));
+            $dados = $dados->where('created_at', '>=', date('Y-m-d'));
+            $dados = $dados->where('created_at', '<=', date('Y-m-d'));
         }
-        if(!empty($_GET['tribunal'])) $dados->where('tribunal', 'like', '%'.$_GET['tribunal'].'%');
-        if(!empty($_GET['ato'])) $dados->where('ato', 'like', '%'.$_GET['ato'].'%');
-        if(!empty($_GET['referencia'])) $dados->where('referencia', 'like', '%'.$_GET['referencia'].'%');
+        if(!empty($_GET['tribunal'])) $dados = $dados->where('tribunal', 'like', '%'.$_GET['tribunal'].'%');
+        if(!empty($_GET['ato'])) $dados = $dados->where('ato', 'like', '%'.$_GET['ato'].'%');
+        if(!empty($_GET['referencia'])) $dados = $dados->where('referencia', 'like', '%'.$_GET['referencia'].'%');
         $dados = $dados->orderBy('created_at', 'desc')->paginate(15);
 
         $leiloes = Calendario::with('consultor', 'assets')->get();
