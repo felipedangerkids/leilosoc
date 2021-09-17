@@ -20,6 +20,7 @@ use App\Http\Controllers\CentroLogistico\CentroController;
 use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tribunal\TribunalController;
 use App\Http\Controllers\Processo\TipoProcessoController;
+use App\Http\Controllers\Comarca\ComarcaController;
 use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
 /*
@@ -114,6 +115,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tipo_processo/edit/{id}', [TipoProcessoController::class, 'edit'])->name('tipo_processo.edit');
         Route::post('tipo_processo/edit/{id}', [TipoProcessoController::class, 'update'])->name('tipo_processo.edit');
         Route::get('tipo_processo/delete/{id}', [TipoProcessoController::class, 'destroy'])->name('tipo_processo.destroy');
+
+        Route::get('comarca', [ComarcaController::class, 'index'])->name('comarca');
+        Route::post('comarca', [ComarcaController::class, 'store'])->name('comarca');
+        Route::get('comarca/edit/{id}', [ComarcaController::class, 'edit'])->name('comarca.edit');
+        Route::post('comarca/edit/{id}', [ComarcaController::class, 'update'])->name('comarca.edit');
+        Route::get('comarca/delete/{id}', [ComarcaController::class, 'destroy'])->name('comarca.destroy');
     });
 
     Route::prefix('tarefa/')->group(function () {

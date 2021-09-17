@@ -151,6 +151,10 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Tipos de Processos</p>
                                         </a>
+                                        <a href="{{route('comarca')}}" class="nav-link @if(Request::is('organizacao/comarca')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Comarcas</p>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
