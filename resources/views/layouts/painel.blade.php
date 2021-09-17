@@ -104,48 +104,48 @@
                                     <p>Dashboard</p>
                                 </a>
                             </li>
-                            <li class="nav-item @if(Request::is('cadastro/*')) menu-open @endif">
-                                <a href="#" class="nav-link @if(Request::is('cadastro/*')) active @endif">
+                            <li class="nav-item @if(Request::is('organizacao/*')) menu-open @endif">
+                                <a href="#" class="nav-link @if(Request::is('organizacao/*')) active @endif">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>Organização <i class="fas fa-angle-left right"></i></p>
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="{{route('painel.departamento')}}" class="nav-link @if(Request::is('cadastro/departamentos')) active @endif">
+                                        <a href="{{route('painel.departamento')}}" class="nav-link @if(Request::is('organizacao/departamentos')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Departamentos</p>
                                         </a>
-                                        <a href="{{route('painel.users')}}" class="nav-link @if(Request::is('cadastro/users')) active @endif">
+                                        <a href="{{route('painel.users')}}" class="nav-link @if(Request::is('organizacao/users')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Colaboradores</p>
                                         </a>
-                                        <a href="{{route('insolventes')}}" class="nav-link @if(Request::is('cadastro/insolventes')) active @endif">
+                                        <a href="{{route('insolventes')}}" class="nav-link @if(Request::is('organizacao/insolventes')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Administrador de<br> insolvência</p>
                                         </a>
-                                        <a href="{{route('agentes')}}" class="nav-link @if(Request::is('cadastro/agentes')) active @endif">
+                                        <a href="{{route('agentes')}}" class="nav-link @if(Request::is('organizacao/agentes')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Agentes de Execução</p>
                                         </a>
-                                        <a href="{{route('desinvestimentos')}}" class="nav-link @if(Request::is('cadastro/desinvestimentos')) active @endif">
+                                        <a href="{{route('desinvestimentos')}}" class="nav-link @if(Request::is('organizacao/desinvestimentos')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Desinvestimento</p>
                                         </a>
-                                        <a href="{{route('centros')}}" class="nav-link @if(Request::is('cadastro/centros')) active @endif">
+                                        <a href="{{route('centros')}}" class="nav-link @if(Request::is('organizacao/centros')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Centro Logistico</p>
                                         </a>
-                                        <a href="{{route('escritorio')}}" class="nav-link @if(Request::is('cadastro/escritorio')) active @endif">
+                                        <a href="{{route('escritorio')}}" class="nav-link @if(Request::is('organizacao/escritorio')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Escritório</p>
                                         </a>
-                                        <a href="{{route('modelos')}}" class="nav-link @if(Request::is('cadastro/modelos')) active @endif">
+                                        <a href="{{route('modelos')}}" class="nav-link @if(Request::is('organizacao/modelos')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Modelos</p>
                                         </a>
-                                        <a href="#" class="nav-link @if(Request::is('cadastro/fornecedor')) active @endif">
+                                        <a href="{{route('tribunal')}}" class="nav-link @if(Request::is('organizacao/tribunal')) active @endif">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Fornecedores</p>
+                                            <p>Tribunais</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -303,7 +303,7 @@
                     text: "{{ Session::get('success') }}",
 
                 }).then((value) => {
-                    location.reload();
+                    // location.reload();
                 }).catch(swal.noop);
             </script>
         @endif

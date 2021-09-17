@@ -18,6 +18,7 @@ use App\Http\Controllers\Calendario\CalendarioController;
 use App\Http\Controllers\Escritorio\EscritorioController;
 use App\Http\Controllers\CentroLogistico\CentroController;
 use App\Http\Controllers\Insolventes\InsolventeController;
+use App\Http\Controllers\Tribunal\TribunalController;
 use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
 /*
@@ -49,7 +50,7 @@ Route::post('/citius/scraping', [CitrusController::class, 'scraping']);
 Route::get('/tarefa-compartilhada/{id}', [TarefaController::class, 'tarefaCompartilhada']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('cadastro/')->group(function () {
+    Route::prefix('organizacao/')->group(function () {
         // Usuarios
         Route::get('users', [UserController::class, 'index'])->name('painel.users');
         Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('painel.users.edit');
@@ -100,6 +101,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('modelos/edit/{id}', [ModeloController::class, 'edit'])->name('modelos.edit');
         Route::post('modelos/update/{id}', [ModeloController::class, 'update'])->name('modelos.update');
         Route::any('modelos/delete/{id}', [ModeloController::class, 'destroy'])->name('modelos.delete');
+
+        Route::get('tribunal', [TribunalController::class, 'index'])->name('tribunal');
+        Route::post('tribunal', [TribunalController::class, 'store'])->name('tribunal');
+        Route::get('tribunal/edit/{id}', [TribunalController::class, 'edit'])->name('tribunal.edit');
+        Route::post('tribunal/edit/{id}', [TribunalController::class, 'update'])->name('tribunal.edit');
+        Route::get('tribunal/delete/{id}', [TribunalController::class, 'destroy'])->name('tribunal.destroy');
     });
 
     Route::prefix('tarefa/')->group(function () {
