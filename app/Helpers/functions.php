@@ -17,3 +17,29 @@ if(!function_exists('getTimeDiff')){
         return $since_start;
     }
 }
+
+if(!function_exists('conDate')){
+    function conDate($date, $format, $str = null){
+        $date = strtotime(str_replace('/','-', $date));
+        switch($format){
+            case 'DMY':
+                $date = date('d-m-Y', $date);
+            break;
+            case 'YMD':
+                $date = date('Y-m-d', $date);
+            break;
+            case 'DMYHIS':
+                $date = date('d-m-Y H:i:s', $date);
+            break;
+            case 'YMDHIS':
+                $date = date('Y-m-d H:i:s', $date);
+            break;
+        }
+
+        if($str){
+            return str_replace(($str == '/' ? '-' : '/'), $str, $date);
+        }else{
+            return $date;
+        }
+    }
+}

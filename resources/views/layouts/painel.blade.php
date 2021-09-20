@@ -155,6 +155,14 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Comarcas</p>
                                         </a>
+                                        <a href="{{route('moeda')}}" class="nav-link @if(Request::is('organizacao/moeda')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Moedas</p>
+                                        </a>
+                                        <a href="{{route('pais')}}" class="nav-link @if(Request::is('organizacao/pais')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Paises</p>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
