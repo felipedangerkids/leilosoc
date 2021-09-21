@@ -1,7 +1,7 @@
 @extends('layouts.painel')
 
 @section('content')
-    <input type="hidden" id="json_calendar" value="{{json_encode($tarefas)}}">
+    <input type="hidden" id="json_calendar" data-route="{{route('painel.tarefas.detalhes')}}" value="{{$tarefas}}">
 
     <div class="content">
         <div class="container-fluid">

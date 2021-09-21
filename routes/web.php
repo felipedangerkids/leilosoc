@@ -153,7 +153,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('tarefa/compartilhar', [TarefaController::class, 'compartilharTarefa'])->name('painel.tarefas.compartilhar');
 
-        Route::get('tarefaDetalhe/{id}', [TarefaController::class, 'tarefaDetalhe'])->name('painel.tarefas.detalhes');
+        Route::get('tarefaDetalhe/{id?}', [TarefaController::class, 'tarefaDetalhe'])->name('painel.tarefas.detalhes');
 
         Route::get('calendario', [TarefaController::class, 'calendar'])->name('calendario');
 

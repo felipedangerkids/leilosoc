@@ -258,6 +258,7 @@ $(document).ready(function(){
     $(function(){
         if($('#json_calendar').val()){
             var json_calendar = JSON.parse($('#json_calendar').val());
+            var route = $('#json_calendar').data('route');
             var events = [];
 
             $.each(json_calendar, (key, value) => {
@@ -267,12 +268,20 @@ $(document).ready(function(){
                 }else if(value.tipo){
                     name = value.tipo
                 }
-                events.push({
-                    title: name,
-                    start: value.inicio,
-                    end: value.fim,
-                    url: '/tarefa/tarefaDetalhe/'+value.id,
-                });
+                if(route == 'Sem Rota'){
+                    events.push({
+                        title: name,
+                        start: value.inicio,
+                        end: value.fim,
+                    });
+                }else{
+                    events.push({
+                        title: name,
+                        start: value.inicio,
+                        end: value.fim,
+                        url: route+'/'+value.id,
+                    });
+                }
             });
 
             var calendarEl = document.getElementById('calendar');
