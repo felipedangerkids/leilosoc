@@ -109,6 +109,9 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         <div>
+                                                            <a href="{{route('lotes', $processo->id)}}"><button class="btn btn-success mx-1"><i class="fas fa-edit"></i> Lotes</button></a>
+                                                        </div>
+                                                        <div>
                                                             <a href="{{route('processo.edit', $processo->id)}}"><button class="btn btn-primary mx-1"><i class="fas fa-edit"></i> Editar</button></a>
                                                         </div>
                                                         <div>

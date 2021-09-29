@@ -140,6 +140,24 @@ $(document).ready(function(){
         });
     });
 
+    $('.money').maskMoney({precision: 2, decimal:',', thousands: '.'});
+
+    $('.date-mask-time').daterangepicker({
+        singleDatePicker: true,
+        timePicker: true,
+        timePicker24Hour: true,
+        timePickerSeconds: true,
+        showDropdowns: true,
+        locale: {
+            format: 'DD/MM/YYYY HH:mm:ss',
+            daysOfWeek: ['dom','seg','ter','qua','qui','sex','sab'],
+            monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','outubro','Novembro','Dezembro'],
+            applyLabel: 'Aplicar',
+            cancelLabel: 'Cancelar'
+        }
+    });
+    $('.date-mask-time').mask('99/99/9999 99:99:99');
+
     $('.date-mask').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,

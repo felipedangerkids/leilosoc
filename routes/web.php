@@ -21,6 +21,7 @@ use App\Http\Controllers\Insolventes\InsolventeController;
 use App\Http\Controllers\Tribunal\TribunalController;
 use App\Http\Controllers\Processo\TipoProcessoController;
 use App\Http\Controllers\Processo\ProcessoController;
+use App\Http\Controllers\Processo\LotesController;
 use App\Http\Controllers\Comarca\ComarcaController;
 use App\Http\Controllers\Moeda\MoedaController;
 use App\Http\Controllers\Pais\PaisController;
@@ -207,6 +208,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('abrir/{id}', [ProcessoController::class, 'abrirProcesso'])->name('processo.abrir');
         Route::post('abrir/{id?}', [ProcessoController::class, 'salvarProcesso'])->name('processo.abrir');
+
+        Route::get('lotes/{id}', [LotesController::class, 'index'])->name('lotes');
+        Route::post('lotes/{id}', [LotesController::class, 'store'])->name('lotes');
+        Route::get('lotes/{id}/edit', [LotesController::class, 'edit'])->name('lotes.edit');
+        Route::post('lotes/{id}/edit', [LotesController::class, 'update'])->name('lotes.edit');
+        Route::get('lotes/{id}/delete', [LotesController::class, 'destroy'])->name('lotes.delete');
+
+        Route::get('lotes/{id}/criar', [LotesController::class, 'create'])->name('lote.create');
     });
 
     Route::get('leilao/{id?}', [CalendarioController::class, 'index'])->name('leilao');
