@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Impostos;
 
-use App\models\Imposto;
+use App\Models\Imposto;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
