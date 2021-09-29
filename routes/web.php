@@ -24,6 +24,7 @@ use App\Http\Controllers\Processo\ProcessoController;
 use App\Http\Controllers\Comarca\ComarcaController;
 use App\Http\Controllers\Moeda\MoedaController;
 use App\Http\Controllers\Pais\PaisController;
+use App\Http\Controllers\Impostos\ImpostosController;
 use App\Http\Controllers\Desinvestimento\DesinvestimentosController;
 
 /*
@@ -136,6 +137,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pais/edit/{id}', [PaisController::class, 'edit'])->name('pais.edit');
         Route::post('pais/edit/{id}', [PaisController::class, 'update'])->name('pais.edit');
         Route::get('pais/delete/{id}', [PaisController::class, 'destroy'])->name('pais.destroy');
+
+        Route::get('imposto', [ImpostosController::class, 'index'])->name('imposto');
+        Route::post('imposto', [ImpostosController::class, 'store'])->name('imposto');
+        Route::get('imposto/edit/{id}', [ImpostosController::class, 'edit'])->name('imposto.edit');
+        Route::post('imposto/edit/{id}', [ImpostosController::class, 'update'])->name('imposto.edit');
+        Route::get('imposto/delete/{id}', [ImpostosController::class, 'destroy'])->name('imposto.destroy');
     });
 
     Route::prefix('tarefa/')->group(function () {

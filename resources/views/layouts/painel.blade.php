@@ -163,6 +163,10 @@
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Paises</p>
                                         </a>
+                                        <a href="{{route('imposto')}}" class="nav-link @if(Request::is('organizacao/imposto')) active @endif">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Impostos</p>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
